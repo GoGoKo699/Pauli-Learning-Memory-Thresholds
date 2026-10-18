@@ -1,1 +1,58 @@
-# Pauli-Learning-Memory-Thresholds
+# Pauli Learning Memory Thresholds
+
+**How much coherent memory is needed to learn correlations of bounded Pauli weight in an unknown quantum channel?** This project gives a joint threshold in the correlation weight and the memory available beside an $`n`$-qubit Pauli channel.
+
+Let $`w`$ be the maximum requested Pauli weight. At every channel invocation, count all coherent registers outside the queried $`n`$-qubit register in a budget of $`k`$ qubits, with $`0\le k\le n`$. Arbitrary coherent reuse, intermediate measurements, and adaptive feedback are allowed. At fixed nontrivial accuracy and confidence,
+
+```math
+\boxed{
+\text{polynomially many channel calls are possible}
+\quad\Longleftrightarrow\quad
+\frac{w(n-k)}{n}=O(\log n).
+}
+```
+
+The learner produces a reusable record from which any requested coefficient in the complete low-weight Pauli family can later be estimated. Every channel invocation is charged, including invocations inside long coherent blocks. The upper protocol uses local Pauli measurements and partial Bell references; the lower bound allows arbitrary known quantum processing within the width budget.
+
+## Principal results
+
+Write $`R=w(n-k)/n`$. The exact finite statements and proofs have the following homes.
+
+| Result | Content | Proof |
+|---|---|---|
+| Coherent memory | A weighted root-fidelity bound and a channel hybrid give a lower bound proportional to $`\epsilon^{-1}2^{w(n-k)/[2(3n-w)]}`$. | [Coherent lower bound](science/coherent_memory.md) |
+| Fresh experiments | Complete measurement after each call permits a stronger lower bound proportional to $`\epsilon^{-2}2^{w(n-k)/(3n-w)}`$. | [Fresh-experiment bound](science/fresh_experiments.md) |
+| Constructive learning | Random partial-Bell probes give simultaneous estimates with $`O(\epsilon^{-2}3^R\log(M_w/\delta))`$ calls and efficient evaluation of an individually requested coefficient. | [Partial-Bell protocol](science/partial_bell.md) |
+| One-bit detection | Under the positive-spike promise, detecting one hidden, exactly preserved Pauli correlation against the specified depolarizing baseline has the same frontier and an explicit polynomial-time algorithm in the polynomial regime. | [Correlation detection](science/correlation_detection.md) |
+| Weak channels | For known identity-mixture strength $`\tau`$, fixed relative accuracy adds a $`1/\tau`$ query factor. The frontier becomes $`R+\log(1/\tau)=O(\log n)`$. | [Weak-noise rates](science/weak_noise.md) |
+
+For example, learning through weight $`w=\sqrt n`$ requires $`n-k=O(\sqrt n\log n)`$ for polynomial query cost. Learning through weight $`w=\Theta(n)`$ requires $`n-k=O(\log n)`$. The [interpretation](science/interpretation.md) explains these regimes and why coherent reuse does not remove the obstruction.
+
+## Read the science
+
+Start with the [channel, memory budget, and exact tasks](science/model.md). The [weighted Pauli bounds](science/weighted_bounds.md) supply the common mathematical input. Follow either the [coherent](science/coherent_memory.md) or [fresh-experiment](science/fresh_experiments.md) converse, then the [partial-Bell construction](science/partial_bell.md). The [one-bit decision theorem](science/correlation_detection.md) makes the small-output consequence explicit, and [weak noise](science/weak_noise.md) treats rare informative events.
+
+The [related-work account](references/RELATED_WORK.md) and [bibliography](references/references.bib) distinguish imported ingredients, previously studied tasks, and nearby access models. Hypercontractivity, the Pauli-spike family, and the general benefit of reference entanglement are established ingredients. The contribution developed here is the evaluated joint support–memory frontier under the specified coherent-width budget.
+
+[The LLM reading guide](llms.txt) maps scientific questions to their authoritative files.
+
+## Reproduce the finite checks
+
+With Python 3.11 or later, install the numerical dependency and run:
+
+```bash
+python3 -m pip install -r verification/requirements.txt
+python3 verification/run_all.py
+```
+
+The checks cover weighted operator responses, trace-norm identities, short coherent-query hybrids, and exact binary syndrome calculations. They use fixed inputs or random seeds and compare their outputs with the committed expectations. [Verification](verification/README.md) explains the numerical tolerances and exact-arithmetic checks. The universal lower bounds and asymptotic frontier are proved analytically.
+
+## Scope
+
+The channel is memoryless but may contain globally correlated Pauli errors. Its ordinary CPTP action is supplied without inverse, controlled, or purified-channel access. The constructive protocols use ideal controls and reference qubits and require no QRAM. The target family contains all supports and axes through weight $`w`$; a polynomial-sized known list is a different task.
+
+Query complexity, terminal measurement count, classical processing, and explicit output length are separately accounted for. The one-bit detector exploits an exactly preserved correlation. The finite exponential constants and the coherent accuracy dependence are not claimed optimal, and the stronger extremal formula proposed by Kim–Oh remains open.
+
+## Purpose and contact
+
+This repository serves as a record of the work and a guide for the author’s self-directed learning. For discussion or potential collaboration, please contact Ruge Lin at [gogoko699@gmail.com](mailto:gogoko699@gmail.com).

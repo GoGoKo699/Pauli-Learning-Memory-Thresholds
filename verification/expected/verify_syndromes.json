@@ -1,0 +1,16 @@
+{
+  "arithmetic": "exact integers and fractions; floating point only selects finite J,L",
+  "counts": {
+    "compatibility_probability_cases": 303,
+    "enumerated_null_sequences": 37802,
+    "exact_rank_union_bound_cases": 225,
+    "finite_J_L_cases": 120,
+    "projection_cases": 4284,
+    "rank_recurrence_comparisons": 36,
+    "settings": 84,
+    "weak_null_constraint_cases": 3078,
+    "weak_spike_constraint_cases": 3078
+  },
+  "maximum_qubits": 3,
+  "status": "passed"
+}

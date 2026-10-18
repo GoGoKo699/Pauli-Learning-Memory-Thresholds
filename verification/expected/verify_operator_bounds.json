@@ -1,0 +1,15 @@
+{
+  "matrix_cases": 14,
+  "weighted_cases": 42,
+  "coherent_three_query_cases": 102,
+  "max_fidelity_identity_error": 1.9984014443252818e-15,
+  "max_holder_excess": 1.7763568394002505e-15,
+  "max_weighted_rank_bound_excess": 3.3306690738754696e-16,
+  "max_hybrid_excess": 0.0,
+  "max_channel_norm_identity_error": 4.440892098500626e-16,
+  "complex_weighted_cases": 42,
+  "max_complex_response_imaginary": 5.551115123125783e-17,
+  "max_complex_response_excess": 0.0,
+  "max_pauli_coefficient_cap_excess": 0.0,
+  "max_parseval_error": 4.440892098500626e-16
+}

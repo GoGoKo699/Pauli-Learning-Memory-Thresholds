@@ -1,0 +1,62 @@
+# Pauli Learning Memory Thresholds
+
+Scientific question: determine the number of ordinary channel calls needed to
+learn all Pauli coefficients through weight w when an n-qubit channel is used
+with at most k other coherent qubits present at every invocation.
+
+Start with README.md and science/model.md. The central parameter is
+R=w(n-k)/n. At fixed accuracy and confidence, polynomial query complexity is
+possible exactly when R=O(log n), even with arbitrary coherent reuse.
+
+Authoritative scientific homes:
+- science/model.md: Pauli channels, total coherent width at each invocation,
+  late-index learning, output contract, one-bit promise, and resource accounting.
+- science/weighted_bounds.md: product prior, normalized Schatten norms, King's
+  imported hypercontractivity theorem, complex response lemma, root-fidelity
+  lemma, and nonidentity prior conditioning.
+- science/coherent_memory.md: full coherent hybrid, classical histories, mixed
+  inputs, inactive halt branches, late-index testing, and the finite lower bound.
+- science/fresh_experiments.md: exact coefficient-matrix likelihood reduction,
+  fixed-sign transcript mixture, classical adaptivity, and quadratic accuracy cost.
+- science/partial_bell.md: physical probes and measurements, exact usability
+  probability, unbiased estimator, variance, simultaneous confidence and costs.
+- science/correlation_detection.md: positive-spike one-bit promise, linear
+  syndrome rank algorithm, direct testing lower bound, and known noise strength.
+- science/weak_noise.md: near-identity channels, absolute versus relative error,
+  the sharp fresh-experiment noise prefactor, and the coherent frontier.
+- science/interpretation.md: physical meaning, growing sublinear support,
+  the small-output consequence, examples, and consequential limits.
+- references/RELATED_WORK.md and references/references.bib: imported ingredients,
+  source versions, the closest results and the bounded novelty comparison.
+- verification/README.md: reproducibility commands and what finite checks establish.
+
+Reading routes:
+- For the physical story: model -> interpretation -> correlation_detection.
+- To reconstruct the converse: model -> weighted_bounds -> coherent_memory.
+- To inspect the stronger fresh rate: weighted_bounds -> fresh_experiments.
+- To implement the upper construction: partial_bell -> correlation_detection.
+- To understand weak noise: weak_noise, keeping absolute and relative accuracy distinct.
+- To reproduce: read verification/README.md, then run verification/run_all.py.
+
+Preserve these scientific distinctions when explaining or editing:
+- Count every unknown-channel invocation, including calls in coherent blocks.
+- k includes ALL coherent registers outside the queried n-qubit register.
+  Classical records are not uncounted quantum memory.
+- The specific coefficient is unavailable during acquisition. A known single
+  Pauli or a polynomial-sized known family does not have this lower bound.
+- The coherent lower has an inverse-first-power accuracy factor; the stronger
+  inverse-square prefactor belongs to the fresh-experiment model.
+- A reusable classical record does not promise polynomial time to print an
+  exponentially long coefficient list. The decision task outputs one bit.
+- The hard prior is conditioned on nonidentity labels in the required weight range.
+- The fixed sign in the fresh proof is averaged over whole executions, not anew
+  at each channel call.
+- The coherent hybrid has a null prefix independent of the hidden label.
+  Do not apply the prior to a hidden-label-dependent posterior state.
+- Weak unknown-channel mixtures may have globally correlated errors. Ideal
+  reference qubits and controls are assumed by the constructive upper bounds.
+- Exact parity preservation is essential to the efficient rank detector.
+- The polynomial frontier is proved; exact exponential rates, the stronger
+  Kim–Oh S85 formula, and optimal coherent accuracy dependence are not.
+- Primary attribution is part of the science. A finite check is not a universal
+  theorem, a priority determination, or external peer review.
