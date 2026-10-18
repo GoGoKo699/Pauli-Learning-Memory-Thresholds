@@ -1,0 +1,14 @@
+{
+  "nonidentity_signal_cases": 909,
+  "system_qubits": [
+    1,
+    2,
+    3
+  ],
+  "reference_qubits": "every k from 0 through n",
+  "errors": {
+    "null_probability": 1.110224519131441e-16,
+    "signal_probability": 5.567450969303967e-17,
+    "reality": 2.0816681711721685e-17
+  }
+}
