@@ -212,6 +212,24 @@ inputs, while the weak-noise parameter describes a known identity mixture
 of the unknown channel. That is a different noise contract; no claim of
 general noisy-memory resilience follows from it.
 
+## Educational anchor
+
+<a id="watrous2018"></a>
+### Watrous2018
+
+John Watrous, **The Theory of Quantum Information**, Cambridge University
+Press (2018). [Author's book page](https://cs.uwaterloo.ca/~watrous/TQI/).
+Section and equation pointers use the linked pre-publication chapter files;
+their [front matter](https://cs.uwaterloo.ca/~watrous/TQI/TQI.frontmatter.pdf)
+is dated January 2018.
+
+This is the project's single educational anchor for finite quantum systems,
+channels, measurements, operator norms, and distinguishability. The
+[Watrous bridge](../learning/WATROUS_BRIDGE.md) gives the relevant sections,
+convention translations, and steps to the project. King's hypercontractivity
+theorem remains a primary research input; the weighted applications and
+learning and detection arguments are supplied in the scientific account.
+
 ## Attribution and comparison rules
 
 The proofs cite hypercontractivity and the established statistical and Pauli

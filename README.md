@@ -36,6 +36,18 @@ The [related-work account](references/RELATED_WORK.md) and [bibliography](refere
 
 [The LLM reading guide](llms.txt) maps scientific questions to their authoritative files.
 
+## Learn the project
+
+The single educational anchor is John Watrous, [*The Theory of Quantum Information* (2018)](https://cs.uwaterloo.ca/~watrous/TQI/). The learning route connects its foundations to the physical task, the proofs, and the algorithms developed here.
+
+| Entry | What it provides |
+|---|---|
+| [30-milestone map](learning/MILESTONES.md) | M01–M14 build the background and access model. M15–M30 connect the weighted bounds, coherent and fresh converses, learning construction, detector, and weak-channel result. Each milestone has a central question, understanding target, dependencies, conceptual connection, and source pointers. |
+| [Watrous bridge](learning/WATROUS_BRIDGE.md) | Relevant sections and equations, translations of norms and notation, resource assumptions, and the additional arguments needed for this project. |
+| [Two-qubit worked example](learning/WORKED_EXAMPLE.md) | A complete partial-Bell setting with one reference qubit, a reusable coefficient estimator, binary syndrome detection, and finite call counts. |
+
+Start with the worked example for a concrete experiment, then follow the milestone map. The linked scientific pages remain the exact statement and proof homes. Primary research citations, including the imported hypercontractivity theorem, retain their separate attribution in the bridge and related-work account.
+
 ## Reproduce the finite checks
 
 With Python 3.11 or later, install the numerical dependency and run:
