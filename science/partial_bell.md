@@ -40,16 +40,16 @@ Let the later request be a Pauli $`P_e`$ of weight $`u`$. A record is usable for
 ```math
 H_e=
 \mathbf 1\{a_i=e_i
-\text{ for every }i\in\operatorname{supp}(e)\setminus K\}.
+\text{ for every }i\in\mathrm{supp}(e)\setminus K\}.
 ```
 
 On a usable record, multiply the relevant Bell-label commutation characters and the unpaired signs:
 
 ```math
 Y_e=
-\prod_{i\in K\cap\operatorname{supp}(e)}
+\prod_{i\in K\cap\mathrm{supp}(e)}
  (-1)^{[e_i,v_i]}
-\prod_{i\in\operatorname{supp}(e)\setminus K}b_i.
+\prod_{i\in\mathrm{supp}(e)\setminus K}b_i.
 ```
 
 The result is the complete error character,
@@ -62,7 +62,7 @@ On an unusable record, the algorithm does not need to reconstruct this character
 
 ### Exact usability probability
 
-Put $`D=n-k`$. Conditional on $`K`$, let $`M=|\operatorname{supp}(e)\setminus K|`$ be the number of unpaired target sites. All required axes agree with probability $`3^{-M}`$. Thus usability depends only on the target weight:
+Put $`D=n-k`$. Conditional on $`K`$, let $`M=|\mathrm{supp}(e)\setminus K|`$ be the number of unpaired target sites. All required axes agree with probability $`3^{-M}`$. Thus usability depends only on the target weight:
 
 ```math
 p_u=\Pr(H_e=1)=\mathbb E_K\,3^{-M}.
@@ -115,7 +115,7 @@ It is implemented as zero on unusable records and as the decoded sign divided by
 ```math
 \mathbb E X_e=\lambda_e,\qquad
 \mathbb E X_e^2=\frac1{p_u},\qquad
-\operatorname{Var}(X_e)=\frac1{p_u}-\lambda_e^2
+\mathrm{Var}(X_e)=\frac1{p_u}-\lambda_e^2
 \leq\frac1{p_u}.
 ```
 

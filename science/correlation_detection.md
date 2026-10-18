@@ -16,16 +16,16 @@ $`D=n-k`$, and $`R=wD/n`$. The unknown, memoryless channel is promised to be
 either
 
 ```math
-\Gamma_0=(1-\tau)\operatorname{Id}+\tau\operatorname{Dep},
-\qquad \operatorname{Dep}(X)=\frac{I\operatorname{Tr}X}{d},
+\Gamma_0=(1-\tau)\mathrm{Id}+\tau\mathrm{Dep},
+\qquad \mathrm{Dep}(X)=\frac{I\mathrm{Tr}X}{d},
 ```
 
 or
 
 ```math
-\Gamma_P=(1-\tau)\operatorname{Id}+\tau\Lambda_P,
+\Gamma_P=(1-\tau)\mathrm{Id}+\tau\Lambda_P,
 \qquad
-\Lambda_P(X)=\frac{I\operatorname{Tr}X+P\operatorname{Tr}(PX)}{d},
+\Lambda_P(X)=\frac{I\mathrm{Tr}X+P\mathrm{Tr}(PX)}{d},
 \qquad 1\leq |P|\leq w.
 ```
 
@@ -114,7 +114,7 @@ At $`\tau=1`$, the alternative also has the measure-and-prepare form
 
 ```math
 \Lambda_P(X)=\sum_{b\in\{+1,-1\}}
-       \operatorname{Tr}(E_bX)\sigma_b,
+       \mathrm{Tr}(E_bX)\sigma_b,
 \qquad
 E_b=\frac{I+bP}{2},\quad
 \sigma_b=\frac{I+bP}{d}.
@@ -126,7 +126,7 @@ within its eigenspaces. The identity mixtures for smaller $`\tau`$ need
 not be entanglement breaking. Both hypotheses satisfy
 
 ```math
-\|\Gamma_i-\operatorname{Id}\|_\diamond\leq2\tau,
+\|\Gamma_i-\mathrm{Id}\|_\diamond\leq2\tau,
 \qquad
 \|\Gamma_P-\Gamma_0\|_\diamond=\tau.
 \tag{D6}
@@ -167,7 +167,7 @@ $`\dim A\leq2^k`$, satisfies
 
 ```math
 g_e(\omega)=
-\left\|\operatorname{Tr}_S[(P_e\otimes I)\omega]\right\|_1,
+\left\|\mathrm{Tr}_S[(P_e\otimes I)\omega]\right\|_1,
 \qquad
 \mathbb E_{e\sim\nu_x}g_e(\omega)^2\leq B.
 \tag{D7}
@@ -186,9 +186,9 @@ quantum state. Conditioning the prior and using Cauchy–Schwarz gives
 For any such input, the single-call difference is
 
 ```math
-[(\Gamma_{P_e}-\Gamma_0)\otimes\operatorname{id}_A](\omega)
+[(\Gamma_{P_e}-\Gamma_0)\otimes\mathrm{id}_A](\omega)
 =\tau\frac{P_e}{d}\otimes
-  \operatorname{Tr}_S[(P_e\otimes I)\omega],
+  \mathrm{Tr}_S[(P_e\otimes I)\omega],
 ```
 
 and has trace norm $`\tau g_e(\omega)`$. Compare the actual protocol by
@@ -200,7 +200,7 @@ $`e`$-dependent trace-preserving quantum map on each side of that replacement.
 Trace-distance contraction, (D8), and the triangle inequality imply
 
 ```math
-\mathbb E_{e\sim\pi}\operatorname{TV}(Q_e,Q_0)
+\mathbb E_{e\sim\pi}\mathrm{TV}(Q_e,Q_0)
 \leq\frac{N\tau}{2}\sqrt{B/p_{\mathcal A}},
 \tag{D9}
 ```
@@ -219,7 +219,7 @@ promised channel requires
 \quad(e\in\mathcal A).
 ```
 
-Thus $`\operatorname{TV}(Q_e,Q_0)\geq1-2\delta`$ for every allowed
+Thus $`\mathrm{TV}(Q_e,Q_0)\geq1-2\delta`$ for every allowed
 $`e`$. Combining with (D9) yields
 
 ```math
@@ -268,14 +268,14 @@ for the two independent coordinate rows at each Bell site.
 
 Let $`\ell_e`$ be the row vector representing $`v\mapsto[e,v]`$ in
 ordinary binary coordinates. The setting is **compatible** with the hidden
-Pauli if and only if $`\ell_e\in\operatorname{row}(A)`$. This is equivalent
+Pauli if and only if $`\ell_e\in\mathrm{row}(A)`$. This is equivalent
 to every nonidentity local axis of $`P_e`$ outside $`K`$ agreeing with the
 chosen measurement axis.
 
 For $`u=|e|`$, the compatibility probability is
 
 ```math
-q_e=\mathbb E_K 3^{-|\operatorname{supp}(e)\setminus K|}
+q_e=\mathbb E_K 3^{-|\mathrm{supp}(e)\setminus K|}
 \geq 3^{-u(n-k)/n}\geq3^{-R}.
 \tag{D11}
 ```
@@ -286,7 +286,7 @@ is given in [partial_bell.md](partial_bell.md).
 Two elementary projection facts determine the test:
 
 1. Under $`\Gamma_0`$, the syndrome law is
-   $`(1-\tau)\delta_0+\tau\operatorname{Uniform}(\mathbb F_2^m)`$.
+   $`(1-\tau)\delta_0+\tau\mathrm{Uniform}(\mathbb F_2^m)`$.
 2. Under $`\Gamma_{P_e}`$ in a compatible setting, there is a unique
    nonzero row $`c`$ with $`cA=\ell_e`$. Every syndrome obeys $`cy=0`$,
    including the identity-branch syndrome. In an incompatible setting the
@@ -325,7 +325,7 @@ least one such form. Independence within the block gives
 
 ```math
 \begin{aligned}
-\Pr(\operatorname{rank}<m)
+\Pr(\mathrm{rank}<m)
 &\leq(2^m-1)(1-\tau/2)^L\\
 &\leq2^m e^{-\tau L/2}
 \leq\frac{\delta}{2J}.

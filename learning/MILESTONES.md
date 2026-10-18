@@ -84,7 +84,7 @@ Dependencies always refer to earlier milestones. Each phase progresses from loca
 
 **Central question.** How does the size of an accessible reference constrain a pure probe?
 
-**Understanding target.** Relate a pure state on $`S\otimes A`$ to its Schmidt decomposition and the rank of its system marginal. Derive $`\operatorname{rank}\rho_S\leq\dim A\leq2^k`$. Explain why a mixed joint state can have a system marginal of larger rank and why an algebraic decomposition inside the actual registers does not supply extra coherent memory.
+**Understanding target.** Relate a pure state on $`S\otimes A`$ to its Schmidt decomposition and the rank of its system marginal. Derive $`\mathrm{rank}\rho_S\leq\dim A\leq2^k`$. Explain why a mixed joint state can have a system marginal of larger rank and why an algebraic decomposition inside the actual registers does not supply extra coherent memory.
 
 **Dependencies and story role.** Uses [M04](#m04). It converts a physical width budget into the matrix-rank parameter that will enter the lower bound.
 
@@ -247,7 +247,7 @@ for rank $`r`$. Recognize where the factor $`r/d`$ enters and how Schatten Höld
 
 ```math
 \mathbb E_{\nu_x}f_e(\rho)^2
-\leq(\operatorname{rank}\rho/d)^\gamma.
+\leq(\mathrm{rank}\rho/d)^\gamma.
 ```
 
 **Dependencies and story role.** Uses [M06](#m06), [M08](#m08), [M09](#m09), and [M13](#m13). It develops the second local estimate needed to treat coherent processing.
@@ -274,7 +274,7 @@ for rank $`r`$. Recognize where the factor $`r/d`$ enters and how Schatten Höld
 
 **Central question.** How does W2 bound the distinguishability produced by a single changed channel call?
 
-**Understanding target.** Define $`B_e(\omega)=\operatorname{Tr}_S[(P_e\otimes I)\omega]`$ and relate the output-difference trace norm to $`a\|B_e(\omega)\|_1`$. For pure inputs, use the Schmidt representation to identify this norm with $`f_e(\rho_S)`$. Extend the bound to mixed inputs and classical blocks by convexity inside the declared registers.
+**Understanding target.** Define $`B_e(\omega)=\mathrm{Tr}_S[(P_e\otimes I)\omega]`$ and relate the output-difference trace norm to $`a\|B_e(\omega)\|_1`$. For pure inputs, use the Schmidt representation to identify this norm with $`f_e(\rho_S)`$. Extend the bound to mixed inputs and classical blocks by convexity inside the declared registers.
 
 **Dependencies and story role.** Uses [M06](#m06), [M09](#m09), [M10](#m10), [M17](#m17), and [M18](#m18). It turns an operator lemma into a statement at one invocation of the allowed processor.
 
@@ -410,7 +410,7 @@ N\leq\left\lceil
 
 **Central question.** What changes when informative channel effects are rare?
 
-**Understanding target.** Interpret the known identity mixture $`\widetilde\Lambda=(1-\tau)\operatorname{Id}+\tau\Lambda`$. Explain how centering at the identity reduces the upper estimator variance, and how an outcome-weighted likelihood second moment produces the fresh lower factor $`\tau/\epsilon^2`$. Distinguish absolute error from $`\epsilon=\alpha\tau`$ with fixed $`0<\alpha<1/3`$. At fixed nontrivial confidence, derive the relative-accuracy frontier $`R+\log(1/\tau)=O(\log n)`$.
+**Understanding target.** Interpret the known identity mixture $`\widetilde\Lambda=(1-\tau)\mathrm{Id}+\tau\Lambda`$. Explain how centering at the identity reduces the upper estimator variance, and how an outcome-weighted likelihood second moment produces the fresh lower factor $`\tau/\epsilon^2`$. Distinguish absolute error from $`\epsilon=\alpha\tau`$ with fixed $`0<\alpha<1/3`$. At fixed nontrivial confidence, derive the relative-accuracy frontier $`R+\log(1/\tau)=O(\log n)`$.
 
 **Dependencies and story role.** Uses [M11](#m11), [M20](#m20), [M22](#m22), [M24](#m24), [M25](#m25), and [M28](#m28). It unifies the acquisition models and the one-bit result with the cost of rare information.
 

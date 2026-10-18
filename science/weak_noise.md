@@ -9,7 +9,7 @@ The references on this page are ideal. The additional promise concerns the unkno
 Fix a known $`0<\tau\leq1`$. The unknown channel belongs to the class
 
 ```math
-\widetilde\Lambda=(1-\tau)\operatorname{id}+\tau\Lambda,
+\widetilde\Lambda=(1-\tau)\mathrm{id}+\tau\Lambda,
 ```
 
 where $`\Lambda`$ is an otherwise arbitrary memoryless Pauli channel. Equivalently, the Pauli-error distribution of $`\widetilde\Lambda`$ assigns probability at least $`1-\tau`$ to the identity error. Its eigenvalues are
@@ -22,8 +22,8 @@ where $`\Lambda`$ is an otherwise arbitrary memoryless Pauli channel. Equivalent
 for each nonidentity target, and
 
 ```math
-\|\widetilde\Lambda-\operatorname{id}\|_\diamond
-=\tau\|\Lambda-\operatorname{id}\|_\diamond
+\|\widetilde\Lambda-\mathrm{id}\|_\diamond
+=\tau\|\Lambda-\mathrm{id}\|_\diamond
 \leq2\tau.
 ```
 
@@ -75,9 +75,9 @@ The reference and alternative weak channels are
 
 ```math
 \widetilde\Lambda_0
-=(1-\tau)\operatorname{id}+\tau\mathcal D,\qquad
+=(1-\tau)\mathrm{id}+\tau\mathcal D,\qquad
 \widetilde\Lambda_{e,s}
-=(1-\tau)\operatorname{id}+\tau\Lambda_{e,s}.
+=(1-\tau)\mathrm{id}+\tau\Lambda_{e,s}.
 ```
 
 At the hidden nonidentity target, their eigenvalues differ by $`s\tau a=s\,3\epsilon`$. Thus a successful estimate distinguishes the null value $`1-\tau`$ from either alternative using the decision rule
@@ -147,7 +147,7 @@ The factor $`\tau`$ comes from this outcome-weighted second moment. Rescaling th
 For a full transcript, the two signed likelihoods are products of factors $`1\pm a h_e`$. Apply the [signed transcript inequality](fresh_experiments.md#the-signed-transcript-bound), and at every step average the displayed node bound against the weak-null history. That history is independent of the hidden label. The resulting laws obey
 
 ```math
-\mathbb E_e\operatorname{TV}
+\mathbb E_e\mathrm{TV}
 \left(
 \widetilde Q_0,
 \frac{\widetilde Q_{e,+}+\widetilde Q_{e,-}}2
@@ -189,7 +189,7 @@ Independence of compatibility and the error draw, together with $`(1-Y_e)^2=2(1-
 
 ```math
 \mathbb E Z_e=\widetilde\lambda_e,\qquad
-\operatorname{Var}(Z_e)
+\mathrm{Var}(Z_e)
 =\frac{2\Delta_e}{p_u}-\Delta_e^2
 \leq\frac{4\tau}{p_u}.
 ```
