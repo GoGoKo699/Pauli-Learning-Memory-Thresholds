@@ -8,6 +8,18 @@ Start with README.md and science/model.md. The central parameter is
 R=w(n-k)/n. At fixed accuracy and confidence, polynomial query complexity is
 possible exactly when R=O(log n), even with arbitrary coherent reuse.
 
+Learning route:
+- learning/MILESTONES.md: exactly 30 learner-independent understanding targets;
+  M01-M14 assemble the background and model, and M15-M30 explain the narrative,
+  results, physical meaning, attribution, and limits. Each entry gives its
+  question, target, earlier dependencies, conceptual connection, and sources.
+- learning/WATROUS_BRIDGE.md: the single educational anchor, John Watrous's
+  The Theory of Quantum Information (2018), with precise section pointers,
+  convention translations, resource assumptions, and source-to-project steps.
+- learning/WORKED_EXAMPLE.md: two channel qubits and one reference, including
+  the physical settings, reusable estimator, exact syndrome parity, and finite
+  detector call counts at two known noise strengths.
+
 Authoritative scientific homes:
 - science/model.md: Pauli channels, total coherent width at each invocation,
   late-index learning, output contract, one-bit promise, and resource accounting.
@@ -31,6 +43,8 @@ Authoritative scientific homes:
 - verification/README.md: reproducibility commands and what finite checks establish.
 
 Reading routes:
+- For a concrete introduction: learning/WORKED_EXAMPLE.md, then the milestone
+  map; use learning/WATROUS_BRIDGE.md for the textbook-to-project translation.
 - For the physical story: model -> interpretation -> correlation_detection.
 - To reconstruct the converse: model -> weighted_bounds -> coherent_memory.
 - To inspect the stronger fresh rate: weighted_bounds -> fresh_experiments.
@@ -39,6 +53,9 @@ Reading routes:
 - To reproduce: read verification/README.md, then run verification/run_all.py.
 
 Preserve these scientific distinctions when explaining or editing:
+- Watrous is the only educational anchor. Research papers remain sources for
+  attribution and imported proof ingredients; the book does not supply this
+  project's weighted converse or replace its scientific proof homes.
 - Count every unknown-channel invocation, including calls in coherent blocks.
 - k includes ALL coherent registers outside the queried n-qubit register.
   Classical records are not uncounted quantum memory.
