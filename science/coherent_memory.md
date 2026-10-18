@@ -197,7 +197,7 @@ This reasoning also covers an index-dependent quantum decoder applied to a retai
 N\ge
 \frac{2(1-2\delta)\sqrt{p_A(x)}}{3\epsilon}
 \,2^{D x/(1+x)},
-\qquad 0<x\le1.
+\qquad 0\lt x\le1.
 ```
 
 Choose $`x=w/[3(2n-w)]`$. Lemma W3 gives $`p_A(x)\ge1/4`$ and $`2x/(1+x)=w/(3n-w)`$. Substitution proves C1:

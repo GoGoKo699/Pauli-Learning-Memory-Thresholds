@@ -324,7 +324,7 @@ A block has deficient rank only if all its rows lie in the kernel of at
 least one such form. Independence within the block gives
 
 ```math
-\Pr(\mathrm{rank}<m)
+\Pr(\mathrm{rank}\lt m)
 \leq(2^m-1)(1-\tau/2)^L
 \leq2^m e^{-\tau L/2}
 \leq\frac{\delta}{2J}.
