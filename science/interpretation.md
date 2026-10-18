@@ -45,7 +45,7 @@ At $`\tau=1`$, the positive-spike channel has a direct measure-and-prepare form.
 
 ```math
 \Lambda_e(X)
-=\sum_{s=\pm1}\operatorname{Tr}(\Pi_sX)\frac{2\Pi_s}{d}.
+=\sum_{s=\pm1}\mathrm{Tr}(\Pi_sX)\frac{2\Pi_s}{d}.
 ```
 
 It measures one Pauli parity and replaces the input by the maximally mixed state in the corresponding eigenspace. This channel is entanglement breaking, even though a learner's reference entanglement can substantially reduce the effort needed to discover its hidden preserved correlation.
@@ -58,7 +58,7 @@ The exact preserved-correlation promise is essential to this particular algorith
 
 ## Weak channels and the cost of rare information
 
-For the known mixture $`\widetilde\Lambda=(1-\tau)\operatorname{Id}+\tau\Lambda`$, the distance to the identity is at most $`2\tau`$ in diamond norm. Small $`\tau`$ makes informative error events rare.
+For the known mixture $`\widetilde\Lambda=(1-\tau)\mathrm{Id}+\tau\Lambda`$, the distance to the identity is at most $`2\tau`$ in diamond norm. Small $`\tau`$ makes informative error events rare.
 
 At relative accuracy $`\varepsilon=\alpha\tau`$ with fixed $`0<\alpha<1/3`$, the [weak-noise bounds](weak_noise.md) give the same polynomial boundary in both acquisition models:
 

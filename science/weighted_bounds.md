@@ -9,7 +9,7 @@ The channel and resource conventions are in [the model](model.md). The two opera
 Let $`d=2^n`$. Label Hermitian Pauli representatives by $`b\in\mathbb F_2^{2n}`$, with $`P_0=I_d`$. A label consists of one of four local Pauli labels at each site. The weight $`|b|`$ is the number of nonidentity sites. Addition of labels is binary addition; phases in Pauli multiplication do not affect this labeling. Write $`[e,b]\in\mathbb F_2`$ for the binary symplectic form. Then
 
 ```math
-\operatorname{Tr}(P_bP_c)=d\,\mathbf 1_{b=c},
+\mathrm{Tr}(P_bP_c)=d\,\mathbf 1_{b=c},
 \qquad
 P_eP_bP_e=(-1)^{[e,b]}P_b.
 ```
@@ -33,7 +33,7 @@ At $`x=0`$, the prior is concentrated on the identity label. At each site, the p
 Define the qubit depolarizing map and its tensor power by
 
 ```math
-\Delta_s(A)=sA+(1-s)\frac{\operatorname{Tr}(A)}2I_2,
+\Delta_s(A)=sA+(1-s)\frac{\mathrm{Tr}(A)}2I_2,
 \qquad
 \mathcal T_s=\Delta_s^{\otimes n},
 \qquad 0\le s\le1.
@@ -56,9 +56,9 @@ Each $`\mathcal T_s`$ is self-adjoint for the Hilbert–Schmidt inner product. T
 We distinguish the ordinary Schatten norms from their normalized versions:
 
 ```math
-\|A\|_p=\bigl(\operatorname{Tr}|A|^p\bigr)^{1/p},
+\|A\|_p=\bigl(\mathrm{Tr}|A|^p\bigr)^{1/p},
 \qquad
-\tau_d(A)=\frac{\operatorname{Tr}(A)}d,
+\tau_d(A)=\frac{\mathrm{Tr}(A)}d,
 \qquad
 \|A\|_{p,\mathrm{av}}=\bigl(\tau_d(|A|^p)\bigr)^{1/p}.
 ```
@@ -116,8 +116,8 @@ At $`t=1`$, this statement is the identity with exponent zero. Thus it holds ove
 
 ```math
 G_e(C)=
-\frac{\operatorname{Tr}(P_eCP_eC^\dagger)}
-{\operatorname{Tr}(CC^\dagger)}.
+\frac{\mathrm{Tr}(P_eCP_eC^\dagger)}
+{\mathrm{Tr}(CC^\dagger)}.
 ```
 
 Then $`G_e(C)`$ is real, $`|G_e(C)|\le1`$, and
@@ -138,10 +138,10 @@ B_x:=2^{-D\gamma}
 
 ### Proof
 
-Let $`c_b=\operatorname{Tr}(P_bC)`$ and
+Let $`c_b=\mathrm{Tr}(P_bC)`$ and
 
 ```math
-q_b=\frac{|c_b|^2}{d\operatorname{Tr}(CC^\dagger)}.
+q_b=\frac{|c_b|^2}{d\mathrm{Tr}(CC^\dagger)}.
 ```
 
 Pauli Parseval gives
@@ -149,7 +149,7 @@ Pauli Parseval gives
 ```math
 C=\frac1d\sum_b c_bP_b,
 \qquad
-\sum_b|c_b|^2=d\operatorname{Tr}(CC^\dagger).
+\sum_b|c_b|^2=d\mathrm{Tr}(CC^\dagger).
 ```
 
 Thus $`q`$ is a probability distribution. Nuclear norm duality and the singular-value rank bound give
@@ -175,8 +175,8 @@ F_x(C)=\sum_{b,c}q_bq_c\,t^{|b+c|}.
 Fix a label $`c`$ and let $`A=P_cC`$. Left multiplication by $`P_c`$ preserves rank and singular values. Pauli multiplication shifts its expansion coefficients up to phases of modulus one:
 
 ```math
-\left|\operatorname{Tr}(P_aA)\right|
-=\left|\operatorname{Tr}(P_{a+c}C)\right|.
+\left|\mathrm{Tr}(P_aA)\right|
+=\left|\mathrm{Tr}(P_{a+c}C)\right|.
 ```
 
 Since $`\mathcal T_{\sqrt t}`$ multiplies a coefficient of weight $`|a|`$ by $`t^{|a|/2}`$, Parseval gives the exact row identity
@@ -249,11 +249,11 @@ f_e(\rho)
 =\|\rho^{1/4}P_e\rho^{1/4}\|_2,
 ```
 
-because $`\operatorname{Tr}\rho=1`$. The middle matrix is Hermitian, and cyclicity of the trace gives
+because $`\mathrm{Tr}\rho=1`$. The middle matrix is Hermitian, and cyclicity of the trace gives
 
 ```math
 f_e(\rho)^2
-\le\operatorname{Tr}(\sqrt\rho\,P_e\sqrt\rho\,P_e).
+\le\mathrm{Tr}(\sqrt\rho\,P_e\sqrt\rho\,P_e).
 ```
 
 The trace on the right is nonnegative because it equals the squared Hilbert–Schmidt norm in the preceding display. Average over the product prior and set $`A=\sqrt\rho`$. The Pauli averaging identity, self-adjointness, and semigroup property give
@@ -261,8 +261,8 @@ The trace on the right is nonnegative because it equals the squared Hilbert–Sc
 ```math
 \begin{aligned}
 \mathbb E_{e\sim\nu_x}f_e(\rho)^2
-&\le\operatorname{Tr}\bigl(A\mathcal T_t(A)\bigr)\\
-&=\operatorname{Tr}\bigl(\mathcal T_{\sqrt t}(A)^\dagger
+&\le\mathrm{Tr}\bigl(A\mathcal T_t(A)\bigr)\\
+&=\mathrm{Tr}\bigl(\mathcal T_{\sqrt t}(A)^\dagger
 \mathcal T_{\sqrt t}(A)\bigr)\\
 &=d\,\|\mathcal T_{\sqrt t}(A)\|_{2,\mathrm{av}}^2\\
 &\le d\left(\frac rd\right)^\gamma
@@ -271,11 +271,11 @@ The trace on the right is nonnegative because it equals the squared Hilbert–Sc
 \end{aligned}
 ```
 
-The last equality uses $`\operatorname{Tr}(A^\dagger A)=\operatorname{Tr}\rho=1`$. This proves W2. At $`x=1`$, the same argument reduces directly to
+The last equality uses $`\mathrm{Tr}(A^\dagger A)=\mathrm{Tr}\rho=1`$. This proves W2. At $`x=1`$, the same argument reduces directly to
 
 ```math
 \mathbb E_{e\sim\nu_1}f_e(\rho)^2
-\le\frac{(\operatorname{Tr}\sqrt\rho)^2}{d}
+\le\frac{(\mathrm{Tr}\sqrt\rho)^2}{d}
 \le\frac rd,
 ```
 
@@ -295,7 +295,7 @@ p_A(x)=\nu_x(\mathcal A_w),
 The number of nonidentity sites under $`\nu_x`$ has distribution
 
 ```math
-W\sim\operatorname{Bin}\left(n,\frac{3x}{1+3x}\right),
+W\sim\mathrm{Bin}\left(n,\frac{3x}{1+3x}\right),
 \qquad
 p_A(x)=\Pr(1\le W\le w).
 ```
@@ -321,7 +321,7 @@ x_* = \frac{w}{3(2n-w)}.
 Then
 
 ```math
-W\sim\operatorname{Bin}\left(n,\frac{w}{2n}\right),
+W\sim\mathrm{Bin}\left(n,\frac{w}{2n}\right),
 \qquad
 \gamma_* = \frac{w}{3n-w},
 \qquad

@@ -44,10 +44,10 @@ $`\Omega(\epsilon^{-2}n^{-1/2}2^{-k}3^w)`$ at fixed confidence.
 Supplement S3.5 proposes the unproved rank-constrained identity S85,
 
 ```math
-\max_{\operatorname{rank}C\leq2^k}
+\max_{\mathrm{rank}C\leq2^k}
 \mathbb E_{e\sim\nu_x}
-\frac{\operatorname{Tr}(P_eCP_eC^\dagger)^2}
-     {\operatorname{Tr}(CC^\dagger)^2}
+\frac{\mathrm{Tr}(P_eCP_eC^\dagger)^2}
+     {\mathrm{Tr}(CC^\dagger)^2}
 =\left(\frac{1+x}{1+3x}\right)^{n-k}.
 ```
 
@@ -157,10 +157,13 @@ Senrui Chen, Changhun Oh, Sisi Zhou, Hsin-Yuan Huang, and Liang Jiang,
 [version inspected: v3](https://arxiv.org/html/2309.13461v3).
 
 This work proves the tight full-family entanglement-free scaling
-$`\Theta(2^n\epsilon^{-2})`$ and permits mid-circuit measurements and
-classical feedback. It establishes a stronger full-family endpoint than the
-general weight-sensitive lower bound alone. That endpoint does not locate
-the intermediate frontier with both $`w`$ and $`k`$ varying.
+$`\Theta(2^n\epsilon^{-2})`$ for pointwise coefficient success and permits
+mid-circuit measurements and classical feedback. Its simultaneous upper
+bound has an additional factor of $`n`$; the pointwise lower bound still
+applies. This distinction is explicit in Theorem 2 and the paragraph that
+follows it. The pointwise result establishes a stronger full-family endpoint
+than the general weight-sensitive lower bound alone. That endpoint does not
+locate the intermediate frontier with both $`w`$ and $`k`$ varying.
 
 <a id="fawziflammariongarivieroufkir2023"></a>
 ### FawziFlammarionGarivierOufkir2023

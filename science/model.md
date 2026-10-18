@@ -24,7 +24,7 @@ The weight $`|v|`$ counts sites where $`(x_j,z_j)\ne(0,0)`$. Define the symplect
 [u,v]=x_u\cdot z_v+z_u\cdot x_v\pmod2.
 ```
 
-Then $`P_uP_v=(-1)^{[u,v]}P_vP_u`$ and $`\operatorname{Tr}(P_uP_v)=d\,\mathbf1_{u=v}`$. A memoryless Pauli channel has the form
+Then $`P_uP_v=(-1)^{[u,v]}P_vP_u`$ and $`\mathrm{Tr}(P_uP_v)=d\,\mathbf1_{u=v}`$. A memoryless Pauli channel has the form
 
 ```math
 \Lambda(X)=\sum_v p_vP_vXP_v,\qquad
@@ -65,7 +65,7 @@ An unrestricted classical history $`H`$ may be retained. The state at a query ha
 
 Known processing may act jointly on $`S`$ and $`A`$, move quantum information between them, produce measurement outcomes, reset registers, and adapt to the classical history. The system register itself may retain coherence between calls. Temporary implementation registers may be used between invocations; any register still coherent at an invocation belongs to $`A`$ and is counted.
 
-The channel oracle is the ordinary map $`\Lambda\otimes\operatorname{Id}_A`$. Its environment, a purification of its action, an inverse, and controlled-channel access are not provided. An unlimited classical record cannot be reinterpreted as an uncounted coherent register. These distinctions are necessary for the width constraint to have an operational meaning.
+The channel oracle is the ordinary map $`\Lambda\otimes\mathrm{Id}_A`$. Its environment, a purification of its action, an inverse, and controlled-channel access are not provided. An unlimited classical record cannot be reinterpreted as an uncounted coherent register. These distinctions are necessary for the width constraint to have an operational meaning.
 
 The resource $`N`$ is a worst-case upper bound on the number of channel invocations. A long coherent block pays for every call it contains. An adaptive strategy may stop early. The hybrid proof treats halted classical branches as inactive, so it also covers this case without adding uncounted quantum storage. No claim about an expected-only query budget is needed.
 
@@ -98,13 +98,13 @@ The [correlation detection theorem](correlation_detection.md) uses the promise
 ```math
 \begin{aligned}
 \Lambda_{\tau,0}
-  &=(1-\tau)\operatorname{Id}+\tau\Lambda_{\rm dep},\\
+  &=(1-\tau)\mathrm{Id}+\tau\Lambda_{\rm dep},\\
 \Lambda_{\tau,e}
-  &=(1-\tau)\operatorname{Id}+\tau\Lambda_e,\\
+  &=(1-\tau)\mathrm{Id}+\tau\Lambda_e,\\
 \Lambda_{\rm dep}(X)
-  &=\frac{I\,\operatorname{Tr}X}{d},\\
+  &=\frac{I\,\mathrm{Tr}X}{d},\\
 \Lambda_e(X)
-  &=\frac{I\,\operatorname{Tr}X+P_e\operatorname{Tr}(P_eX)}{d}.
+  &=\frac{I\,\mathrm{Tr}X+P_e\mathrm{Tr}(P_eX)}{d}.
 \end{aligned}
 ```
 

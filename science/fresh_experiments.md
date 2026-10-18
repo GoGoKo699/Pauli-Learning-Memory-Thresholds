@@ -42,15 +42,15 @@ Let $`d=2^n`$, let $`P_e`$ be the Hermitian representative of a Pauli label, and
 The reference channel is complete depolarization,
 
 ```math
-\mathcal D(X)=\frac{\operatorname{Tr}(X)}{d}I.
+\mathcal D(X)=\frac{\mathrm{Tr}(X)}{d}I.
 ```
 
 For a **nonidentity** label $`e`$, a sign $`s\in\{-1,+1\}`$, and an amplitude $`0<a<1`$, define
 
 ```math
 \Lambda_{e,s}(X)
-=\frac{\operatorname{Tr}(X)}{d}I
- +\frac{s a\,\operatorname{Tr}(P_eX)}{d}P_e.
+=\frac{\mathrm{Tr}(X)}{d}I
+ +\frac{s a\,\mathrm{Tr}(P_eX)}{d}P_e.
 ```
 
 These are physical Pauli channels. Their error distributions are
@@ -111,7 +111,7 @@ This is an arbitrary complex $`d`$-by-$`d`$ matrix with rank at most $`r`$. The 
 
 ```math
 q_{\mathcal D}
-=\langle m|(\mathcal D\otimes\operatorname{id})
+=\langle m|(\mathcal D\otimes\mathrm{id})
  (|\psi\rangle\langle\psi|)|m\rangle
 =\frac{\|C\|_F^2}{d}.
 ```
@@ -121,7 +121,7 @@ To check the signal term without a transpose convention, the reference operators
 ```math
 \rho_A^{\mathsf T}=\Psi^\dagger\Psi,\qquad
 \left(
-\operatorname{Tr}_S[(P_e\otimes I)|\psi\rangle\langle\psi|]
+\mathrm{Tr}_S[(P_e\otimes I)|\psi\rangle\langle\psi|]
 \right)^{\mathsf T}
 =\Psi^\dagger P_e\Psi,
 ```
@@ -130,7 +130,7 @@ and
 
 ```math
 \langle m|A\otimes B|m\rangle
-=\operatorname{Tr}(M^\dagger A M B^{\mathsf T}).
+=\mathrm{Tr}(M^\dagger A M B^{\mathsf T}).
 ```
 
 Consequently,
@@ -138,7 +138,7 @@ Consequently,
 ```math
 q_{e,s}
 =q_{\mathcal D}
- +\frac{s a}{d}\operatorname{Tr}(P_e C P_e C^\dagger).
+ +\frac{s a}{d}\mathrm{Tr}(P_e C P_e C^\dagger).
 ```
 
 At any outcome with $`q_{\mathcal D}>0`$, its likelihood ratio is therefore
@@ -147,8 +147,8 @@ At any outcome with $`q_{\mathcal D}>0`$, its likelihood ratio is therefore
 \frac{q_{e,s}}{q_{\mathcal D}}
 =1+s a\,G_e(C),\qquad
 G_e(C)=
-\frac{\operatorname{Tr}(P_e C P_e C^\dagger)}
-     {\operatorname{Tr}(CC^\dagger)}.
+\frac{\mathrm{Tr}(P_e C P_e C^\dagger)}
+     {\mathrm{Tr}(CC^\dagger)}.
 ```
 
 The [complex response lemma](weighted_bounds.md#complex-response-bound) proves that $`G_e(C)`$ is real, that $`|G_e(C)|\leq 1`$, and that
@@ -220,7 +220,7 @@ For numbers $`0\leq u_\ell\leq1`$, one has $`\sqrt{1-u_\ell}\geq1-u_\ell`$ and $
 where $`[u]_+=\max\{u,0\}`$. With total variation normalized as one half of the $`L^1`$ distance,
 
 ```math
-\operatorname{TV}(Q_0,\overline Q_e)
+\mathrm{TV}(Q_0,\overline Q_e)
 =\mathbb E_{z\sim Q_0}
  \left[1-\overline L_e(z)\right]_+.
 ```
@@ -230,7 +230,7 @@ Under $`Q_0`$, every history and every adaptively selected experiment is indepen
 ```math
 \begin{aligned}
 \mathbb E_{e\sim\nu_{x,A}}
-\operatorname{TV}(Q_0,\overline Q_e)
+\mathrm{TV}(Q_0,\overline Q_e)
 &\leq
 a^2\sum_{\ell=1}^{N}
 \mathbb E_{z\sim Q_0}
@@ -255,7 +255,7 @@ Under the null, successful estimation gives $`|\widehat\lambda_e|\leq\epsilon`$.
 For each $`e`$, the decision has false-positive and false-negative probabilities at most $`\delta`$, including after averaging the sign. Its success implies
 
 ```math
-\operatorname{TV}(Q_0,\overline Q_e)\geq1-2\delta.
+\mathrm{TV}(Q_0,\overline Q_e)\geq1-2\delta.
 ```
 
 Any randomized final decoder is simply a statistical postprocessing and obeys the same total-variation bound. Combining the last two inequalities yields

@@ -48,10 +48,10 @@ The [anchor's contents](https://cs.uwaterloo.ca/~watrous/TQI/TQI.frontmatter.pdf
 Watrous uses ordinary Schatten norms in §1.1.3. The physical trace norm on this project's states and output differences uses the same convention. The hypercontractive inequality instead uses the normalized trace. For a $`d`$-by-$`d`$ matrix and finite $`p\ge1`$,
 
 ```math
-\|A\|_p=\bigl(\operatorname{Tr}|A|^p\bigr)^{1/p},
+\|A\|_p=\bigl(\mathrm{Tr}|A|^p\bigr)^{1/p},
 \qquad
 \|A\|_{p,\mathrm{av}}
-=\left(\frac{\operatorname{Tr}|A|^p}{d}\right)^{1/p}
+=\left(\frac{\mathrm{Tr}|A|^p}{d}\right)^{1/p}
 =d^{-1/p}\|A\|_p.
 ```
 
@@ -84,14 +84,14 @@ The final equality uses $`\sqrt{P_e\rho P_e}=P_e\sqrt{\rho}P_e`$ and unitary inv
 The project writes
 
 ```math
-\operatorname{TD}(\rho,\sigma)=\frac12\|\rho-\sigma\|_1,
+\mathrm{TD}(\rho,\sigma)=\frac12\|\rho-\sigma\|_1,
 \qquad
-\operatorname{TV}(p,q)=\frac12\sum_z|p(z)-q(z)|.
+\mathrm{TV}(p,q)=\frac12\sum_z|p(z)-q(z)|.
 ```
 
 A measurement cannot produce outcome distributions with total variation exceeding the input trace distance. A test with error at most $`\delta`$ under each of two hypotheses therefore requires distance at least $`1-2\delta`$. This is the testing normalization used in both converse proofs.
 
-Watrous's completely bounded trace norm, denoted by a triple-bar trace norm in §3.3.2, is written $`\|\Phi\|_\diamond`$ here. It is the **full** norm. Thus the weak-channel statement $`\|\widetilde\Lambda-\operatorname{Id}\|_\diamond\le2\tau`$ has no extra factor of one half. This unrestricted norm describes the channel pair; the memory-sensitive lower bound uses the response on each allowed input and then averages over hidden targets. Optimizing an input separately for each hidden target would change the learning task.
+Watrous's completely bounded trace norm, denoted by a triple-bar trace norm in §3.3.2, is written $`\|\Phi\|_\diamond`$ here. It is the **full** norm. Thus the weak-channel statement $`\|\widetilde\Lambda-\mathrm{Id}\|_\diamond\le2\tau`$ has no extra factor of one half. This unrestricted norm describes the channel pair; the memory-sensitive lower bound uses the response on each allowed input and then averages over hidden targets. Optimizing an input separately for each hidden target would change the learning task.
 
 ### Vectors, adjoints, and the fresh-response matrix
 
@@ -104,8 +104,8 @@ C=M\Psi^\dagger,\qquad
 q_{\mathcal D}=\frac{\|C\|_F^2}{d},\qquad
 \frac{q_{e,s}}{q_{\mathcal D}}
 =1+sa\,
-\frac{\operatorname{Tr}(P_eCP_eC^\dagger)}
-     {\operatorname{Tr}(CC^\dagger)}.
+\frac{\mathrm{Tr}(P_eCP_eC^\dagger)}
+     {\mathrm{Tr}(CC^\dagger)}.
 ```
 
 The reference reduction obeys $`\rho_A^{\mathsf T}=\Psi^\dagger\Psi`$ with this coefficient convention. The [component calculation](../science/fresh_experiments.md#the-one-experiment-likelihood) fixes the transposes before simplifying the probability. Although the response is real, $`C`$ need not be Hermitian or normal. Its rank is at most the reference dimension, which is the property the weighted lemma needs.
@@ -133,7 +133,7 @@ The imported theorem is [King2014, Corollary 2](../references/RELATED_WORK.md#ki
 At one invocation, the difference between a positive-spike channel and depolarization is a tensor product involving
 
 ```math
-B_e(\omega)=\operatorname{Tr}_S[(P_e\otimes I_A)\omega].
+B_e(\omega)=\mathrm{Tr}_S[(P_e\otimes I_A)\omega].
 ```
 
 For a pure input, $`\|B_e(\omega)\|_1`$ equals the root-fidelity response of its reduced state. The weighted bound therefore limits how strongly a bounded-reference input can respond on average to a hidden target.
@@ -151,7 +151,7 @@ This yields the stronger $`\epsilon^{-2}`$ lower factor. Averaging the channel s
 For a weight-$`u`$ target, the random partial-Bell setting is usable with probability
 
 ```math
-p_u=\mathbb E_K 3^{-|\operatorname{supp}(e)\setminus K|}
+p_u=\mathbb E_K 3^{-|\mathrm{supp}(e)\setminus K|}
 \ge3^{-uD/n}.
 ```
 
@@ -165,7 +165,7 @@ An exactly preserved positive Pauli spike restricts the error labels to a homoge
 
 ### 6. Resolve the precision scale near the identity
 
-For a known mixture $`(1-\tau)\operatorname{Id}+\tau\Lambda`$, the [weak-channel account](../science/weak_noise.md) centers its estimator on the identity response. The resulting variance and fresh lower bound both have scale $`\tau/\epsilon^2`$. No branch flag is observed. With fixed relative accuracy $`\epsilon=\alpha\tau`$, $`0<\alpha<1/3`$, the additional query cost is proportional to $`1/\tau`$.
+For a known mixture $`(1-\tau)\mathrm{Id}+\tau\Lambda`$, the [weak-channel account](../science/weak_noise.md) centers its estimator on the identity response. The resulting variance and fresh lower bound both have scale $`\tau/\epsilon^2`$. No branch flag is observed. With fixed relative accuracy $`\epsilon=\alpha\tau`$, $`0<\alpha<1/3`$, the additional query cost is proportional to $`1/\tau`$.
 
 The joint polynomial condition is consequently $`R+\log(1/\tau)=O(\log n)`$. At a coarse absolute tolerance $`\epsilon\ge\tau`$, the known midpoint already estimates every nonidentity coefficient without data. The precision qualification is therefore part of the physical statement. Rare global Pauli errors are allowed throughout; proximity to the identity does not impose a spatially local noise model.
 

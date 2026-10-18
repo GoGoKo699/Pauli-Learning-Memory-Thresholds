@@ -52,10 +52,10 @@ The ordinary required output is a classical record. The lower-bound proof also p
 Let $`d=2^n`$ and let $`\mathcal D`$ be the completely depolarizing channel. For a nonidentity Pauli label $`e`$ and $`0<a\le1`$, define a positive spike by
 
 ```math
-\mathcal D(X)=\frac{\operatorname{Tr}(X)}dI_d,
+\mathcal D(X)=\frac{\mathrm{Tr}(X)}dI_d,
 \qquad
 \Lambda_e^{(a)}(X)
-=\mathcal D(X)+\frac a d\operatorname{Tr}(P_eX)P_e.
+=\mathcal D(X)+\frac a d\mathrm{Tr}(P_eX)P_e.
 ```
 
 This is a Pauli channel with error probabilities
@@ -73,7 +73,7 @@ The hidden label will be drawn from the prior $`\nu_x`$ conditioned on $`\mathca
 For a state $`\omega_{SA}`$, define the Hermitian operator on $`A`$
 
 ```math
-B_e(\omega)=\operatorname{Tr}_S\bigl[(P_e\otimes I_A)\omega\bigr].
+B_e(\omega)=\mathrm{Tr}_S\bigl[(P_e\otimes I_A)\omega\bigr].
 ```
 
 Hermiticity follows from cyclicity of the partial trace with respect to operators on $`S`$. The two channel outputs differ by
@@ -92,7 +92,7 @@ Because $`\|P_e\|_1=d`$ and the trace norm is multiplicative on tensor products,
 
 ### Pure inputs
 
-Suppose first that $`\omega=|\psi\rangle\langle\psi|`$ is pure and let $`\rho=\operatorname{Tr}_A\omega`$. In a Schmidt decomposition,
+Suppose first that $`\omega=|\psi\rangle\langle\psi|`$ is pure and let $`\rho=\mathrm{Tr}_A\omega`$. In a Schmidt decomposition,
 
 ```math
 |\psi\rangle=\sum_{i=1}^r\sqrt{\lambda_i}\,|u_i\rangle_S|v_i\rangle_A,
@@ -159,7 +159,7 @@ The bound is independent of the number of classical histories. For continuous ou
 
 ## Forward hybrid for adaptive coherent protocols
 
-Write $`\operatorname{TD}(\rho,\sigma)=\tfrac12\|\rho-\sigma\|_1`$. Fix a hidden label $`e`$ temporarily. For $`j=0,\ldots,N`$, let $`\sigma_j^{(e)}`$ be the acquisition output of the protocol whose first $`j`$ invocations use $`\mathcal D`$ and whose subsequent invocations use $`\Lambda_e^{(a)}`$. This output is taken before the target index is revealed and before any index-dependent decoding. Thus $`\sigma_0^{(e)}`$ is the all-spike output, whereas the all-depolarizing output $`\sigma_N`$ is independent of $`e`$.
+Write $`\mathrm{TD}(\rho,\sigma)=\tfrac12\|\rho-\sigma\|_1`$. Fix a hidden label $`e`$ temporarily. For $`j=0,\ldots,N`$, let $`\sigma_j^{(e)}`$ be the acquisition output of the protocol whose first $`j`$ invocations use $`\mathcal D`$ and whose subsequent invocations use $`\Lambda_e^{(a)}`$. This output is taken before the target index is revealed and before any index-dependent decoding. Thus $`\sigma_0^{(e)}`$ is the all-spike output, whereas the all-depolarizing output $`\sigma_N`$ is independent of $`e`$.
 
 For an at-most-$`N`$ worst-case budget, view the procedure as $`N`$ successive possible query slots. A classical halt branch is inactive in every later slot and is left unchanged. At slot $`j`$, only the active branches invoke the channel. They satisfy the width constraint above. In the one-call norm estimate, their probabilities have sum at most one; adjoining a zero response for the inactive mass preserves Jensen's inequality. This handles early stopping without adding a register for dummy queries. No bound on expected calls is substituted for the worst-case budget.
 
@@ -168,14 +168,14 @@ The executions producing $`\sigma_{j-1}^{(e)}`$ and $`\sigma_j^{(e)}`$ have an i
 At slot $`j`$, one execution uses the spike and the other uses the depolarizing channel. Their suffixes are identical for this fixed $`e`$: all later active calls use the spike and all known adaptive controls are the same. Including the retained classical outcomes, that suffix is one common completely positive trace-preserving map. Trace-distance contraction therefore gives
 
 ```math
-\operatorname{TD}\bigl(\sigma_{j-1}^{(e)},\sigma_j^{(e)}\bigr)
+\mathrm{TD}\bigl(\sigma_{j-1}^{(e)},\sigma_j^{(e)}\bigr)
 \le\frac a2 g_{e,j},
 ```
 
 where $`g_{e,j}`$ is computed on the common, label-independent input at slot $`j`$. Average over $`e\sim\nu_x(\cdot\mid\mathcal A_w)`$ and sum the triangle inequality over all slots:
 
 ```math
-\mathbb E_e\operatorname{TD}\bigl(\sigma_0^{(e)},\sigma_N\bigr)
+\mathbb E_e\mathrm{TD}\bigl(\sigma_0^{(e)},\sigma_N\bigr)
 \le\frac{Na}{2}\sqrt{\frac{B_x}{p_A(x)}}.
 ```
 
@@ -188,7 +188,7 @@ Set $`a=3\epsilon<1`$. For each revealed target $`e\in\mathcal A_w`$, threshold 
 This is an $`e`$-dependent final test on two acquisition outputs. It does not make $`e`$ available during acquisition. Its probability of declaring a spike differs by at least $`1-2\delta`$ between those outputs. The variational characterization of trace distance implies, for each required label,
 
 ```math
-\operatorname{TD}\bigl(\sigma_0^{(e)},\sigma_N\bigr)\ge1-2\delta.
+\mathrm{TD}\bigl(\sigma_0^{(e)},\sigma_N\bigr)\ge1-2\delta.
 ```
 
 This reasoning also covers an index-dependent quantum decoder applied to a retained output state, because any such test is a measurement effect on that state. Combining with the hybrid proves the general-prior bound
@@ -197,7 +197,7 @@ This reasoning also covers an index-dependent quantum decoder applied to a retai
 N\ge
 \frac{2(1-2\delta)\sqrt{p_A(x)}}{3\epsilon}
 \,2^{D x/(1+x)},
-\qquad 0<x\le1.
+\qquad 0\lt x\le1.
 ```
 
 Choose $`x=w/[3(2n-w)]`$. Lemma W3 gives $`p_A(x)\ge1/4`$ and $`2x/(1+x)=w/(3n-w)`$. Substitution proves C1:

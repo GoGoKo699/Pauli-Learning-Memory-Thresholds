@@ -127,7 +127,7 @@ The compatibility choice is independent of the channel error. Therefore
 ```math
 \mathbb E T_P=\lambda_P,\qquad
 \mathbb E T_P^2=3,\qquad
-\operatorname{Var}(T_P)=3-\lambda_P^2.
+\mathrm{Var}(T_P)=3-\lambda_P^2.
 ```
 
 The factor three compensates for using one third of the records. A sample
@@ -156,10 +156,10 @@ Now change the output task to one bit. The null channel is complete
 depolarization, while the alternative preserves one hidden nonidentity Pauli:
 
 ```math
-\mathrm{Dep}(Q)=\frac{I_4\operatorname{Tr}Q}{4},
+\mathrm{Dep}(Q)=\frac{I_4\mathrm{Tr}Q}{4},
 \qquad
 \Lambda_P^1(Q)=
-\frac{I_4\operatorname{Tr}Q+P\operatorname{Tr}(PQ)}{4}.
+\frac{I_4\mathrm{Tr}Q+P\mathrm{Tr}(PQ)}{4}.
 ```
 
 The same tester must work for every allowed hidden $`P`$, which is not revealed
@@ -191,7 +191,7 @@ Y=
 0&1&1\\
 1&1&1
 \end{pmatrix},
-\qquad \operatorname{rank}_{\mathbb F_2}Y=2.
+\qquad \mathrm{rank}_{\mathbb F_2}Y=2.
 ```
 
 The third row is the sum of the first two over $`\mathbb F_2`$.
@@ -204,7 +204,7 @@ homogeneous equation with probability $`2^{-L}`$. There are seven nonzero
 functionals on $`\mathbb F_2^3`$, so a union bound gives
 
 ```math
-\Pr_{\mathrm{Dep}}\{\operatorname{rank}Y<3\}
+\Pr_{\mathrm{Dep}}\{\mathrm{rank}Y<3\}
 \le 7\,2^{-L}.
 ```
 
@@ -251,7 +251,7 @@ A nonzero null parity is violated with probability $`\tau/2`$.
 Consequently, its rank-deficiency bound is
 
 ```math
-\Pr_{\Gamma_0}\{\operatorname{rank}Y<3\}
+\Pr_{\Gamma_0}\{\mathrm{rank}Y<3\}
 \le 7(1-\tau/2)^L.
 ```
 
