@@ -46,7 +46,7 @@ $`k`$ qubits outside the queried $`n`$-qubit register at each invocation, obeys
 ```math
 N\geq\frac{1-2\delta}{\tau}
   2^{\frac{w(n-k)}{2(3n-w)}}.
-\tag{D1}
+\qquad\text{(D1)}
 ```
 
 The bound allows arbitrary retained quantum states, intermediate quantum
@@ -63,7 +63,7 @@ J&=\left\lceil 3^R\ln\frac{2}{\delta}\right\rceil,\\
 L&=\left\lceil\frac{2}{\tau}
     \left(m\ln2+\ln\frac{2J}{\delta}\right)\right\rceil.
 \end{aligned}
-\tag{D2}
+\qquad\text{(D2)}
 ```
 
 Its classical processing is polynomial in $`N`$ and $`n`$. For fixed error
@@ -72,7 +72,7 @@ computation are therefore achievable if and only if
 
 ```math
 \boxed{\frac{w(n-k)}{n}+\ln\frac1\tau=O(\log n).}
-\tag{D3}
+\qquad\text{(D3)}
 ```
 
 This is an asymptotic statement for parameter sequences as $`n\to\infty`$.
@@ -89,7 +89,7 @@ $`P=P_e`$, the Pauli-error distributions are
 p_0(v)=\frac1{4^n},
 \qquad
 p_e(v)=\frac{1+(-1)^{[e,v]}}{4^n}.
-\tag{D4}
+\qquad\text{(D4)}
 ```
 
 Since $`e\neq0`$, its symplectic functional is nonzero. Consequently
@@ -118,7 +118,7 @@ At $`\tau=1`$, the alternative also has the measure-and-prepare form
 \qquad
 E_b=\frac{I+bP}{2},\quad
 \sigma_b=\frac{I+bP}{d}.
-\tag{D5}
+\qquad\text{(D5)}
 ```
 
 It is therefore entanglement breaking: it records one parity and randomizes
@@ -129,7 +129,7 @@ not be entanglement breaking. Both hypotheses satisfy
 \|\Gamma_i-\mathrm{Id}\|_\diamond\leq2\tau,
 \qquad
 \|\Gamma_P-\Gamma_0\|_\diamond=\tau.
-\tag{D6}
+\qquad\text{(D6)}
 ```
 
 The first inequality follows from convexity and the distance bound 2 for
@@ -170,7 +170,7 @@ g_e(\omega)=
 \left\|\mathrm{Tr}_S[(P_e\otimes I)\omega]\right\|_1,
 \qquad
 \mathbb E_{e\sim\nu_x}g_e(\omega)^2\leq B.
-\tag{D7}
+\qquad\text{(D7)}
 ```
 
 It applies to mixed inputs without adding a purifying register outside the
@@ -180,7 +180,7 @@ quantum state. Conditioning the prior and using Cauchy–Schwarz gives
 ```math
 \mathbb E_{e\sim\pi}g_e(\omega)
 \leq\sqrt{B/p_{\mathcal A}}.
-\tag{D8}
+\qquad\text{(D8)}
 ```
 
 For any such input, the single-call difference is
@@ -202,7 +202,7 @@ Trace-distance contraction, (D8), and the triangle inequality imply
 ```math
 \mathbb E_{e\sim\pi}\mathrm{TV}(Q_e,Q_0)
 \leq\frac{N\tau}{2}\sqrt{B/p_{\mathcal A}},
-\tag{D9}
+\qquad\text{(D9)}
 ```
 
 where $`Q_e,Q_0`$ are the final record distributions. The processor may keep
@@ -239,7 +239,7 @@ $`p_{\mathcal A}=1-4^{-n}`$, giving the stronger endpoint bound
 ```math
 N\geq\frac{2(1-2\delta)\sqrt{1-4^{-n}}}{\tau}
   2^{(n-k)/2}.
-\tag{D1a}
+\qquad\text{(D1a)}
 ```
 
 The weight-dependent choice above gives one explicit formula valid over
@@ -260,7 +260,7 @@ Therefore the complete record is a linear syndrome
 
 ```math
 y=Av\in\mathbb F_2^m,\qquad m=n+k,
-\tag{D10}
+\qquad\text{(D10)}
 ```
 
 where $`A`$ has full row rank. The rows have disjoint site support, except
@@ -277,7 +277,7 @@ For $`u=|e|`$, the compatibility probability is
 ```math
 q_e=\mathbb E_K 3^{-|\mathrm{supp}(e)\setminus K|}
 \geq 3^{-u(n-k)/n}\geq3^{-R}.
-\tag{D11}
+\qquad\text{(D11)}
 ```
 
 The first inequality is Jensen's inequality. The exact hypergeometric sum
@@ -311,7 +311,7 @@ Equation (D11) bounds the probability that none of the settings is compatible:
 
 ```math
 (1-q_e)^J\leq e^{-Jq_e}\leq\delta/2.
-\tag{D12}
+\qquad\text{(D12)}
 ```
 
 Under the null, for each nonzero linear form $`c`$,
@@ -324,13 +324,11 @@ A block has deficient rank only if all its rows lie in the kernel of at
 least one such form. Independence within the block gives
 
 ```math
-\begin{aligned}
 \Pr(\mathrm{rank}<m)
-&\leq(2^m-1)(1-\tau/2)^L\\
-&\leq2^m e^{-\tau L/2}
+\leq(2^m-1)(1-\tau/2)^L
+\leq2^m e^{-\tau L/2}
 \leq\frac{\delta}{2J}.
-\end{aligned}
-\tag{D13}
+\qquad\text{(D13)}
 ```
 
 A union bound over blocks makes the false-positive probability at most
@@ -344,7 +342,7 @@ are local preparations, Bell operations, and local measurements. In particular,
 ```math
 N=O\!\left(\tau^{-1}3^R
        [n+R+\log(1/\delta)]\log(1/\delta)\right).
-\tag{D14}
+\qquad\text{(D14)}
 ```
 
 Since $`w(n-k)/[2(3n-w)]`$ lies between $`R/6`$ and $`R/4`$,
