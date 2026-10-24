@@ -99,7 +99,7 @@ hybrid with a bound on average distinguishability.
 Sitan Chen, Weiyuan Gong, and Qi Ye, **Optimal tradeoffs for estimating Pauli
 observables**, arXiv:2404.19105 (2024).
 [arXiv](https://arxiv.org/abs/2404.19105);
-[version inspected: v2](https://arxiv.org/pdf/2404.19105).
+[version inspected: v2](https://arxiv.org/pdf/2404.19105v2).
 
 Theorem 1 characterizes state-shadow sample complexity through a minimax
 chi-squared optimization over an arbitrary observable subset and an allowed
@@ -119,7 +119,7 @@ Christopher King, **Hypercontractivity for Semigroups of Unital Qubit
 Channels**, *Communications in Mathematical Physics* **328**, 285–301 (2014).
 [Publisher and DOI](https://link.springer.com/article/10.1007/s00220-014-1982-4);
 [arXiv](https://arxiv.org/abs/1210.8412);
-[version inspected: v1](https://arxiv.org/pdf/1210.8412).
+[version inspected: v1](https://arxiv.org/pdf/1210.8412v1).
 
 Corollary 2 gives the normalized Schatten-norm hypercontractive inequality
 for products of qubit depolarizing channels. The norm in equation (6) is
@@ -136,7 +136,7 @@ Senrui Chen, Sisi Zhou, Alireza Seif, and Liang Jiang, **Quantum advantages
 for Pauli channel estimation**, *Physical Review A* **105**, 032435 (2022).
 [DOI](https://doi.org/10.1103/PhysRevA.105.032435);
 [arXiv and journal metadata](https://arxiv.org/abs/2108.08488);
-[version inspected: v2](https://arxiv.org/pdf/2108.08488).
+[version inspected: v2](https://arxiv.org/pdf/2108.08488v2).
 
 This paper establishes the full-reference Bell-sampling advantage, Pauli-spike
 lower-bound families, and bounded-ancilla separations. Theorem 3 and its proof
@@ -173,7 +173,7 @@ Omar Fawzi, Nicolas Flammarion, Aurélien Garivier, and Aadil Oufkir,
 *Proceedings of the Thirty Sixth Conference on Learning Theory*,
 PMLR **195**, 1822–1884 (2023).
 [arXiv and proceedings metadata](https://arxiv.org/abs/2303.01188);
-[version inspected: v2](https://arxiv.org/pdf/2303.01188).
+[version inspected: v2](https://arxiv.org/pdf/2303.01188v2).
 
 This paper studies certification against fixed channel specifications,
 including complete depolarization, with alternatives separated in channel
@@ -215,6 +215,27 @@ inputs, while the weak-noise parameter describes a known identity mixture
 of the unknown channel. That is a different noise contract; no claim of
 general noisy-memory resilience follows from it.
 
+<a id="kwonliejiang2026"></a>
+### KwonLieJiang2026
+
+Hyukgun Kwon, Seok Hyung Lie, and Liang Jiang, **Universal Sample Complexity
+Bounds in Quantum Learning Theory via Fisher Information Matrix**,
+*PRX Quantum* **7**, 033063 (2026).
+[DOI](https://doi.org/10.1103/8k5v-ddtw);
+[arXiv](https://arxiv.org/abs/2602.21510);
+[version inspected: v4](https://arxiv.org/html/2602.21510v4).
+
+This framework relates small-error sample bounds for regular parametric models
+and maximum-likelihood estimation to inverse Fisher information. Its
+Pauli-channel applications in Section III.3 compare full-reference learning
+with separable strategies, including repeated channel uses and an unbounded
+ancilla in Section III.3.4. That repeated-use result requires system–ancilla
+separability throughout. The paper supplies a complementary metrological
+account of the entanglement advantage; it does not evaluate the joint
+low-weight and total coherent-width frontier studied here. Its fixed-dimension
+small-error asymptotics alone do not give the growing-system,
+constant-accuracy statement of this repository.
+
 ## Educational anchor
 
 <a id="watrous2018"></a>
@@ -248,3 +269,5 @@ and makes no categorical claim of priority over every possible formulation.
 Bibliographic keys and machine-readable entries are in
 [references.bib](references.bib). Primary metadata and the specified theorem
 versions were checked on 18 October 2026.
+The closest comparisons with Kim–Oh, Chen–Gong, and Kang–Jeon–Oh were rechecked
+on 24 October 2026; the Kwon–Lie–Jiang comparison was added on that date.

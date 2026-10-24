@@ -165,7 +165,7 @@ Let
 M_w=\sum_{u=0}^{w}\binom nu3^u.
 ```
 
-The identity eigenvalue is known to be $`1`$ and can be returned exactly. Including it in $`M_w`$ is a harmless counting convenience. A union bound over the remaining targets shows that, for $`0<\delta<1`$,
+The identity eigenvalue is known to be $`1`$ and can be returned exactly. Including it in $`M_w`$ is a harmless counting convenience. A union bound over the remaining targets shows that, for $`0<\epsilon\leq1`$ and $`0<\delta<1`$,
 
 ```math
 N=
