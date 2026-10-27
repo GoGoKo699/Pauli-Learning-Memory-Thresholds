@@ -29,6 +29,8 @@ for each nonidentity target, and
 
 The diamond norm here is the full norm, without the factor of one half. The identity coefficient is known exactly.
 
+One realization leaves the input unchanged with probability $`1-\tau`$ and applies $`\Lambda`$ with probability $`\tau`$, without revealing which happened. Since $`\Lambda`$ may itself apply identity, the actual probability of a nonidentity error can be smaller than $`\tau`$. The known parameter specifies the allowed noise scale.
+
 Use the [fresh-experiment and late-target contract](model.md), with $`n\geq1`$, $`0\leq k\leq n`$, and $`1\leq w\leq n`$. Let
 
 ```math
@@ -178,6 +180,8 @@ Z_e=1-\frac{H_e(1-Y_e)}{p_u}.
 
 It is implemented as $`1`$ on an unusable record. Whenever the actual Pauli error is the identity, it is also exactly $`1`$, regardless of the selected settings.
 
+For the [two-qubit example](../learning/WORKED_EXAMPLE.md), a weight-two target has $`p_u=1/3`$. Even on a noiseless identity channel, the original sample $`X_e`$ is three on compatible records and zero otherwise. Its mean is one but its variance is two. The centered sample $`Z_e`$ is always one on that channel, with zero variance.
+
 Set
 
 ```math
@@ -193,6 +197,8 @@ Independence of compatibility and the error draw, together with $`(1-Y_e)^2=2(1-
 =\frac{2\Delta_e}{p_u}-\Delta_e^2
 \leq\frac{4\tau}{p_u}.
 ```
+
+At $`p_u=1/3`$, $`Z_e`$ equals $`-5`$ with probability $`\Delta_e/6`$ and one otherwise. Its mean is $`1-\Delta_e`$ and its variance is $`6\Delta_e-\Delta_e^2`$, exactly as in the general formula. Deviations become rare as the noise scale decreases.
 
 The estimator takes values in $`\{1,\,1-2/p_u\}`$, so
 
@@ -277,6 +283,8 @@ N_{\mathrm{coherent}}
 \frac{1-2\delta}{3\alpha\tau}\,2^{\kappa D/2}.
 ```
 
+Averaging independent records divides their variance by the number of calls. At fixed usability probability, the centered variance bound is proportional to $`\tau`$, whereas the required squared error $`\alpha^2\tau^2`$ is proportional to $`\tau^2`$. Their ratio explains the sufficient $`1/\tau`$ call factor; the lower bounds show that a uniformly cheaper dependence on $`\tau`$ cannot resolve fixed relative precision in these models.
+
 The fresh upper protocol is also allowed in the coherent model. Since $`R/3\leq\kappa D\leq R/2`$ and $`\log M_w=O(n)`$, both models have the same joint criterion:
 
 ```math
@@ -289,7 +297,7 @@ The fresh upper protocol is also allowed in the coherent model. Since $`R/3\leq\
 
 This holds for arbitrary parameter sequences $`0<\tau(n)\leq1`$. Fixed or inverse-polynomial noise strengths reduce the criterion to the original weight-memory frontier. A superpolynomially small $`\tau`$ requires superpolynomially many calls to resolve a fixed fraction of the allowed noise, even with a full reference register.
 
-If instead $`\epsilon\geq\tau`$, returning the known midpoint $`1-\tau`$ for each nonidentity target succeeds without acquiring any data. Relative precision is therefore essential to interpreting the weak-noise frontier. The finite bounds on this page apply in the explicitly stated range $`\epsilon<\tau/3`$.
+If instead $`\epsilon\geq\tau`$, returning the known midpoint $`1-\tau`$ for each nonidentity target succeeds without acquiring any data. For example, absolute error $`1/4`$ with $`\tau=1/4`$ needs no calls, while fixed relative factor $`\alpha=1/4`$ requires error $`1/16`$. Relative precision is therefore essential to interpreting the weak-noise frontier. The finite bounds on this page apply in the explicitly stated range $`\epsilon<\tau/3`$.
 
 ## Physical meaning of the promise
 

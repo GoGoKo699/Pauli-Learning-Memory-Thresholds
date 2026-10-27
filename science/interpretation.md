@@ -18,6 +18,8 @@ The resulting polynomial frontier is attained up to exponential constants. It do
 
 ## Distinct asymptotic regimes
 
+The frontier compares a sequence of problems as $`n`$ grows. Polynomial query cost means that some constant $`C`$, independent of $`n`$, bounds the required calls by $`n^C`$ for sufficiently large $`n`$. A lower bound limits every allowed learner; an upper bound gives a protocol that achieves the stated cost. Here the two bounds have different exponential constants but agree on which parameter sequences admit polynomial cost. Changing the fixed base of the logarithm does not change this frontier.
+
 At fixed learning accuracy and confidence:
 
 | Maximum weight | Required deficit for polynomial calls | Consequence |

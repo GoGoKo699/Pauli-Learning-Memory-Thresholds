@@ -107,7 +107,7 @@ Here $`\|\Psi\|_F=1`$, whereas the vector $`|m\rangle`$ defining the effect $`|m
 C=M\Psi^\dagger.
 ```
 
-This is an arbitrary complex $`d`$-by-$`d`$ matrix with rank at most $`r`$. The null outcome probability is
+This is an arbitrary complex $`d`$-by-$`d`$ matrix with rank at most $`r`$. The matrices $`\Psi`$ and $`M`$ arrange the probe and measurement amplitudes into rows and columns; $`C`$ combines these choices. Its rank bound is what lets the weighted response estimate control an arbitrary fresh experiment. The null outcome probability is
 
 ```math
 q_{\mathcal D}
@@ -183,7 +183,7 @@ If $`q_{\mathcal D}=0`$, every elementary term with positive preparation weight 
 
 ## The signed transcript bound
 
-Include the learner's ordinary classical randomness in its transcript. A protocol with a worst-case budget of at most $`N`$ calls can be padded with ignored fresh experiments, so take the length to be exactly $`N`$.
+Include the learner's ordinary classical randomness in its transcript. A protocol with a worst-case budget of at most $`N`$ calls can be padded with ignored fresh experiments, so take the length to be exactly $`N`$. Let $`Q_0`$ be the null transcript law and $`Q_{e,s}`$ the alternative transcript law. For discrete outcomes, the likelihood ratio at a specified transcript $`z`$ is $`Q_{e,s}(z)/Q_0(z)`$ whenever $`Q_0(z)>0`$. For general outcomes it is the density of the alternative law relative to the null law. It measures how much more or less likely the complete record is under the alternative.
 
 For a complete transcript $`z=(z_1,\ldots,z_N)`$ with positive null probability, let $`g_{e,\ell}(z_{\leq\ell})`$ denote the response at its $`\ell`$th outcome. The preparation and POVM at that node depend on the preceding transcript. The likelihood of the full execution with the fixed channel $`\Lambda_{e,s}`$, relative to the all-depolarizing execution, is
 
@@ -192,14 +192,14 @@ L_{e,s}(z)=\prod_{\ell=1}^{N}
 \left(1+s a\,g_{e,\ell}(z_{\leq\ell})\right).
 ```
 
-Let $`Q_0`$ be the null transcript law and $`Q_{e,s}`$ the alternative transcript law. Averaging over the one sign chosen at the beginning gives
+Each factor compares the probabilities of the next outcome, conditioned on the same preceding record. Multiplying those conditional ratios gives the ratio for the complete record, even when experiments adapt to earlier outcomes. Averaging over the one sign chosen at the beginning gives
 
 ```math
 \overline Q_e=\frac{Q_{e,+}+Q_{e,-}}2,\qquad
 \overline L_e=\frac{L_{e,+}+L_{e,-}}2.
 ```
 
-This is a mixture of two complete executions. It does not replace each channel call by its sign-averaged channel.
+This is a mixture of two complete executions. The sign remains fixed within each execution. Averaging the likelihood products cancels terms with an odd power of $`a`$; the following inequality controls the remaining deficit using quadratic terms.
 
 Because all likelihood factors are nonnegative, arithmetic-geometric mean gives
 

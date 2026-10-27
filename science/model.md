@@ -12,6 +12,8 @@ Here $`n`$ is the number of qubits acted on by the unknown channel, $`w`$ is the
 
 ## Pauli channels and the target family
 
+The single-qubit Pauli observables $`X,Y,Z`$ describe three measurement axes, each with outcomes $`+1`$ and $`-1`$. A many-qubit Pauli observable chooses one of these axes at each relevant site and the identity $`I`$ at the others. Its measured correlation is the product of the local signs. Its **support** is the set of relevant sites; its **weight** is the number of those sites. For example, $`X\otimes I\otimes Z`$ has weight two and combines the first and third measurement outcomes.
+
 Let $`n\ge1`$, $`d=2^n`$, and label the Hermitian Pauli representatives by $`v=(x,z)\in\mathbb F_2^{2n}`$. One convention is
 
 ```math
@@ -38,7 +40,11 @@ Its eigenvalues in the Pauli basis are
 \lambda_e=\sum_vp_v(-1)^{[e,v]}.
 ```
 
-Thus a coefficient is the mean commutation sign of an unknown Pauli error. The error distribution may contain correlations across the entire device. Memorylessness means that the same CPTP map is used at every call, with no retained unknown environment linking different calls.
+Here $`\mathbb F_2=\{0,1\}`$ uses addition modulo two. The pairing records whether two Pauli observables commute (sign $`+1`$) or anticommute (sign $`-1`$). In $`\Lambda(X)`$, the argument denotes an arbitrary operator; the same letter denotes the single-qubit Pauli when used as an axis.
+
+Thus a coefficient is the mean commutation sign of an unknown Pauli error. Operationally, $`\lambda_e`$ is the factor by which the channel changes the expectation of $`P_e`$. For example, a one-qubit channel that applies no error with probability $`0.9`$ and an $`X`$ error with probability $`0.1`$ has $`\lambda_Z=0.9-0.1=0.8`$, because $`X`$ reverses the sign of a $`Z`$ measurement. The coefficients lie in $`[-1,1]`$ and have no physical units.
+
+The error distribution may contain correlations across the entire device. Memorylessness means that the same completely positive, trace-preserving (CPTP) map is used at every call, with no retained unknown environment linking different calls. This is the ordinary physical action of the device on an input state.
 
 Fix integers $`0\le k\le n`$ and $`1\le w\le n`$. The required family is
 
@@ -50,6 +56,8 @@ M_w=\sum_{u=0}^w\binom nu3^u.
 The identity eigenvalue is known to be one. It is included in $`M_w`$ only to simplify upper-bound notation and is excluded from every physical hard prior.
 
 ## Coherent access
+
+A register is a collection of qubits treated together. Coherent memory preserves quantum information, including superpositions and entanglement, between operations; a classical history stores measured outcomes. A reference is a register retained beside the device rather than sent through it. Entangling it with the input can reveal information that an isolated probe would lose.
 
 At each actual invocation, the channel acts on an $`n`$-qubit register $`S`$. All other accessible coherent registers together form $`A`$, with
 
@@ -83,11 +91,15 @@ The family $`\mathcal A_w`$ is known before data acquisition. A learner produces
 
 The particular index $`e`$ may be supplied after acquisition. The [upper construction](partial_bell.md) satisfies the stronger simultaneous guarantee for every index in the family. The [lower bound](coherent_memory.md) needs only the pointwise guarantee above and remains valid if the final decoder may measure a bounded retained quantum output after receiving $`e`$.
 
+The hat marks an estimate from the record. The tolerance $`\varepsilon`$ is an absolute error in the coefficient, and $`\delta`$ is the allowed failure probability. A pointwise guarantee controls each requested index separately; a simultaneous guarantee controls the event that every estimate is accurate on the same record.
+
 The timing of the index matters. If one Pauli is supplied before the experiment, its eigenvalue can be estimated directly with no reference qubits and $`O(\varepsilon^{-2}\log(1/\delta))`$ calls. Likewise, a polynomial-sized known list can be measured one observable at a time. The necessity result concerns the complete support-and-axis family $`\mathcal A_w`$, not every list whose observables happen to have weight at most $`w`$.
 
 ## Fresh experiments
 
 The fresh-experiment model is a subclass of coherent access. At each round the learner prepares an arbitrary state on $`S A`$, applies the channel once, and completely measures the quantum output. Only classical information survives into the next round. Both the probe and the joint POVM may depend on the preceding classical history.
+
+A POVM is a general quantum measurement. Thus “fresh” describes the loss of all quantum information between rounds; it still permits entangled probes within a round and adaptation based on earlier outcomes.
 
 This restriction gives a stronger lower bound in [fresh experiments](fresh_experiments.md), including an $`\varepsilon^{-2}`$ accuracy factor. The general coherent proof has an $`\varepsilon^{-1}`$ factor. Both lower bounds lead to the same polynomial-versus-superpolynomial frontier, but their finite rates are distinct statements.
 

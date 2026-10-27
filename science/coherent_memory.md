@@ -139,13 +139,13 @@ Averaging proves the same second-moment bound. This is an algebraic decompositio
 For a fixed classical–quantum input, define
 
 ```math
-g_e=\sum_hq_h\|B_e(\omega_{h,SA})\|_1.
+b_e=\sum_hq_h\|B_e(\omega_{h,SA})\|_1.
 ```
 
-The norm of the output difference is $`a g_e`$, since the classical blocks are orthogonal. A second application of Jensen gives $`\mathbb E_{\nu_x}g_e^2\le B_x`$. These statements require the input state, including the probabilities $`q_h`$, to be independent of the hidden label being averaged. After conditioning on the required family, Cauchy–Schwarz gives
+This scalar $`b_e`$ is a nonnegative average of trace norms, distinct from the signed outcome response $`g_e`$ in the fresh-experiment argument. The norm of the output difference is $`a b_e`$, since the classical blocks are orthogonal. A second application of Jensen gives $`\mathbb E_{\nu_x}b_e^2\le B_x`$. These statements require the input state, including the probabilities $`q_h`$, to be independent of the hidden label being averaged. After conditioning on the required family, Cauchy–Schwarz gives
 
 ```math
-\mathbb E_{e\sim\nu_x(\cdot\mid\mathcal A_w)}g_e
+\mathbb E_{e\sim\nu_x(\cdot\mid\mathcal A_w)}b_e
 \le\sqrt{\frac{B_x}{p_A(x)}}.
 ```
 
@@ -161,6 +161,8 @@ The bound is independent of the number of classical histories. For continuous ou
 
 Write $`\mathrm{TD}(\rho,\sigma)=\tfrac12\|\rho-\sigma\|_1`$. Fix a hidden label $`e`$ temporarily. For $`j=0,\ldots,N`$, let $`\sigma_j^{(e)}`$ be the acquisition output of the protocol whose first $`j`$ invocations use $`\mathcal D`$ and whose subsequent invocations use $`\Lambda_e^{(a)}`$. This output is taken before the target index is revealed and before any index-dependent decoding. Thus $`\sigma_0^{(e)}`$ is the all-spike output, whereas the all-depolarizing output $`\sigma_N`$ is independent of $`e`$.
 
+Each $`\sigma_j^{(e)}`$ describes the retained quantum state together with its classical record. With three calls, the successive channel strings are $`(\Lambda_e^{(a)},\Lambda_e^{(a)},\Lambda_e^{(a)})`$, $`(\mathcal D,\Lambda_e^{(a)},\Lambda_e^{(a)})`$, $`(\mathcal D,\mathcal D,\Lambda_e^{(a)})`$, and $`(\mathcal D,\mathcal D,\mathcal D)`$. Comparing neighbors changes one call. Every earlier call is already null, supplying the label-independent input needed by the one-call estimate.
+
 For an at-most-$`N`$ worst-case budget, view the procedure as $`N`$ successive possible query slots. A classical halt branch is inactive in every later slot and is left unchanged. At slot $`j`$, only the active branches invoke the channel. They satisfy the width constraint above. In the one-call norm estimate, their probabilities have sum at most one; adjoining a zero response for the inactive mass preserves Jensen's inequality. This handles early stopping without adding a register for dummy queries. No bound on expected calls is substituted for the worst-case budget.
 
 The executions producing $`\sigma_{j-1}^{(e)}`$ and $`\sigma_j^{(e)}`$ have an identical prefix: their first $`j-1`$ active calls are depolarizing. Hence their state immediately before slot $`j`$, including all classical history probabilities, is independent of $`e`$. This is the fixed input required by the weighted estimate.
@@ -169,10 +171,10 @@ At slot $`j`$, one execution uses the spike and the other uses the depolarizing 
 
 ```math
 \mathrm{TD}\bigl(\sigma_{j-1}^{(e)},\sigma_j^{(e)}\bigr)
-\le\frac a2 g_{e,j},
+\le\frac a2 b_{e,j},
 ```
 
-where $`g_{e,j}`$ is computed on the common, label-independent input at slot $`j`$. Average over $`e\sim\nu_x(\cdot\mid\mathcal A_w)`$ and sum the triangle inequality over all slots:
+where $`b_{e,j}`$ is computed on the common, label-independent input at slot $`j`$. Average over $`e\sim\nu_x(\cdot\mid\mathcal A_w)`$ and sum the triangle inequality over all slots:
 
 ```math
 \mathbb E_e\mathrm{TD}\bigl(\sigma_0^{(e)},\sigma_N\bigr)

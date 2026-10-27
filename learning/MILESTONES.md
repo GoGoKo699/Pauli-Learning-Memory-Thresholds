@@ -19,7 +19,7 @@ Dependencies always refer to earlier milestones. Each phase progresses from loca
 
 **Central question.** How can a one-qubit error preserve or flip a measurement outcome along a chosen axis?
 
-**Understanding target.** Distinguish the operators $`I,X,Y,Z`$, the two eigenvalues of a nonidentity Pauli, and the eigenstates prepared or measured along an axis. Explain why a Pauli error preserves the sign when it commutes with that axis and flips the sign when it anticommutes.
+**Understanding target.** Distinguish the operators $`I,X,Y,Z`$, the two eigenvalues of a nonidentity Pauli, and the eigenstates prepared or measured along an axis. Explain why a Pauli error preserves the sign when it commutes with that axis and flips the sign when it anticommutes. Interpret a tensor-product correlation as the product of its local measurement signs; an identity factor ignores that site.
 
 **Dependencies and story role.** No earlier milestone. This is the local physical primitive from which both the coefficient estimator and the syndrome detector are built.
 
@@ -58,7 +58,7 @@ Dependencies always refer to earlier milestones. Each phase progresses from loca
 
 **Central question.** Why is a Pauli-channel coefficient the mean of a classical error character?
 
-**Understanding target.** Relate the random-conjugation form $`\Lambda(\rho)=\sum_vp_vP_v\rho P_v`$ to the diagonal action $`\Lambda(P_e)=\lambda_eP_e`$ and to $`\lambda_e=\sum_vp_v(-1)^{[e,v]}`$. Distinguish independence between channel uses from independence between sites within a single error draw.
+**Understanding target.** Relate the random-conjugation form $`\Lambda(\rho)=\sum_vp_vP_v\rho P_v`$ to the diagonal action $`\Lambda(P_e)=\lambda_eP_e`$ and to $`\lambda_e=\sum_vp_v(-1)^{[e,v]}`$. Explain the coefficient as an input–output multiplier: the mean of $`P_e`$ changes from $`\mathrm{Tr}(P_e\rho)`$ to $`\lambda_e\mathrm{Tr}(P_e\rho)`$. Distinguish independence between channel uses from independence between sites within a single error draw.
 
 **Dependencies and story role.** Uses [M02](#m02) and [M03](#m03). It joins the target operators to a physical memoryless channel and identifies the numerical quantities that a learner must estimate.
 
@@ -170,7 +170,7 @@ for rank $`r`$. Recognize where the factor $`r/d`$ enters and how Schatten Höld
 
 **Central question.** How can an unknown parity be detected without enumerating possible Pauli labels?
 
-**Understanding target.** Interpret a measurement record as $`y=Av`$ over $`\mathbb F_2`$. Relate a character visible through the record to the row space of $`A`$. Explain why an exact homogeneous parity places every observed row in a proper linear subspace and why ordinary Gaussian elimination detects that constraint.
+**Understanding target.** Interpret a measurement record as $`y=Av`$ over $`\mathbb F_2`$. Relate a character visible through the record to the row space of $`A`$. Use binary row addition as XOR and rank as the number of independent rows. Explain why an exact homogeneous parity places every observed row in a proper linear subspace and why ordinary Gaussian elimination detects that constraint.
 
 **Dependencies and story role.** Uses [M02](#m02), [M04](#m04), and [M07](#m07). It supplies the classical computational mechanism that will make the one-bit upper bound efficient.
 
@@ -410,7 +410,7 @@ N\leq\left\lceil
 
 **Central question.** What changes when informative channel effects are rare?
 
-**Understanding target.** Interpret the known identity mixture $`\widetilde\Lambda=(1-\tau)\mathrm{Id}+\tau\Lambda`$. Explain how centering at the identity reduces the upper estimator variance, and how an outcome-weighted likelihood second moment produces the fresh lower factor $`\tau/\epsilon^2`$. Distinguish absolute error from $`\epsilon=\alpha\tau`$ with fixed $`0<\alpha<1/3`$. At fixed nontrivial confidence, derive the relative-accuracy frontier $`R+\log(1/\tau)=O(\log n)`$.
+**Understanding target.** Interpret the known identity mixture $`\widetilde\Lambda=(1-\tau)\mathrm{Id}+\tau\Lambda`$, where $`\tau`$ bounds the probability of a nonidentity error and the mixture branch is unobserved. Explain how centering at the identity reduces the upper estimator variance, and how an outcome-weighted likelihood second moment produces the fresh lower factor $`\tau/\epsilon^2`$. Distinguish absolute error from $`\epsilon=\alpha\tau`$ with fixed $`0<\alpha<1/3`$. At fixed nontrivial confidence, derive the relative-accuracy frontier $`R+\log(1/\tau)=O(\log n)`$.
 
 **Dependencies and story role.** Uses [M11](#m11), [M20](#m20), [M22](#m22), [M24](#m24), [M25](#m25), and [M28](#m28). It unifies the acquisition models and the one-bit result with the cost of rare information.
 

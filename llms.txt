@@ -1,12 +1,16 @@
 # Pauli Learning Memory Thresholds
 
-Scientific question: determine the number of ordinary channel calls needed to
-learn all Pauli coefficients through weight w when an n-qubit channel is used
-with at most k other coherent qubits present at every invocation.
+Scientific question: acquire a reusable record before a Pauli target is
+specified, supporting every coefficient through weight w of an unknown
+n-qubit Pauli channel. At each invocation, at most k other coherent qubits
+may be present. Every channel call is charged.
 
-Start with README.md and science/model.md. The central parameter is
-R=w(n-k)/n. At fixed accuracy and confidence, polynomial query complexity is
-possible exactly when R=O(log n), even with arbitrary coherent reuse.
+Start with README.md and science/model.md; learning/WORKED_EXAMPLE.md gives
+a concrete two-qubit experiment. Pauli weight counts nonidentity tensor
+factors. Write D=n-k and R=wD/n. At fixed nontrivial accuracy and confidence,
+polynomial query complexity is possible exactly when R=O(log n), even with
+arbitrary coherent reuse. The converse needs only pointwise success for each
+late target; the construction gives simultaneous success for the whole family.
 
 Learning route:
 - learning/MILESTONES.md: exactly 30 learner-independent understanding targets;
@@ -34,8 +38,8 @@ Authoritative scientific homes:
   probability, unbiased estimator, variance, simultaneous confidence and costs.
 - science/correlation_detection.md: positive-spike one-bit promise, linear
   syndrome rank algorithm, direct testing lower bound, and known noise strength.
-- science/weak_noise.md: near-identity channels, absolute versus relative error,
-  the sharp fresh-experiment noise prefactor, and the coherent frontier.
+- science/weak_noise.md: known identity mixtures, absolute versus relative
+  error, the fresh-experiment factor tau/epsilon^2, and the coherent frontier.
 - science/interpretation.md: physical meaning, growing sublinear support,
   the small-output consequence, examples, and consequential limits.
 - references/RELATED_WORK.md and references/references.bib: imported ingredients,
@@ -58,7 +62,9 @@ Preserve these scientific distinctions when explaining or editing:
   project's weighted converse or replace its scientific proof homes.
 - Count every unknown-channel invocation, including calls in coherent blocks.
 - k includes ALL coherent registers outside the queried n-qubit register.
-  Classical records are not uncounted quantum memory.
+  Classical records are not uncounted quantum memory. A mixed input need not
+  have a low-rank system reduction: use a pure-state decomposition within the
+  actual system-reference space and convexity, not an extra accessible purification.
 - The specific coefficient is unavailable during acquisition. A known single
   Pauli or a polynomial-sized known family does not have this lower bound.
 - The coherent lower has an inverse-first-power accuracy factor; the stronger
@@ -70,8 +76,12 @@ Preserve these scientific distinctions when explaining or editing:
   at each channel call.
 - The coherent hybrid has a null prefix independent of the hidden label.
   Do not apply the prior to a hidden-label-dependent posterior state.
-- Weak unknown-channel mixtures may have globally correlated errors. Ideal
-  reference qubits and controls are assumed by the constructive upper bounds.
+- Weak unknown-channel mixtures may have globally correlated errors. The
+  mixture strength tau is known, but no flag reveals its branch. At fixed
+  relative error epsilon=alpha*tau, 0<alpha<1/3, the frontier is
+  R+log(1/tau)=O(log n). At absolute error epsilon>=tau, the known midpoint
+  1-tau needs no data. Ideal reference qubits and controls are assumed by the
+  constructive upper bounds.
 - Exact parity preservation is essential to the efficient rank detector.
 - The polynomial frontier is proved; exact exponential rates, the stronger
   Kim–Oh S85 formula, and optimal coherent accuracy dependence are not.

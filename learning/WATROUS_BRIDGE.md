@@ -8,13 +8,17 @@ Use the [30-milestone map](MILESTONES.md) for the complete sequence of understan
 
 ## Start with the experimental question
 
+A Pauli correlation is measured by choosing an axis $`X`$, $`Y`$, or $`Z`$ at each active site and multiplying the resulting signs. For example, measuring $`X`$ on one qubit and $`Z`$ on another gives the outcome of $`X\otimes Z`$. Identity factors ignore their sites; the remaining sites form the support.
+
 A Pauli channel applies a random tensor product of Pauli errors. Its error distribution is unknown and may contain correlations between distant sites. For a target Pauli $`P_e`$, the eigenvalue $`\lambda_e`$ is the mean sign indicating whether the random error commutes or anticommutes with that target:
 
 ```math
 \lambda_e=\mathbb E_v(-1)^{[e,v]}.
 ```
 
-The experimenter must acquire a reusable record before learning which target will be requested. The family contains every support and every choice of axes through weight $`w`$. A reference qubit paired with a system qubit can reveal both local error bits through a Bell measurement. An unpaired system qubit, prepared and measured along one Pauli axis, reveals one commutation bit. The central question is how much coherent reference capacity is needed to make an initially unknown target accessible.
+Here $`[e,v]`$ is zero for commuting operators and one for anticommuting operators, and $`\mathbb E_v`$ averages over the error draw. The coefficient also has an input–output meaning: an input mean $`\mathrm{Tr}(P_e\rho)`$ becomes $`\lambda_e\mathrm{Tr}(P_e\rho)`$. For a one-qubit channel that applies $`I`$ with probability $`0.9`$ and $`X`$ with probability $`0.1`$, the $`Z`$ coefficient is $`0.9-0.1=0.8`$.
+
+The experimenter must acquire a reusable record before learning which target will be requested. The family contains every support and every choice of axes through weight $`w`$. A reference bypasses the unknown channel but can be prepared and measured jointly with the system. One reference qubit paired with a system qubit can reveal both local error bits through a Bell measurement. An unpaired system qubit, prepared and measured along one Pauli axis, reveals one commutation bit. The central question is how much coherent reference capacity is needed to make an initially unknown target accessible.
 
 The [model](../science/model.md) fixes the three parameters: the channel acts on $`n`$ qubits, every target has weight at most $`w`$, and all coherent registers outside the queried register have total width at most $`k`$ at each invocation. Write
 
@@ -63,6 +67,8 @@ Consequently, for rank $`r`$ and $`1\le p\le2`$, the ordinary rank comparison be
 \left(\frac rd\right)^{1/p-1/2}
 \|A\|_{2,\mathrm{av}}.
 ```
+
+The normalization makes the identity matrix have norm one. For example, two system qubits give $`d=4`$, while one reference qubit permits a pure probe with system rank at most two, hence $`r/d\le1/2`$.
 
 Here the division by $`d`$ is load-bearing. With $`r\le2^k`$ and $`d=2^n`$, the relevant ratio is at most $`2^{-D}`$. Dropping the normalization loses the dimension-dependent suppression. Conversely, inserting a normalized trace norm into a physical distinguishability formula introduces an incorrect factor of $`d`$. [The weighted proof](../science/weighted_bounds.md#hypercontractivity-and-the-rank-comparison) keeps these uses separate and derives the conversion explicitly.
 
@@ -159,7 +165,7 @@ The [construction](../science/partial_bell.md) divides a usable commutation sign
 
 ### 5. Recognize when one-bit detection becomes linear algebra
 
-An exactly preserved positive Pauli spike restricts the error labels to a homogeneous binary hyperplane. A compatible partial-Bell setting projects that restriction to a nonzero linear constraint on its $`n+k`$ recorded bits. Repeated raw syndromes therefore have deficient rank.
+An exactly preserved positive Pauli spike restricts the error labels to a homogeneous binary hyperplane: the bit strings satisfying one nonzero parity equation. A parity is the sum of selected bits modulo two, also called XOR. A compatible partial-Bell setting makes that equation accessible through its $`n+k`$ recorded bits. Every observed row then satisfies the same equation, so the rows cannot span all binary directions. Their rank, the number of independent rows over $`\mathbb F_2`$, is deficient.
 
 [The detector](../science/correlation_detection.md) searches for rank deficiency across random settings, using Gaussian elimination rather than enumerating candidate Paulis. It has a direct testing lower bound. Exact preservation is essential: a noisy parity constraint no longer makes all recorded rows lie in a proper subspace, so the same rank algorithm does not establish an efficient detector for arbitrary small deviations from the null.
 
