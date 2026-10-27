@@ -31,6 +31,8 @@ b_i=(-1)^{[a_i,v_i]}.
 
 Indeed, applying a Pauli error to an eigenstate of the chosen axis either preserves or flips its eigenvalue according to commutation. These observations hold conditional on the complete error label, so they require no spatial independence assumption.
 
+The reference makes the four local Pauli errors produce four orthogonal Bell states, which a joint measurement can distinguish perfectly. By contrast, the local-axis probe starts in a state certain to return $`+1`$ on that axis; its readout only tells whether the error flipped that sign.
+
 The primitive Bell and local-Pauli measurements are established channel-learning tools; see [ChenZhouSeifJiang2022](../references/RELATED_WORK.md#chenzhouseifjiang2022) and [KimOh2026](../references/RELATED_WORK.md#kimoh2026). The random partial-Bell construction here is stated explicitly so that its resource count and performance can be assessed without assuming a more powerful oracle.
 
 ## Compatibility with a requested target
@@ -67,6 +69,8 @@ Put $`D=n-k`$. Conditional on $`K`$, let $`M=|\mathrm{supp}(e)\setminus K|`$ be 
 ```math
 p_u=\Pr(H_e=1)=\mathbb E_K\,3^{-M}.
 ```
+
+Here $`\mathbb E_K`$ means the probability-weighted average over the random paired-site set. The exact sum below groups those sets by how many target sites they pair, then weights each group by the probability that the remaining axes match.
 
 The exact expression is
 
@@ -118,6 +122,8 @@ It is implemented as zero on unusable records and as the decoded sign divided by
 \mathrm{Var}(X_e)=\frac1{p_u}-\lambda_e^2
 \leq\frac1{p_u}.
 ```
+
+The factor $`1/p_u`$ corrects for the missing records; averaging then reduces fluctuations. For example, a weight-two target with $`n=2,k=1`$ has $`p_u=1/3`$. If every error commutes with it, the true coefficient is one: each sample is three with probability one third and zero otherwise, giving mean one. Without the factor three, the mean would be diluted to one third. The [worked example](../learning/WORKED_EXAMPLE.md) follows the corresponding preparations and bit records.
 
 Because $`p_u\leq1`$ and $`|\lambda_e|\leq1`$,
 

@@ -53,7 +53,7 @@ Each $`\mathcal T_s`$ is self-adjoint for the Hilbert–Schmidt inner product. T
 
 ## Hypercontractivity and the rank comparison
 
-We distinguish the ordinary Schatten norms from their normalized versions:
+For a $`d\times d`$ complex matrix $`A`$, we distinguish the ordinary Schatten norms from their normalized versions. Here $`|A|=\sqrt{A^\dagger A}`$, whose eigenvalues are the singular values of $`A`$:
 
 ```math
 \|A\|_p=\bigl(\mathrm{Tr}|A|^p\bigr)^{1/p},
@@ -62,6 +62,8 @@ We distinguish the ordinary Schatten norms from their normalized versions:
 \qquad
 \|A\|_{p,\mathrm{av}}=\bigl(\tau_d(|A|^p)\bigr)^{1/p}.
 ```
+
+The indices $`p`$ and $`q`$ are real norm parameters. Normalization makes the identity matrix have norm one for every $`p`$. For a rank-$`r`$ matrix, the ratio $`r/d`$ compares the number of nonzero singular values with the full system dimension. A pure probe with at most $`k`$ reference qubits has a system marginal of rank at most $`2^k`$; the coherent argument below will use this connection between reference width and rank.
 
 **Imported hypercontractivity theorem.** King's Corollary 2 states that, for $`1<p\le q`$,
 
@@ -110,6 +112,8 @@ Combining the two inequalities and squaring yields the useful form
 
 At $`t=1`$, this statement is the identity with exponent zero. Thus it holds over the full interval needed here.
 
+The depolarizing map damps high-weight Pauli components. Hypercontractivity controls the norm after damping, while the rank comparison controls the norm before damping. Together they turn $`r\le2^k`$ into the suppression factor $`2^{-(n-k)\gamma}`$ used by the response bounds.
+
 ## Complex response bound
 
 **Lemma W1.** For every nonzero complex $`d\times d`$ matrix $`C`$ of rank $`r`$, define
@@ -152,7 +156,7 @@ C=\frac1d\sum_b c_bP_b,
 \sum_b|c_b|^2=d\mathrm{Tr}(CC^\dagger).
 ```
 
-Thus $`q`$ is a probability distribution. Nuclear norm duality and the singular-value rank bound give
+Thus $`q`$ is a probability distribution describing how the squared matrix norm is distributed among Pauli components. It is separate from the physical channel's error distribution. Nuclear norm duality and the singular-value rank bound give
 
 ```math
 |c_b|\le\|C\|_1\le\sqrt r\,\|C\|_2,
@@ -172,7 +176,7 @@ This establishes reality and the bound by one without any Hermiticity assumption
 F_x(C)=\sum_{b,c}q_bq_c\,t^{|b+c|}.
 ```
 
-Fix a label $`c`$ and let $`A=P_cC`$. Left multiplication by $`P_c`$ preserves rank and singular values. Pauli multiplication shifts its expansion coefficients up to phases of modulus one:
+For fixed $`c`$, the inner sum weights components by the number of local labels on which they differ from $`c`$. Let $`A=P_cC`$. Left multiplication by $`P_c`$ preserves rank and singular values and shifts that center to the identity, up to phases of modulus one:
 
 ```math
 \left|\mathrm{Tr}(P_aA)\right|
@@ -230,6 +234,8 @@ This is the root fidelity between $`\rho`$ and $`P_e\rho P_e`$. It satisfies
 ```
 
 In particular, the right side is at most $`B_x`$ whenever $`r\le2^k`$.
+
+For a pure probe, [the one-call identity](coherent_memory.md#pure-inputs) will show that $`a f_e(\rho)`$ is the trace norm of the change from depolarization to a spike of amplitude $`a`$. This is why the coherent argument needs a response bound that remains valid before measurement. The following factorization converts its trace norm into a quadratic expression that the Pauli averaging map can evaluate.
 
 ### Proof
 
@@ -300,7 +306,7 @@ W\sim\mathrm{Bin}\left(n,\frac{3x}{1+3x}\right),
 p_A(x)=\Pr(1\le W\le w).
 ```
 
-For $`x>0`$, this event has positive probability. If a function $`g_e`$ obeys $`\mathbb E_{\nu_x}|g_e|^2\le B_x`$, then
+For $`0<x\le1`$, this event has positive probability and conditioning rescales its remaining probabilities by $`1/p_A(x)`$. At $`x=0`$ all mass is on the excluded identity, so the conditioned law is undefined. If a function $`g_e`$ obeys $`\mathbb E_{\nu_x}|g_e|^2\le B_x`$, then
 
 ```math
 \mathbb E_{\nu_x(\cdot\mid\mathcal A_w)}|g_e|^2

@@ -54,7 +54,9 @@ operations, measurements, classical feedback, and channel concatenation. It
 counts every channel call and allows unlimited classical computation.
 
 Conversely, a protocol with fresh partial-Bell probes succeeds using $`N=JL`$
-calls, where
+calls. Here $`J`$ is the number of independently drawn settings, $`L`$ is the
+number of calls repeated at each fixed setting, and $`m`$ counts its measured
+syndrome bits:
 
 ```math
 \begin{aligned}
@@ -263,8 +265,12 @@ y=Av\in\mathbb F_2^m,\qquad m=n+k,
 \qquad\text{(D10)}
 ```
 
-where $`A`$ has full row rank. The rows have disjoint site support, except
-for the two independent coordinate rows at each Bell site.
+Here $`A`$ has $`m`$ rows and $`2n`$ columns, with full row rank. Each row
+selects a parity of the error bits. All row spaces and ranks on this page
+are over $`\mathbb F_2`$: adding rows means bitwise addition modulo two,
+also called exclusive-or or XOR. The row space consists of all such row
+combinations. The rows have disjoint site support, except for the two
+independent coordinate rows at each Bell site.
 
 Let $`\ell_e`$ be the row vector representing $`v\mapsto[e,v]`$ in
 ordinary binary coordinates. The setting is **compatible** with the hidden
@@ -295,8 +301,11 @@ Two elementary projection facts determine the test:
 For completeness, the restriction of $`A`$ to $`H_e`$ has image
 $`\ker c`$ in the compatible case. Otherwise the stacked matrix with rows
 $`A`$ and $`\ell_e`$ has rank $`m+1`$, so restricting to $`H_e`$ still
-maps onto all of $`\mathbb F_2^m`$. Uniform inputs project uniformly because
-all fibers of a linear map have the same cardinality.
+maps onto all of $`\mathbb F_2^m`$. In the uniform component, each reachable
+syndrome is produced by the same number of allowed error labels, so those
+syndromes are equally likely within that component. The identity branch
+then adds mass at zero; the complete mixture need not be uniform when
+$`\tau<1`$.
 
 ## 5. The linear-rank algorithm
 
@@ -306,6 +315,12 @@ the binary matrix whose rows are the **raw** syndrome vectors. Output 1
 if any block has rank less than $`m`$; otherwise output 0. No hidden-label
 search or enumeration of the allowed Paulis is performed.
 
+Rank counts independent patterns rather than distinct outcomes. For example,
+the three rows $`100,011,111`$ have binary rank two because the third is the
+XOR of the first two. Rank below $`m`$ means that some nonzero parity
+vanishes on every observed row. The tester can detect that missing direction
+without knowing the hidden parity in advance.
+
 Under an alternative, a compatible block always has deficient rank.
 Equation (D11) bounds the probability that none of the settings is compatible:
 
@@ -314,7 +329,8 @@ Equation (D11) bounds the probability that none of the settings is compatible:
 \qquad\text{(D12)}
 ```
 
-Under the null, for each nonzero linear form $`c`$,
+Under the null, a nonzero parity is a fair bit in the uniform branch and is
+always zero in the identity branch. Thus, for each nonzero linear form $`c`$,
 
 ```math
 \Pr(cy=0)=1-\tau/2.
@@ -335,7 +351,8 @@ A union bound over blocks makes the false-positive probability at most
 $`\delta/2`$. Equation (D12) bounds the false-negative probability by the
 same amount. This proves (D2), with spare error probability.
 
-Streaming Gaussian elimination processes each syndrome in $`O(m^2)`$ bit
+Binary Gaussian elimination uses XORs to decide whether a new row adds an
+independent direction. Its streaming form processes each syndrome in $`O(m^2)`$ bit
 operations and keeps an $`O(m^2)`$-bit basis. The quantum operations per call
 are local preparations, Bell operations, and local measurements. In particular,
 

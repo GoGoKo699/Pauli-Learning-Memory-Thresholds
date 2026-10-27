@@ -13,7 +13,7 @@ are in [partial-Bell learning](../science/partial_bell.md) and
 
 ## The channel and the delayed question
 
-Write an individual Pauli error as
+The field $`\mathbb F_2=\{0,1\}`$ uses addition and multiplication modulo two. In particular, $`1+1=0`$. An individual Pauli error is labeled by two bits per site:
 
 ```math
 P_v=P_{(x_1,z_1)}\otimes P_{(x_2,z_2)},\qquad
@@ -47,8 +47,11 @@ The coefficient to estimate is consequently
 \lambda_P=\sum_v p_v(-1)^{z_1+x_2}.
 ```
 
-This is the average sign of a commutation parity. The experiment does not
-need to reconstruct the entire error distribution.
+This is the average sign of a commutation parity. Operationally, measuring
+$`X`$ on the first qubit and $`Z`$ on the second and multiplying the outcomes
+measures $`P`$. An input mean $`\mathrm{Tr}(P\rho)`$ becomes
+$`\lambda_P\mathrm{Tr}(P\rho)`$ after the channel. The experiment estimates
+this multiplier without reconstructing the entire error distribution.
 
 ## One physical setting
 
@@ -65,6 +68,11 @@ $`Z`$ axis on channel qubit 2. Prepare
 =\frac{|00\rangle+|11\rangle}{\sqrt2},
 \qquad |0\rangle_{S_2}.
 ```
+
+The reference $`A`$ bypasses the channel. The four local Pauli errors on
+$`S_1`$ turn its Bell pair with $`A`$ into four orthogonal joint states,
+which can be distinguished perfectly. This is why their joint measurement
+can reveal both local error bits.
 
 Send $`S_1S_2`$ through the channel once. Measure $`S_1A`$ in the Bell
 basis, labeling the outcome by the Pauli error bits $`(x_1,z_1)`$.
@@ -130,7 +138,10 @@ The compatibility choice is independent of the channel error. Therefore
 \mathrm{Var}(T_P)=3-\lambda_P^2.
 ```
 
-The factor three compensates for using one third of the records. A sample
+The factor three compensates for using one third of the records. For example,
+if every error commutes with $`P`$, then $`\lambda_P=1`$: one third of the
+records contribute three and the others contribute zero, giving mean one.
+Without the factor three, the mean would be one third. A sample
 can have magnitude three even though the coefficient lies in $`[-1,1]`$.
 The estimate is the average of the sample values, and its finite confidence
 guarantee follows from the variance bound in the
@@ -194,9 +205,11 @@ Y=
 \qquad \mathrm{rank}_{\mathbb F_2}Y=2.
 ```
 
-The third row is the sum of the first two over $`\mathbb F_2`$.
-The algorithm only needs to find a rank deficiency. It can eliminate rows
-without identifying which physical Pauli generated the constraint.
+Binary rank counts independent rows, rather than distinct observed strings.
+Adding rows means adding corresponding bits modulo two, also called XOR.
+The third row is the XOR of the first two, so it adds no new independent
+direction. The algorithm only needs to find a rank deficiency. It can eliminate
+rows without identifying which physical Pauli generated the constraint.
 
 A null sample can also have deficient rank by chance. For $`L`$ independent
 null rows and any fixed nonzero linear functional, all rows satisfy its
@@ -239,7 +252,8 @@ For known $`0<\tau\le1`$, replace the hypotheses by
 \Gamma_P=(1-\tau)\mathrm{Id}+\tau\Lambda_P^1.
 ```
 
-The identity branch emits the zero syndrome. It preserves every homogeneous
+The mixture branch is not revealed to the tester. The identity branch emits
+the zero syndrome. It preserves every homogeneous
 constraint, so the compatible alternative still has rank at most two.
 The null syndrome law becomes
 

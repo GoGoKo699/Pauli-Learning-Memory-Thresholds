@@ -1,8 +1,10 @@
 # Pauli Learning Memory Thresholds
 
-**How much coherent memory is needed to learn correlations of bounded Pauli weight in an unknown quantum channel?** This project gives a joint threshold in the correlation weight and the memory available beside an $`n`$-qubit Pauli channel.
+**How much coherent memory is needed to learn the coefficient of a quantum correlation whose support and measurement axes are revealed only after data collection?** This project gives a joint threshold in the correlation weight and the memory available beside an unknown Pauli channel.
 
-Let $`w`$ be the maximum requested Pauli weight. At every channel invocation, count all coherent registers outside the queried $`n`$-qubit register in a budget of $`k`$ qubits, with $`0\le k\le n`$. Arbitrary coherent reuse, intermediate measurements, and adaptive feedback are allowed. At fixed nontrivial accuracy and confidence,
+A Pauli correlation is a tensor product of the single-qubit operators $`I,X,Y,Z`$; its weight counts the factors different from $`I`$. A Pauli channel applies random Pauli errors, possibly correlated across sites. Its coefficient $`\lambda_P`$ describes how much of a correlation survives: $`\Lambda(P)=\lambda_P P`$.
+
+Let $`n`$ be the number of channel qubits and $`w`$ the maximum requested Pauli weight. At every channel invocation, count all coherent registers outside the queried $`n`$-qubit register in a budget of $`k`$ qubits, with $`0\le k\le n`$. Arbitrary coherent reuse, intermediate measurements, and adaptive feedback are allowed. At fixed nontrivial accuracy and confidence,
 
 ```math
 \boxed{
@@ -12,11 +14,11 @@ Let $`w`$ be the maximum requested Pauli weight. At every channel invocation, co
 }
 ```
 
-The learner produces a reusable record from which any requested coefficient in the complete low-weight Pauli family can later be estimated. Every channel invocation is charged, including invocations inside long coherent blocks. The upper protocol uses local Pauli measurements and partial Bell references; the lower bound allows arbitrary known quantum processing within the width budget.
+The acquisition procedure knows the complete family of supports and axes through weight $`w`$, but it does not know which member will be requested. It produces a reusable record from which that later coefficient can be estimated. Every channel invocation is charged, including invocations inside long coherent blocks. The upper protocol uses local Pauli measurements and partial Bell references; the lower bound allows arbitrary known quantum processing within the width budget.
 
 ## Principal results
 
-Write $`R=w(n-k)/n`$. The exact finite statements and proofs have the following homes.
+Write $`D=n-k`$ for the missing reference width and $`R=wD/n`$. Here $`\epsilon`$ is the additive coefficient error, $`\delta`$ the failure allowance, and $`M_w=\sum_{u=0}^w\binom nu3^u`$ the number of Pauli labels through weight $`w`$, including the known identity coefficient. The exact finite statements and proofs have the following homes.
 
 | Result | Content | Proof |
 |---|---|---|
@@ -30,7 +32,9 @@ For example, learning through weight $`w=\sqrt n`$ requires $`n-k=O(\sqrt n\log 
 
 ## Read the science
 
-Start with the [channel, memory budget, and exact tasks](science/model.md). The [weighted Pauli bounds](science/weighted_bounds.md) supply the common mathematical input. Follow either the [coherent](science/coherent_memory.md) or [fresh-experiment](science/fresh_experiments.md) converse, then the [partial-Bell construction](science/partial_bell.md). The [one-bit decision theorem](science/correlation_detection.md) makes the small-output consequence explicit, and [weak noise](science/weak_noise.md) treats rare informative events.
+For the physical story, start with the [channel, memory budget, and exact tasks](science/model.md), then the [interpretation](science/interpretation.md). The [two-qubit example](learning/WORKED_EXAMPLE.md) shows the preparation, readout, and stored record concretely.
+
+For the proofs, the [weighted Pauli bounds](science/weighted_bounds.md) supply the common mathematical input. Follow either the [coherent](science/coherent_memory.md) or [fresh-experiment](science/fresh_experiments.md) converse, then the [partial-Bell construction](science/partial_bell.md). The [one-bit decision theorem](science/correlation_detection.md) makes the small-output consequence explicit, and [weak noise](science/weak_noise.md) treats rare informative events.
 
 The [related-work account](references/RELATED_WORK.md) and [bibliography](references/references.bib) distinguish imported ingredients, previously studied tasks, and nearby access models. Hypercontractivity, the Pauli-spike family, and the general benefit of reference entanglement are established ingredients. The contribution developed here is the evaluated joint support–memory frontier under the specified coherent-width budget.
 
