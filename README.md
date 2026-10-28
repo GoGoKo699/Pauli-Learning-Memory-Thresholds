@@ -63,6 +63,17 @@ python3 verification/run_all.py
 
 The checks cover weighted operator responses, trace-norm identities, short coherent-query hybrids, and exact binary syndrome calculations. They use fixed inputs or random seeds and compare their outputs with the committed expectations. [Verification](verification/README.md) explains the numerical tolerances and exact-arithmetic checks. The universal lower bounds and asymptotic frontier are proved analytically.
 
+## Reproduce the resource figure
+
+The [analytical resource figure](figures/Graph/resource_regimes.pdf) displays the joint weight–memory geometry and the finite factors in the construction and coherent converse. The [figure guide](figures/README.md) gives the formulas, parameters, and reproduction steps.
+
+```bash
+python3 -m pip install -r figures/requirements.txt
+python3 figures/generate_resource_regimes.py
+```
+
+The generator evaluates the stated formulas directly, using exact rational arithmetic for the partial-Bell usability probability before plotting. Accuracy, confidence, and target-count factors are omitted from the factor comparison; the full query bounds appear in the scientific pages.
+
 ## Scope
 
 The channel is memoryless but may contain globally correlated Pauli errors. Its ordinary CPTP action is supplied without inverse, controlled, or purified-channel access. The constructive protocols use ideal controls and reference qubits and require no QRAM. The target family contains all supports and axes through weight $`w`$; a polynomial-sized known list is a different task.
