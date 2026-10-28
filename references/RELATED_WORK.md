@@ -169,11 +169,12 @@ locate the intermediate frontier with both $`w`$ and $`k`$ varying.
 ### FawziFlammarionGarivierOufkir2023
 
 Omar Fawzi, Nicolas Flammarion, Aurélien Garivier, and Aadil Oufkir,
-**Quantum Channel Certification with Incoherent Strategies**,
+**Quantum Channel Certification with Incoherent Measurements**,
 *Proceedings of the Thirty Sixth Conference on Learning Theory*,
 PMLR **195**, 1822–1884 (2023).
-[arXiv and proceedings metadata](https://arxiv.org/abs/2303.01188);
-[version inspected: v2](https://arxiv.org/pdf/2303.01188v2).
+[Proceedings metadata](https://proceedings.mlr.press/v195/fawzi23a.html);
+[version inspected: arXiv v2](https://arxiv.org/pdf/2303.01188v2), titled
+**Quantum Channel Certification with Incoherent Strategies**.
 
 This paper studies certification against fixed channel specifications,
 including complete depolarization, with alternatives separated in channel

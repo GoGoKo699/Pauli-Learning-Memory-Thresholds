@@ -23,7 +23,7 @@ Perform each experiment as follows.
 4. Measure each paired system-reference pair in the Bell basis. Measure every unpaired output qubit along its preparation axis.
 5. Store $`K`$, the unpaired axes, the Bell labels, and the unpaired measurement signs.
 
-The Bell label identifies $`v_i`$ on a paired site, with the labels fixed by the convention $`(P_{v_i}\otimes I)|\Phi^+\rangle`$. Overall Pauli phases do not affect that label. At an unpaired site the recorded sign is exactly
+The Bell label identifies $`v_i`$ on a paired site, with the labels fixed by the convention $`(P_{v_i}\otimes I)|\Phi^+\rangle`$. Overall Pauli phases do not affect that label. In the pairings and compatibility tests below, each axis $`a_i`$ also denotes its corresponding nonzero local binary label. At an unpaired site the recorded sign is exactly
 
 ```math
 b_i=(-1)^{[a_i,v_i]}.

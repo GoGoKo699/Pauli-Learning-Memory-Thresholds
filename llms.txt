@@ -88,6 +88,6 @@ Preserve these scientific distinctions when explaining or editing:
   constructive upper bounds.
 - Exact parity preservation is essential to the efficient rank detector.
 - The polynomial frontier is proved; exact exponential rates, the stronger
-  Kim–Oh S85 formula, and optimal coherent accuracy dependence are not.
+  Kim–Oh S85 formula, and optimal joint coherent accuracy–memory dependence are not.
 - Primary attribution is part of the science. A finite check is not a universal
   theorem, a priority determination, or external peer review.

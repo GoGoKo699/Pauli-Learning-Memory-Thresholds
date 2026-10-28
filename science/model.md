@@ -20,6 +20,8 @@ Let $`n\ge1`$, $`d=2^n`$, and label the Hermitian Pauli representatives by $`v=(
 P_v=i^{\sum_j x_jz_j}\bigotimes_{j=1}^n X^{x_j}Z^{z_j}.
 ```
 
+At one site, the binary pairs $`(0,0),(1,0),(0,1),(1,1)`$ represent $`I,X,Z,Y`$, respectively. Local Pauli axes are identified with their nonzero binary labels in pairings and compatibility tests.
+
 The weight $`|v|`$ counts sites where $`(x_j,z_j)\ne(0,0)`$. Define the symplectic pairing
 
 ```math

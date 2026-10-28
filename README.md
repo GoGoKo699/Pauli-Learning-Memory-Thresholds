@@ -78,7 +78,7 @@ The generator evaluates the stated formulas directly, using exact rational arith
 
 The channel is memoryless but may contain globally correlated Pauli errors. Its ordinary CPTP action is supplied without inverse, controlled, or purified-channel access. The constructive protocols use ideal controls and reference qubits and require no QRAM. The target family contains all supports and axes through weight $`w`$; a polynomial-sized known list is a different task.
 
-Query complexity, terminal measurement count, classical processing, and explicit output length are separately accounted for. The one-bit detector exploits an exactly preserved correlation. The finite exponential constants and the coherent accuracy dependence are not claimed optimal, and the stronger extremal formula proposed by Kim–Oh remains open.
+Query complexity, terminal measurement count, classical processing, and explicit output length are separately accounted for. The one-bit detector exploits an exactly preserved correlation. The finite exponential constants and the joint coherent accuracy–memory dependence are not claimed optimal, and the stronger extremal formula proposed by Kim–Oh remains open.
 
 ## Purpose and contact
 
