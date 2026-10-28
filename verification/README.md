@@ -30,6 +30,10 @@ PASS verify_syndromes.py
 Each program can also be run individually. It writes a JSON summary to standard
 output. The [expected results](expected/) retain the successful summaries.
 
+## Analytical figure
+
+The [resource-figure guide](../figures/README.md) documents a separate plotting route, with its Python generator, pinned dependencies, panel parameters, and canonical formulas. The figure evaluates those formulas directly; the finite checks below verify the identities used in the proofs.
+
 ## What is checked
 
 | Program | Coverage | Scientific use |

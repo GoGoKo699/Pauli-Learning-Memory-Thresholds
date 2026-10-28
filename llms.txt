@@ -45,6 +45,8 @@ Authoritative scientific homes:
 - references/RELATED_WORK.md and references/references.bib: imported ingredients,
   source versions, the closest results and the bounded novelty comparison.
 - verification/README.md: reproducibility commands and what finite checks establish.
+- figures/README.md: analytical resource-regime figure, exact formulas and parameters,
+  pinned plotting dependencies, generator command and output asset.
 
 Reading routes:
 - For a concrete introduction: learning/WORKED_EXAMPLE.md, then the milestone
@@ -55,6 +57,8 @@ Reading routes:
 - To implement the upper construction: partial_bell -> correlation_detection.
 - To understand weak noise: weak_noise, keeping absolute and relative accuracy distinct.
 - To reproduce: read verification/README.md, then run verification/run_all.py.
+- To regenerate the resource figure: read figures/README.md, then run
+  python3 figures/generate_resource_regimes.py from the repository root.
 
 Preserve these scientific distinctions when explaining or editing:
 - Watrous is the only educational anchor. Research papers remain sources for
