@@ -76,9 +76,9 @@ can reveal both local error bits.
 
 Send $`S_1S_2`$ through the channel once. Measure $`S_1A`$ in the Bell
 basis, labeling the outcome by the Pauli error bits $`(x_1,z_1)`$.
-Measure $`Z`$ on $`S_2`$ and record the bit $`b_2`$ for the outcome
-$`(-1)^{b_2}`$. Because $`S_2`$ started in the positive $`Z`$ eigenstate,
-$`b_2=x_2`$.
+Measure $`Z`$ on $`S_2`$ and record the bit $`\beta_2`$ for the outcome
+$`(-1)^{\beta_2}`$. Because $`S_2`$ started in the positive $`Z`$ eigenstate,
+$`\beta_2=x_2`$.
 
 The three recorded bits are
 

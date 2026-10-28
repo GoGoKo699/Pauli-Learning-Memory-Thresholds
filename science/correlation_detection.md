@@ -96,7 +96,7 @@ p_e(v)=\frac{1+(-1)^{[e,v]}}{4^n}.
 
 Since $`e\neq0`$, its symplectic functional is nonzero. Consequently
 $`p_e`$ is the uniform distribution on the linear hyperplane
-$`H_e=\{v:[e,v]=0\}`$, which has $`2^{2n-1}`$ elements. This proves
+$`\mathcal H_e=\{v:[e,v]=0\}`$, which has $`2^{2n-1}`$ elements. This proves
 complete positivity and trace preservation of $`\Lambda_P`$ directly.
 Its Fourier coefficients are 1 at the identity and at $`P`$, and zero at
 every other Pauli.
@@ -168,10 +168,10 @@ states that every query-cut state $`\omega_{SA}`$, with
 $`\dim A\leq2^k`$, satisfies
 
 ```math
-g_e(\omega)=
+b_e(\omega)=
 \left\|\mathrm{Tr}_S[(P_e\otimes I)\omega]\right\|_1,
 \qquad
-\mathbb E_{e\sim\nu_x}g_e(\omega)^2\leq B.
+\mathbb E_{e\sim\nu_x}b_e(\omega)^2\leq B.
 \qquad\text{(D7)}
 ```
 
@@ -180,7 +180,7 @@ budget. For classical histories, it applies separately to each conditional
 quantum state. Conditioning the prior and using Cauchy–Schwarz gives
 
 ```math
-\mathbb E_{e\sim\pi}g_e(\omega)
+\mathbb E_{e\sim\pi}b_e(\omega)
 \leq\sqrt{B/p_{\mathcal A}}.
 \qquad\text{(D8)}
 ```
@@ -193,7 +193,7 @@ For any such input, the single-call difference is
   \mathrm{Tr}_S[(P_e\otimes I)\omega],
 ```
 
-and has trace norm $`\tau g_e(\omega)`$. Compare the actual protocol by
+and has trace norm $`\tau b_e(\omega)`$. Compare the actual protocol by
 hybrids with the first $`j`$ calls equal to $`\Gamma_0`$ and all remaining
 calls equal to $`\Gamma_{P_e}`$. At the differing invocation, the preceding
 null calls have produced a classical–quantum state independent of $`e`$.
@@ -281,7 +281,7 @@ chosen measurement axis.
 For $`u=|e|`$, the compatibility probability is
 
 ```math
-q_e=\mathbb E_K 3^{-|\mathrm{supp}(e)\setminus K|}
+p_u=\mathbb E_K 3^{-|\mathrm{supp}(e)\setminus K|}
 \geq 3^{-u(n-k)/n}\geq3^{-R}.
 \qquad\text{(D11)}
 ```
@@ -293,14 +293,15 @@ Two elementary projection facts determine the test:
 
 1. Under $`\Gamma_0`$, the syndrome law is
    $`(1-\tau)\delta_0+\tau\mathrm{Uniform}(\mathbb F_2^m)`$.
+   Here $`\delta_0`$ is the point mass at the zero syndrome.
 2. Under $`\Gamma_{P_e}`$ in a compatible setting, there is a unique
    nonzero row $`c`$ with $`cA=\ell_e`$. Every syndrome obeys $`cy=0`$,
    including the identity-branch syndrome. In an incompatible setting the
    syndrome law equals the null law.
 
-For completeness, the restriction of $`A`$ to $`H_e`$ has image
+For completeness, the restriction of $`A`$ to $`\mathcal H_e`$ has image
 $`\ker c`$ in the compatible case. Otherwise the stacked matrix with rows
-$`A`$ and $`\ell_e`$ has rank $`m+1`$, so restricting to $`H_e`$ still
+$`A`$ and $`\ell_e`$ has rank $`m+1`$, so restricting to $`\mathcal H_e`$ still
 maps onto all of $`\mathbb F_2^m`$. In the uniform component, each reachable
 syndrome is produced by the same number of allowed error labels, so those
 syndromes are equally likely within that component. The identity branch
@@ -325,7 +326,7 @@ Under an alternative, a compatible block always has deficient rank.
 Equation (D11) bounds the probability that none of the settings is compatible:
 
 ```math
-(1-q_e)^J\leq e^{-Jq_e}\leq\delta/2.
+(1-p_u)^J\leq e^{-Jp_u}\leq\delta/2.
 \qquad\text{(D12)}
 ```
 
@@ -353,7 +354,7 @@ same amount. This proves (D2), with spare error probability.
 
 Binary Gaussian elimination uses XORs to decide whether a new row adds an
 independent direction. Its streaming form processes each syndrome in $`O(m^2)`$ bit
-operations and keeps an $`O(m^2)`$-bit basis. The quantum operations per call
+operations and keeps an $`O(m^2)`$-bit basis. Across all $`N`$ calls, rank processing uses $`O(Nm^2)`$ bit operations; the current setting and counters use an additional $`O(n+\log N)`$ bits. The quantum operations per call
 are local preparations, Bell operations, and local measurements. In particular,
 
 ```math
