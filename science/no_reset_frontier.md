@@ -95,6 +95,8 @@ In particular, at error $`1/3`$,
 
 For product clean/mixed initialization, this is $`c\geq4n/3`$. Thus $`c=O(\log n)`$ is impossible at any fixed error below one half, even with arbitrarily many calls and unrestricted protected width. The proposed polynomial-query protocol using logarithmic side memory and logarithmic initial clean qubits cannot exist in this model.
 
+The same necessity also transfers to later-requested coefficient learning with merely per-target confidence. If an acquisition procedure estimates any requested weight-one coefficient to additive error strictly below $`1/4`$ with success at least $`2/3`$ under the null and each promised alternative, threshold its estimate at $`1/4`$ when the request is $`a`$. This separates the null from that alternative. The entropy theorem bounds each individual reverse relative entropy before summing, so different final effects for different requests are allowed; simultaneous accuracy is not needed for this conclusion. If every estimate is simultaneously accurate, thresholding their maximum additionally gives one common detector.
+
 Pinsker's inequality and averaging also imply
 
 ```math
