@@ -127,7 +127,7 @@ h_e(y)=
 \frac{\tau q_{\mathcal D}(y)}{q_0(y)}g_e(y).
 ```
 
-When $`q_0(y)=0`$, all relevant alternative probabilities vanish and the outcome is omitted. When $`q_{\mathcal D}(y)=0<q_0(y)`$, set $`h_e(y)=0`$. Since $`q_0(y)\geq\tau q_{\mathcal D}(y)`$, the response satisfies $`|h_e(y)|\leq1`$.
+When $`q_0(y)=0`$, all relevant alternative probabilities vanish and the outcome is omitted. When $`q_{\mathcal D}(y)=0\lt q_0(y)`$, set $`h_e(y)=0`$. Since $`q_0(y)\geq\tau q_{\mathcal D}(y)`$, the response satisfies $`|h_e(y)|\leq1`$.
 
 The useful bound averages over the next null outcome as well as the hidden target:
 

@@ -49,7 +49,7 @@ The ordinary required output is a classical record. The lower-bound proof also p
 
 ## Physical hard family
 
-Let $`d=2^n`$ and let $`\mathcal D`$ be the completely depolarizing channel. For a nonidentity Pauli label $`e`$ and $`0<a\le1`$, define a positive spike by
+Let $`d=2^n`$ and let $`\mathcal D`$ be the completely depolarizing channel. For a nonidentity Pauli label $`e`$ and $`0\lt a\le1`$, define a positive spike by
 
 ```math
 \mathcal D(X)=\frac{\mathrm{Tr}(X)}dI_d,
@@ -251,7 +251,7 @@ Coherent concatenation can change how many final measurements are made. The resu
 
 ## Detection and weak noise
 
-The hybrid bound holds for any amplitude $`0<a\le1`$ before choosing an estimation accuracy. A binary test distinguishing $`\mathcal D`$ from every unknown $`\Lambda_e^{(a)}`$, $`e\in\mathcal A_w`$, with error at most $`\delta`$ therefore requires
+The hybrid bound holds for any amplitude $`0\lt a\le1`$ before choosing an estimation accuracy. A binary test distinguishing $`\mathcal D`$ from every unknown $`\Lambda_e^{(a)}`$, $`e\in\mathcal A_w`$, with error at most $`\delta`$ therefore requires
 
 ```math
 N\ge
