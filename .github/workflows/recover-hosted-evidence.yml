@@ -1,0 +1,97 @@
+name: Recover existing hosted evidence
+
+on:
+  push:
+    branches: [sister/hosted-evidence-recovery]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  exact-json:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: 22dda026d2156b05b3954fa53d3903f4b3bccca0
+          persist-credentials: false
+      - name: Download the completed original capture
+        uses: actions/download-artifact@v4
+        with:
+          artifact-ids: '13136990339'
+          run-id: '41435975063'
+          github-token: ${{ github.token }}
+          path: recovered
+          merge-multiple: true
+      - name: Export exact original full JSON
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import subprocess
+          roots = [p.parent for p in Path('recovered').rglob('hosted-report.json') if p.parent.name == 'hosted-full']
+          assert len(roots) == 1, roots
+          subprocess.run(['python3', 'verification/hosted/export_evidence.py', '--root', str(roots[0]), '--label', 'full-json', '--mode', 'json', '--max-mib', '2'], check=True)
+          PY
+  review-half:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        half: [0, 1]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: 22dda026d2156b05b3954fa53d3903f4b3bccca0
+          persist-credentials: false
+      - name: Download the completed original capture
+        uses: actions/download-artifact@v4
+        with:
+          artifact-ids: '13136990339'
+          run-id: '41435975063'
+          github-token: ${{ github.token }}
+          path: recovered
+          merge-multiple: true
+      - name: Export one balanced half of exact existing review images
+        env:
+          REVIEW_HALF: ${{ matrix.half }}
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import hashlib, importlib.util, json, os
+          roots = [p.parent for p in Path('recovered').rglob('hosted-report.json') if p.parent.name == 'hosted-full']
+          assert len(roots) == 1, roots
+          root = roots[0]
+          original_manifest = root / 'review/review-manifest.json'
+          original_bytes = original_manifest.read_bytes()
+          manifest = json.loads(original_bytes)
+          groups = {}
+          for item in manifest['records']:
+              groups.setdefault(item['source_page'], []).append(item)
+          halves, weights = [[], []], [0, 0]
+          weighted = sorted(groups.items(), key=lambda pair: (-sum((root/'review'/r['path']).stat().st_size for r in pair[1]), pair[0]))
+          for page, records in weighted:
+              half = 0 if weights[0] <= weights[1] else 1
+              halves[half].extend(records)
+              weights[half] += sum((root/'review'/r['path']).stat().st_size for r in records)
+          selected = halves[int(os.environ['REVIEW_HALF'])]
+          assert selected
+          manifest['records'] = selected
+          manifest['recovery_scope'] = {'half': int(os.environ['REVIEW_HALF']), 'halves': 2,
+              'original_review_manifest_sha256': hashlib.sha256(original_bytes).hexdigest(),
+              'original_collector_report_sha256': hashlib.sha256((root/'hosted-report.json').read_bytes()).hexdigest(),
+              'original_artifact_id': 13136990339, 'original_run_id': 41435975063,
+              'source_commit': '22dda026d2156b05b3954fa53d3903f4b3bccca0'}
+          files = {r['path']: (root/'review'/r['path']).read_bytes() for r in selected}
+          files['review-manifest.json'] = (json.dumps(manifest, indent=2)+'\n').encode()
+          spec = importlib.util.spec_from_file_location('transport', 'verification/hosted/export_evidence.py')
+          module = importlib.util.module_from_spec(spec)
+          spec.loader.exec_module(module)
+          label = 'review-' + os.environ['REVIEW_HALF']
+          packed = module.pack(label, files, {'mode': 'review_recovery', 'collector_report_altered': False})
+          assert len(packed) <= int(2.9*1024*1024), (len(packed), weights)
+          module.emit(label, packed, len(files))
+          PY
