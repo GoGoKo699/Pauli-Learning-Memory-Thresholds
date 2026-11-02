@@ -5,6 +5,14 @@ specified, supporting every coefficient through weight w of an unknown
 n-qubit Pauli channel. At each invocation, at most k other coherent qubits
 may be present. Every channel call is charged.
 
+Sister project: https://github.com/GoGoKo699/Quantum-Learning-Without-Resets.
+The original width frontier here permits resets, fresh probes and classical
+history. The common no-reset weight-one task at retained coefficient 1/2
+requires linear initial negentropy for any finite query count. Read
+science/no_reset_frontier.md for the exact common model and consequences;
+the authoritative full shared entropy proof is
+https://github.com/GoGoKo699/Quantum-Learning-Without-Resets/blob/61440dbbba8df6f65602c3a4d20f5b373359919a/science/entropy_bound.md.
+
 Start with README.md and science/model.md; learning/WORKED_EXAMPLE.md gives
 a concrete two-qubit experiment. Pauli weight counts nonidentity tensor
 factors. Write D=n-k and R=wD/n. At fixed nontrivial accuracy and confidence,
@@ -40,6 +48,9 @@ Authoritative scientific homes:
   syndrome rank algorithm, direct testing lower bound, and known noise strength.
 - science/weak_noise.md: known identity mixtures, absolute versus relative
   error, the fresh-experiment factor tau/epsilon^2, and the coherent frontier.
+- science/no_reset_frontier.md: common weight-one attenuated-spike task,
+  inherited restricted-label collision bound, stronger entropy obstruction,
+  qualified physical side-width consequence and shared proof ownership.
 - science/interpretation.md: physical meaning, growing sublinear support,
   the small-output consequence, examples, and consequential limits.
 - references/RELATED_WORK.md and references/references.bib: imported ingredients,
@@ -56,6 +67,8 @@ Reading routes:
 - To inspect the stronger fresh rate: weighted_bounds -> fresh_experiments.
 - To implement the upper construction: partial_bell -> correlation_detection.
 - To understand weak noise: weak_noise, keeping absolute and relative accuracy distinct.
+- To compare fixed initial purity and width: no_reset_frontier, then the pinned
+  sister entropy proof; distinguish the original reset-permitting model.
 - To reproduce: read verification/README.md, then run verification/run_all.py.
 - To regenerate the resource figure: read figures/README.md, then run
   python3 figures/generate_resource_regimes.py from the repository root.
@@ -87,6 +100,16 @@ Preserve these scientific distinctions when explaining or editing:
   1-tau needs no data. Ideal reference qubits and controls are assumed by the
   constructive upper bounds.
 - Exact parity preservation is essential to the efficient rank detector.
+  Its identity-mixture strength tau keeps the hidden eigenvalue at one; it is
+  distinct from spike attenuation lambda=1/2 in the no-reset theorem.
+- No-reset controls are unital on the whole initialized processor, with all
+  records charged. Initial negentropy C in bits equals c only for the stated
+  product clean/mixed initialization; collision purity is P=2^c there.
+  At weight one, lambda=1/2 and worst-case error 1/3, C>=4n/3. The additional
+  physical side-width necessity k_phys>=n/3 requires that every protected
+  record is included in the n+k_phys qubit dimension. It does not follow for
+  a k convention exempting extra classical registers. No matching linear
+  resource protocol or complete no-reset frontier is established.
 - The polynomial frontier is proved; exact exponential rates, the stronger
   Kim–Oh S85 formula, and optimal joint coherent accuracy–memory dependence are not.
 - Primary attribution is part of the science. A finite check is not a universal

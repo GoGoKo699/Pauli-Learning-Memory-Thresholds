@@ -45,7 +45,7 @@ The reference channel is complete depolarization,
 \mathcal D(X)=\frac{\mathrm{Tr}(X)}{d}I.
 ```
 
-For a **nonidentity** label $`e`$, a sign $`s\in\{-1,+1\}`$, and an amplitude $`0<a<1`$, define
+For a **nonidentity** label $`e`$, a sign $`s\in\{-1,+1\}`$, and an amplitude $`0\lt a\lt1`$, define
 
 ```math
 \Lambda_{e,s}(X)

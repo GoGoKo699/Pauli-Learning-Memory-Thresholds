@@ -65,7 +65,7 @@ For a $`d\times d`$ complex matrix $`A`$, we distinguish the ordinary Schatten n
 
 The indices $`p`$ and $`q`$ are real norm parameters. Normalization makes the identity matrix have norm one for every $`p`$. For a rank-$`r`$ matrix, the ratio $`r/d`$ compares the number of nonzero singular values with the full system dimension. A pure probe with at most $`k`$ reference qubits has a system marginal of rank at most $`2^k`$; the coherent argument below will use this connection between reference width and rank.
 
-**Imported hypercontractivity theorem.** King's Corollary 2 states that, for $`1<p\le q`$,
+**Imported hypercontractivity theorem.** King's Corollary 2 states that, for $`1\lt p\le q`$,
 
 ```math
 \|\mathcal T_s(A)\|_{q,\mathrm{av}}
@@ -210,7 +210,7 @@ F_x(C)\le
 \left(\frac{1+x}{1+3x}\right)^{n-k}.
 ```
 
-That inequality is not assumed or proved here. For $`0<x<1`$, its exponent in base two is stronger than the exponent in W1. A tensor projector
+That inequality is not assumed or proved here. For $`0\lt x\lt1`$, its exponent in base two is stronger than the exponent in W1. A tensor projector
 
 ```math
 C=(|0\rangle\langle0|)^{\otimes(n-k)}\otimes I_{2^k}
@@ -306,7 +306,7 @@ W\sim\mathrm{Bin}\left(n,\frac{3x}{1+3x}\right),
 p_A(x)=\Pr(1\le W\le w).
 ```
 
-For $`0<x\le1`$, this event has positive probability and conditioning rescales its remaining probabilities by $`1/p_A(x)`$. At $`x=0`$ all mass is on the excluded identity, so the conditioned law is undefined. If a function $`g_e`$ obeys $`\mathbb E_{\nu_x}|g_e|^2\le B_x`$, then
+For $`0\lt x\le1`$, this event has positive probability and conditioning rescales its remaining probabilities by $`1/p_A(x)`$. At $`x=0`$ all mass is on the excluded identity, so the conditioned law is undefined. If a function $`g_e`$ obeys $`\mathbb E_{\nu_x}|g_e|^2\le B_x`$, then
 
 ```math
 \mathbb E_{\nu_x(\cdot\mid\mathcal A_w)}|g_e|^2

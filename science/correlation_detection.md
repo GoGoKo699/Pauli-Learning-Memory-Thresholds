@@ -8,6 +8,8 @@ hidden Pauli is restricted by weight, the lower bound permits the full coherent
 processor in [the model](model.md), and the construction includes a known
 identity-mixture strength.
 
+**Relation to the sister no-reset task.** The alternatives on this page preserve their hidden coefficient exactly at one, for every identity-mixture strength $`\tau`$. The common attenuated-spike task instead fixes that coefficient at $`\lambda=1/2`$ and forbids resets or fresh records. Its [linear initial-purity obstruction](no_reset_frontier.md) is a separate result. The fresh-probe rank construction below does not meet that resource contract.
+
 ## 1. Promise and finite theorem
 
 Let $`n\geq1`$, $`0\leq k\leq n`$, $`1\leq w\leq n`$,
@@ -371,7 +373,7 @@ affine differences are unnecessary.
 ## 6. Scope and verification
 
 The promise is exact preservation of one Pauli correlation against the specified
-null family. It is not a test for every nondepolarizing channel, and the
+null family. The identity-mixture parameter $`\tau`$ does not attenuate that eigenvalue; replacing it by a retained coefficient $`1/2`$ changes the promise and destroys the exact syndrome constraint. The [no-reset comparison](no_reset_frontier.md) gives the corresponding stronger initial-resource obstruction. It is not a test for every nondepolarizing channel, and the
 algorithm does not identify the hidden Pauli. If the distinguished eigenvalue
 is less than 1, the projected parity is noisy and the rank test is no longer
 valid. The theorem does not establish an efficient generic noisy-parity search

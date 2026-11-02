@@ -77,6 +77,8 @@ Known processing may act jointly on $`S`$ and $`A`$, move quantum information be
 
 The channel oracle is the ordinary map $`\Lambda\otimes\mathrm{Id}_A`$. Its environment, a purification of its action, an inverse, and controlled-channel access are not provided. An unlimited classical record cannot be reinterpreted as an uncounted coherent register. These distinctions are necessary for the width constraint to have an operational meaning.
 
+This coherent-width model does not fix the processor’s initial purity. Its permission to reset, prepare new probes and retain the classical history $`H`$ is consequential. The sister comparison in [no_reset_frontier.md](no_reset_frontier.md) instead requires unital controls on one complete initialized processor, with no fresh records. Its physical side-width corollary counts all protected registers; it is not automatically a bound on $`k`$ when $`H`$ is exempt.
+
 The resource $`N`$ is a worst-case upper bound on the number of channel invocations. A long coherent block pays for every call it contains. An adaptive strategy may stop early. The hybrid proof treats halted classical branches as inactive, so it also covers this case without adding uncounted quantum storage. No claim about an expected-only query budget is needed.
 
 The lower bound allows unlimited classical computation and arbitrary known operations. The constructive upper bound uses ideal local Clifford operations, Bell preparation and readout, and classical processing whose cost is given below. Imperfect reference qubits and general preparation or readout errors are not part of the upper-bound model.
@@ -123,6 +125,8 @@ The [correlation detection theorem](correlation_detection.md) uses the promise
 ```
 
 The strength $`0<\tau\le1`$ is known and the nonidentity index $`e\in\mathcal A_w`$ is hidden throughout the protocol. The output is one bit identifying the null or alternative, with error at most $`\delta`$ for every promised channel. Under the alternative, $`P_e`$ is exactly preserved; every other nonidentity Pauli has eigenvalue $`1-\tau`$. Under the null they all have eigenvalue $`1-\tau`$.
+
+The alternative preserves $`P_e`$ exactly for every $`\tau`$. It is distinct from the common attenuated-spike alternative with hidden eigenvalue $`\lambda=1/2`$ in [the no-reset comparison](no_reset_frontier.md); $`\tau`$ and $`\lambda`$ parameterize different channel families.
 
 This task has polynomial query cost and a polynomial-time implementation exactly when
 

@@ -2,7 +2,7 @@
 
 The educational anchor is **John Watrous, [*The Theory of Quantum Information*](https://cs.uwaterloo.ca/~watrous/TQI/), Cambridge University Press, 2018**. The section and equation pointers below refer to the author's linked pre-publication chapter files, whose front matter is dated January 2018. They provide a route into this project without requiring a sequential reading of the entire book.
 
-Watrous supplies the language of finite quantum systems, channels, measurements, operator norms, and distinguishability. The project adds a particular learning task, a restriction on coherent resources, weighted Pauli estimates, and algorithms. The distinction matters: a textbook channel representation does not establish a query lower bound, and the selected educational anchor does not replace the primary research ingredients in [related work](../references/RELATED_WORK.md).
+Watrous supplies the language of finite quantum systems, channels, measurements, operator norms, distinguishability, and entropy. The project adds a particular learning task, a restriction on coherent resources, weighted Pauli estimates, and algorithms. The distinction matters: a textbook channel representation does not establish a query lower bound, and the selected educational anchor does not replace the primary research ingredients in [related work](../references/RELATED_WORK.md).
 
 Use the [30-milestone map](MILESTONES.md) for the complete sequence of understanding targets. The [worked example](WORKED_EXAMPLE.md) shows what the apparatus actually prepares, records, and computes with two system qubits and one reference qubit. This bridge explains how those operations connect to the general proofs.
 
@@ -42,8 +42,11 @@ These are source pointers for specific concepts. The last column identifies the 
 | [§3.1.1, Discriminating between pairs of quantum states](https://cs.uwaterloo.ca/~watrous/TQI/TQI.3.pdf), Theorem 3.4 | The operational meaning of trace-norm separation. | Turn an accurate coefficient estimate into a test in [the coherent converse](../science/coherent_memory.md#learning-to-testing-reduction-and-finite-constants). |
 | [§3.2, The fidelity function](https://cs.uwaterloo.ca/~watrous/TQI/TQI.3.pdf), Definition 3.11 and Eq. (3.64) | Unsquared fidelity. | Recognize the single-call response controlled by [Lemma W2](../science/weighted_bounds.md#root-fidelity-bound). |
 | [§§3.3.1–3.3.3, Channel distances and discrimination](https://cs.uwaterloo.ca/~watrous/TQI/TQI.3.pdf), including Corollary 3.40 | Auxiliary systems, the completely bounded trace norm, and trace-norm contraction. | Separate an unrestricted channel norm from the bounded-reference estimate needed at every query. |
+| [Chapter 4, §4.2.2, Theorem 4.27](https://cs.uwaterloo.ca/~watrous/TQI/TQI.4.pdf), printed p. 231 | Unital channels and Hilbert–Schmidt contraction. | Understand which old collision-purity ingredient transfers when fresh preparation is removed. |
+| [Chapter 5, §5.2, Corollary 5.33 and Theorem 5.35](https://cs.uwaterloo.ca/~watrous/TQI/TQI.5.pdf), printed pp. 279–281 | Joint convexity and data processing of quantum relative entropy. | Follow the sister proof's reverse-relative-entropy query coupling rather than assuming that a collision bound is already tight. |
+| Chapter 5, Theorems 5.36 and 5.38, printed pp. 281–282 | Strong subadditivity and the quantum Pinsker inequality. | Charge weight-one Pauli responses to total null entropy gain and translate the resulting budget into a readable-decision obstruction. |
 
-The [anchor's contents](https://cs.uwaterloo.ca/~watrous/TQI/TQI.frontmatter.pdf) give the surrounding chapter structure. For the present results, the weighted prior, classical likelihood calculation, concentration estimate, and binary syndrome argument are developed in the repository. They are not assigned to unrelated textbook chapters.
+The [anchor's contents](https://cs.uwaterloo.ca/~watrous/TQI/TQI.frontmatter.pdf) give the surrounding chapter structure. The Chapter 5 entries were checked against the author's standard-layout PDF; its logarithms are base two. For the original results, the weighted prior, classical likelihood calculation, concentration estimate, and binary syndrome argument are developed in this repository. The sister project owns the additional entropy query coupling and proof; this project owns its resource-model transfer. They are not assigned to unrelated textbook chapters.
 
 ## Conventions that must survive the translation
 
@@ -99,6 +102,27 @@ A measurement cannot produce outcome distributions with total variation exceedin
 
 Watrous's completely bounded trace norm, denoted by a triple-bar trace norm in §3.3.2, is written $`\|\Phi\|_\diamond`$ here. It is the **full** norm. Thus the weak-channel statement $`\|\widetilde\Lambda-\mathrm{Id}\|_\diamond\le2\tau`$ has no extra factor of one half. This unrestricted norm describes the channel pair; the memory-sensitive lower bound uses the response on each allowed input and then averages over hidden targets. Optimizing an input separately for each hidden target would change the learning task.
 
+### Entropy and relative entropy
+
+Watrous uses base-two logarithms for $`H`$ and $`D`$. Write $`D_2`$ explicitly when comparing with natural-logarithm formulas:
+
+```math
+D_{\mathrm{nat}}(\rho\Vert\sigma)
+=(\ln2)D_2(\rho\Vert\sigma),
+\qquad
+H_{\mathrm{nat}}(\rho)=(\ln2)H(\rho).
+```
+
+Relative entropy is not a distance metric: its arguments cannot be exchanged. The sister converse uses the reverse order $`D_2(\rho_T^0\Vert\rho_T^a)`$, with the null first. Watrous's Theorem 5.38 says $`D_2\ge\|\rho-\sigma\|_1^2/(2\ln2)`$, hence $`D_{\mathrm{nat}}\ge2\,\mathrm{TD}^2`$ in the project's halved trace-distance convention. Mixing these conventions would change the constants.
+
+For a complete initialized processor, define its entropy deficit in bits by
+
+```math
+C=\log_2\dim(SA)-H(\rho_{\mathrm{in}}).
+```
+
+A product of $`c`$ initially pure qubits and otherwise maximally mixed qubits has $`C=c`$. Appending an independent mixed register leaves $`C`$ unchanged, and unital controls cannot increase it. This entropy resource is distinct from coherent width and from collision purity $`\mathcal P=\dim(SA)\mathrm{Tr}(\rho_{\mathrm{in}}^2)`$; for a general state $`C\le\log_2\mathcal P`$. No thermodynamic conversion is assumed.
+
 ### Vectors, adjoints, and the fresh-response matrix
 
 Watrous writes vectors as $`u`$, pure states as $`uu^*`$, and adjoints as $`A^*`$. The project also uses $`|\psi\rangle`$, $`|\psi\rangle\langle\psi|`$, and $`A^\dagger`$. These are notation translations, not different state conventions.
@@ -122,9 +146,11 @@ The register language of Chapter 2 permits an exact resource statement. At each 
 
 For a **pure** state on $`S\otimes A`$, the reduced state on $`S`$ has rank at most $`\dim A`$. A mixed input does not generally have a reduced state of that rank. The coherent proof therefore decomposes the mixed input into pure states inside its existing $`S\otimes A`$ space and uses convexity. It does not replace the input by an accessible purification on a larger register. This is the operational use of the purification and Schmidt-rank foundations.
 
-A channel's mathematical representation also needs to be separated from its access mechanism. Applying the channel to half of a normalized maximally entangled state would produce $`J(\Lambda)/d`$ in Watrous's Choi convention. Preparing that experiment uses $`n`$ reference qubits beside the $`n`$ queried qubits. Copies of this normalized Choi state are therefore not supplied for free when $`k<n`$. Similarly, a Stinespring representation establishes that a dilation exists; it does not grant access to the unknown environment or its inverse.
+A channel's mathematical representation also needs to be separated from its access mechanism. Applying the channel to half of a normalized maximally entangled state would produce $`J(\Lambda)/d`$ in Watrous's Choi convention. Preparing that experiment uses $`n`$ reference qubits beside the $`n`$ queried qubits. Copies of this normalized Choi state are therefore not supplied for free when $`k\lt n`$. Similarly, a Stinespring representation establishes that a dilation exists; it does not grant access to the unknown environment or its inverse.
 
 The counted resource $`N`$ is the number of ordinary channel invocations. Ten invocations inside one coherent block cost ten queries even if only one measurement is made at the end. Independent channel uses also do not mean that an adaptive experiment's full quantum inputs or classical outcomes are independent. The [forward hybrid](../science/coherent_memory.md#forward-hybrid-for-adaptive-coherent-protocols) is what controls their dependence.
+
+The [fixed-initialization sister interface](../science/no_reset_frontier.md) adds a second resource contract. Every retained record belongs to one finite initialized processor, every known interleaving is unital, and the initial entropy deficit is charged. A record that has become classical still required an initialized physical register. The original partial-Bell upper protocol uses renewed polarized probes and $`O(nN)`$ stored bits, so its coherent-width theorem alone gives no protocol under a fixed initial-purity budget. An arbitrary mathematical purification is unavailable in both contracts.
 
 ## The additional steps supplied by the project
 
@@ -175,8 +201,29 @@ For a known mixture $`(1-\tau)\mathrm{Id}+\tau\Lambda`$, the [weak-channel accou
 
 The joint polynomial condition is consequently $`R+\log(1/\tau)=O(\log n)`$. At a coarse absolute tolerance $`\epsilon\ge\tau`$, the known midpoint already estimates every nonidentity coefficient without data. The precision qualification is therefore part of the physical statement. Rare global Pauli errors are allowed throughout; proximity to the identity does not impose a spatially local noise model.
 
+<a id="the-fixed-initialization-sister-boundary"></a>
+### 7. Transfer the fixed-initialization obstruction
+
+The common sister task is complete depolarization versus one fixed hidden attenuated Pauli spike, restricted to $`X_i,Y_i,Z_i`$ and $`\lambda=1/2`$. Detection uses one final measurement common to all $`3n`$ alternatives. It is different from late-index learning and from the exactly preserved-mode detector. In particular, the detector's identity-mixture parameter $`\tau`$ does not equal $`\lambda`$: its hidden eigenvalue remains one even at $`\tau=1/2`$.
+
+The immediate restricted-label application of the sister's existing collision-purity theorem gives $`\mathrm{TD}\le\sqrt{2^c-1}/(6n)`$. At error $`1/3`$, it requires $`c\ge\log_2(1+4n^2)`$. That inherited condition still permits logarithmic $`c`$ and is not the new contribution.
+
+The stronger result uses entropy. A single changed query increases reverse relative entropy by at most half of a Pauli-direction source term evaluated on the common null input. Complementary local axes and strong subadditivity charge the sum of those source terms to $`3/2`$ times the null query's entropy increase. Across the complete experiment, unital controls leave at most $`C`$ bits to spend. The [authoritative entropy proof](https://github.com/GoGoKo699/Quantum-Learning-Without-Resets/blob/61440dbbba8df6f65602c3a4d20f5b373359919a/science/entropy_bound.md) yields
+
+```math
+\sum_{|a|=1}D_2(\rho_T^0\Vert\rho_T^a)\le\frac34 C,
+\qquad
+C\ge4n(1-2\delta)\log_2\frac{1-\delta}{\delta}
+```
+
+for a worst-case error $`\delta<1/2`$. Thus $`C\ge4n/3`$ at error $`1/3`$. This excludes logarithmic initial purity for every finite query count, even with arbitrary initially mixed protected memory. The queried system can remain correlated with that memory; the proof does not assume a fresh state at query cuts.
+
+The additional conclusion $`k\ge n/3`$ uses $`C\le n+k`$ and therefore requires **all** protected registers and records to fit in the $`k`$ side qubits. It does not follow from this project's coherent-only width definition with an excluded classical history. The logarithmic-purity impossibility has no such width dependence.
+
+The joint result closes the proposed starting corner by an obstruction. It supplies neither a matched linear-resource protocol nor the full $`(k,c,T)`$ frontier, and no claim for attenuation above $`1/2`$ follows. [M26–M30](MILESTONES.md#m26) connect this transfer with the original detector and weak-channel claims. The local statement and source ownership are recorded in [the no-reset frontier](../science/no_reset_frontier.md); the proof is developed once in the sister repository. The entropy and complementary-basis inequalities remain standard foundations, with primary attribution preserved in the scientific accounts.
+
 ## Reading the complete story
 
-The [milestone map](MILESTONES.md) allocates M01–M14 to background and M15–M30 to the project's argument. Its first phase assembles individual operators, experiments, probabilities, and resource distinctions into the learning problem. Its second phase connects the weighted responses to lower bounds, the sampling protocol, the detector, and the final scope.
+The [milestone map](MILESTONES.md) allocates M01–M14 to background and M15–M30 to the project's argument. Its first phase assembles individual operators, experiments, probabilities, and resource distinctions into the learning problem. Its second phase connects the weighted responses to lower bounds, the sampling protocol, the detector, the fixed-initialization sister boundary, and the final scope.
 
 For a concrete entry, use the [worked example](WORKED_EXAMPLE.md), then identify its operations in [partial-Bell learning](../science/partial_bell.md) and [correlation detection](../science/correlation_detection.md). For the universal obstruction, read [weighted bounds](../science/weighted_bounds.md) together with [coherent memory](../science/coherent_memory.md). The [interpretation](../science/interpretation.md) brings the two directions together. The general theorems are established by those analytical arguments; the [finite verification programs](../verification/README.md) check selected identities and implementations.
