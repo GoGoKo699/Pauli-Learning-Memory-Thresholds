@@ -71,7 +71,7 @@ The indices $`p`$ and $`q`$ are real norm parameters. Normalization makes the id
 \|\mathcal T_s(A)\|_{q,\mathrm{av}}
 \le \|A\|_{p,\mathrm{av}}
 \quad\text{if}\quad
-s\le\sqrt{\frac{p-1}{q-1}}.
+0\le s\le\sqrt{\frac{p-1}{q-1}}.
 ```
 
 The induced norm in King's Eq. (6) ranges over all complex matrices, so this inequality applies to non-Hermitian matrices. We use $`q=2`$, $`p=1+t`$, and $`s=\sqrt t`$. This is the established input to the arguments below; the weighted response estimates are its applications here. See [King2014](../references/RELATED_WORK.md#king2014), Corollary 2, Eq. (17), and Remark 2.

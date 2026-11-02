@@ -104,16 +104,17 @@ Watrous's completely bounded trace norm, denoted by a triple-bar trace norm in Â
 
 ### Entropy and relative entropy
 
-Watrous uses base-two logarithms for $`H`$ and $`D`$. Write $`D_2`$ explicitly when comparing with natural-logarithm formulas:
+Watrous uses base-two logarithms for $`H`$ and $`D`$. Write $`D_{\mathrm{bits}}`$ for ordinary quantum relative entropy in bits. The conversion to natural-logarithm units is:
 
 ```math
+\begin{aligned}
 D_{\mathrm{nat}}(\rho\Vert\sigma)
-=(\ln2)D_2(\rho\Vert\sigma),
-\qquad
-H_{\mathrm{nat}}(\rho)=(\ln2)H(\rho).
+&=(\ln2)D_{\mathrm{bits}}(\rho\Vert\sigma),\\
+H_{\mathrm{nat}}(\rho)&=(\ln2)H(\rho).
+\end{aligned}
 ```
 
-Relative entropy is not a distance metric: its arguments cannot be exchanged. The sister converse uses the reverse order $`D_2(\rho_T^0\Vert\rho_T^a)`$, with the null first. Watrous's Theorem 5.38 says $`D_2\ge\|\rho-\sigma\|_1^2/(2\ln2)`$, hence $`D_{\mathrm{nat}}\ge2\,\mathrm{TD}^2`$ in the project's halved trace-distance convention. Mixing these conventions would change the constants.
+Relative entropy is not a distance metric: its arguments cannot be exchanged. The sister converse uses the reverse order $`D_{\mathrm{bits}}(\rho_T^0\Vert\rho_T^a)`$, with the null first. Watrous's Theorem 5.38 says $`D_{\mathrm{bits}}\ge\|\rho-\sigma\|_1^2/(2\ln2)`$, hence $`D_{\mathrm{nat}}\ge2\,\mathrm{TD}^2`$ in the project's halved trace-distance convention. Mixing these conventions would change the constants.
 
 For a complete initialized processor, define its entropy deficit in bits by
 
@@ -208,12 +209,13 @@ The common sister task is complete depolarization versus one fixed hidden attenu
 
 The immediate restricted-label application of the sister's existing collision-purity theorem gives $`\mathrm{TD}\le\sqrt{2^c-1}/(6n)`$. At error $`1/3`$, it requires $`c\ge\log_2(1+4n^2)`$. That inherited condition still permits logarithmic $`c`$ and is not the new contribution.
 
-The stronger result uses entropy. A single changed query increases reverse relative entropy by at most half of a Pauli-direction source term evaluated on the common null input. Complementary local axes and strong subadditivity charge the sum of those source terms to $`3/2`$ times the null query's entropy increase. Across the complete experiment, unital controls leave at most $`C`$ bits to spend. The [authoritative entropy proof](https://github.com/GoGoKo699/Quantum-Learning-Without-Resets/blob/61440dbbba8df6f65602c3a4d20f5b373359919a/science/entropy_bound.md) yields
+The stronger result uses entropy. A single changed query increases reverse relative entropy by at most half of a Pauli-direction source term evaluated on the common null input. Complementary local axes and strong subadditivity charge the sum of those source terms to $`3/2`$ times the null query's entropy increase. Across the complete experiment, unital controls leave at most $`C`$ bits to spend. The [authoritative entropy proof](https://github.com/GoGoKo699/Quantum-Learning-Without-Resets/blob/7f82182280a4bd332374ca1da63df8b69c4307c8/science/entropy_bound.md) yields
 
 ```math
-\sum_{|a|=1}D_2(\rho_T^0\Vert\rho_T^a)\le\frac34 C,
-\qquad
-C\ge4n(1-2\delta)\log_2\frac{1-\delta}{\delta}
+\begin{aligned}
+\sum_{|a|=1}D_{\mathrm{bits}}(\rho_T^0\Vert\rho_T^a)&\le\frac34 C,\\
+C&\ge4n(1-2\delta)\log_2\frac{1-\delta}{\delta}.
+\end{aligned}
 ```
 
 for a worst-case error $`\delta<1/2`$. Thus $`C\ge4n/3`$ at error $`1/3`$. This excludes logarithmic initial purity for every finite query count, even with arbitrary initially mixed protected memory. The queried system can remain correlated with that memory; the proof does not assume a fresh state at query cuts.

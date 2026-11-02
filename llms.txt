@@ -11,7 +11,7 @@ history. The common no-reset weight-one task at retained coefficient 1/2
 requires linear initial negentropy for any finite query count. Read
 science/no_reset_frontier.md for the exact common model and consequences;
 the authoritative full shared entropy proof is
-https://github.com/GoGoKo699/Quantum-Learning-Without-Resets/blob/61440dbbba8df6f65602c3a4d20f5b373359919a/science/entropy_bound.md.
+https://github.com/GoGoKo699/Quantum-Learning-Without-Resets/blob/7f82182280a4bd332374ca1da63df8b69c4307c8/science/entropy_bound.md.
 
 Start with README.md and science/model.md; learning/WORKED_EXAMPLE.md gives
 a concrete two-qubit experiment. Pauli weight counts nonidentity tensor
@@ -21,6 +21,11 @@ arbitrary coherent reuse. The converse needs only pointwise success for each
 late target; the construction gives simultaneous success for the whole family.
 
 Learning route:
+- learning/report/Pauli_Learning_Memory_Thresholds_Report.pdf: standalone
+  explanatory account of the original width frontier and the shared no-reset
+  obstruction, including their different preparation and record budgets.
+- learning/source/Pauli_Learning_Memory_Thresholds_Report.tex: matching editable
+  report source; verification/README.md gives the separate report-build route.
 - learning/MILESTONES.md: exactly 30 learner-independent understanding targets;
   M01-M14 assemble the background and model, and M15-M30 explain the narrative,
   results, physical meaning, attribution, and limits. Each entry gives its
@@ -70,6 +75,8 @@ Reading routes:
 - To compare fixed initial purity and width: no_reset_frontier, then the pinned
   sister entropy proof; distinguish the original reset-permitting model.
 - To reproduce: read verification/README.md, then run verification/run_all.py.
+- To build the explanatory report: read verification/README.md and run
+  python3 verification/report/build_report.py --output-dir /tmp/plmt-report-build.
 - To regenerate the resource figure: read figures/README.md, then run
   python3 figures/generate_resource_regimes.py from the repository root.
 
