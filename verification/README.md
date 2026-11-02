@@ -30,6 +30,23 @@ PASS verify_syndromes.py
 Each program can also be run individually. It writes a JSON summary to standard
 output. The [expected results](expected/) retain the successful summaries.
 
+## Explanatory report
+
+The [report PDF](../learning/report/Pauli_Learning_Memory_Thresholds_Report.pdf)
+and [editable TeX](../learning/source/Pauli_Learning_Memory_Thresholds_Report.tex)
+give the same standalone explanatory account. To compile the source, use
+pdfLaTeX from TeX Live 2025 and run from the repository root:
+
+```bash
+python3 verification/report/build_report.py --output-dir /tmp/plmt-report-build
+```
+
+The report builder accepts an explicit engine path; see its `--help` output.
+Keep the fresh PDF together with its final build log when checking a rebuild.
+The stored PDF alone does not establish that a new build succeeded. The
+scientific finite checks above and the hosted Markdown checks below are
+separate from report compilation.
+
 ## Analytical figure
 
 The [resource-figure guide](../figures/README.md) documents a separate plotting route, with its Python generator, pinned dependencies, panel parameters, and canonical formulas. The figure evaluates those formulas directly; the finite checks below verify the identities used in the proofs.

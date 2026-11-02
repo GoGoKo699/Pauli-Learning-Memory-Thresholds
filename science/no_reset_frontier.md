@@ -2,7 +2,7 @@
 
 The weight–memory law in [the original model](model.md) counts coherent qubits beside each queried register while permitting new probe preparation, resets and a retained classical history. A fixed processor with no replenished purity has an additional obstruction. Already for weight one and a retained coefficient of one half, logarithmic initial purity cannot support a constant-error detector, for any finite query count.
 
-This result connects this repository to its sister, [Quantum Learning Without Resets](https://github.com/GoGoKo699/Quantum-Learning-Without-Resets). The present page supplies the common task, resource comparison and width consequences. The [complete shared relative-entropy proof](https://github.com/GoGoKo699/Quantum-Learning-Without-Resets/blob/61440dbbba8df6f65602c3a4d20f5b373359919a/science/entropy_bound.md) has its authoritative home in that repository. The original weight–memory proofs and constructive protocols remain authoritative here.
+This result connects this repository to its sister, [Quantum Learning Without Resets](https://github.com/GoGoKo699/Quantum-Learning-Without-Resets). The present page supplies the common task, resource comparison and width consequences. The [complete shared relative-entropy proof](https://github.com/GoGoKo699/Quantum-Learning-Without-Resets/blob/948e7dcb80f6c43f0cfa8c9291ae8f7bb5d43350/science/entropy_bound.md) has its authoritative home in that repository. The original weight–memory proofs and constructive protocols remain authoritative here.
 
 ## Common attenuated-spike task
 
@@ -34,12 +34,13 @@ p_0\leq\delta,\qquad p_a\geq1-\delta
 Define initial negentropy in bits and dimension-normalized collision purity by
 
 ```math
-C=\frac{\ln\dim(SA)-S(\rho_{\mathrm{in}})}{\ln2},
-\qquad
-\mathcal P=\dim(SA)\mathrm{Tr}(\rho_{\mathrm{in}}^2).
+\begin{aligned}
+C&=\log_2\dim(SA)-H(\rho_{\mathrm{in}}),\\
+\mathcal P&=\dim(SA)\mathrm{Tr}(\rho_{\mathrm{in}}^2).
+\end{aligned}
 ```
 
-Here $`S(\rho)=-\mathrm{Tr}(\rho\ln\rho)`$ and all relative entropies below use natural logarithms. For $`c`$ initially pure qubits tensored with maximally mixed qubits, $`C=c`$ and $`\mathcal P=2^c`$. For general initial states, $`C\leq\log_2\mathcal P`$; these resource parameters should not be interchanged.
+Here $`H(\rho)=-\mathrm{Tr}(\rho\log_2\rho)`$ and relative entropy is also measured in bits. For $`c`$ initially pure qubits tensored with maximally mixed qubits, $`C=c`$ and $`\mathcal P=2^c`$. For general initial states, $`C\leq\log_2\mathcal P`$; these resource parameters should not be interchanged.
 
 ## The immediate collision-purity restriction
 
@@ -67,24 +68,31 @@ For every finite $`T`$ and every protected dimension, the shared entropy theorem
 ```math
 \boxed{
 \sum_{a\in\mathcal A_1}
-D(\rho_T^0\|\rho_T^a)
-\leq\frac34 C\ln2.
+D_{\mathrm{bits}}(\rho_T^0\|\rho_T^a)
+\leq\frac34 C.
 }
 ```
 
-Here $`D(\rho\|\sigma)=\mathrm{Tr}[\rho(\ln\rho-\ln\sigma)]`$ with its usual support convention. Measurement data processing gives
+Here ordinary quantum relative entropy in bits is
 
 ```math
-D(\rho_T^0\|\rho_T^a)
-\geq J_\delta,
-\qquad
-J_\delta=(1-2\delta)\ln\frac{1-\delta}{\delta}.
+D_{\mathrm{bits}}(\rho\|\sigma)
+=\mathrm{Tr}[\rho(\log_2\rho-\log_2\sigma)].
+```
+
+It uses the usual support convention and is distinct from Rényi divergence of order two. Measurement data processing gives
+
+```math
+\begin{aligned}
+D_{\mathrm{bits}}(\rho_T^0\|\rho_T^a)&\geq j(\delta),\\
+j(\delta)&=(1-2\delta)\log_2\frac{1-\delta}{\delta}.
+\end{aligned}
 ```
 
 Summing over the $`3n`$ labels yields
 
 ```math
-\boxed{C\geq\frac{4nJ_\delta}{\ln2}.}
+\boxed{C\geq4n\,j(\delta).}
 ```
 
 In particular, at error $`1/3`$,
@@ -101,7 +109,7 @@ Pinsker's inequality and averaging also imply
 
 ```math
 D_{\mathrm{tr}}(\bar\rho_T,\rho_T^0)
-\leq\min\left\{1,\sqrt{\frac{C\ln2}{8n}}\right\}.
+\leq\min\left\{1,\frac{\sqrt{C\ln2}}{\sqrt{8n}}\right\}.
 ```
 
 The binary relative-entropy calculation above gives the sharper stated constant for a specified worst-case error. No optimality of that constant or matching linear-purity protocol is claimed.
@@ -113,21 +121,25 @@ Write $`Q_0=\mathcal D\otimes\mathrm{id}_A`$ and $`Q_a=\mathcal E_{a,1}\otimes\m
 First, for arbitrary null and alternative prequery states $`\sigma,\rho`$, joint convexity and data processing give the amortized inequality
 
 ```math
-D(Q_0\sigma\|(Q_0+\tfrac12Q_a)\rho)
-\leq D(\sigma\|\rho)
-+\frac12D(R_a\sigma\|Q_0\sigma).
+\begin{aligned}
+&D_{\mathrm{bits}}(Q_0\sigma\|(Q_0+\tfrac12Q_a)\rho)\\
+&\quad\leq D_{\mathrm{bits}}(\sigma\|\rho)\\
+&\qquad+\frac12D_{\mathrm{bits}}(R_a\sigma\|Q_0\sigma).
+\end{aligned}
 ```
 
 The special attenuation $`1/2`$ permits a positive binary flip: a known Pauli conjugation reverses the retained axis of $`R_a\sigma`$, and averaging the flipped and unflipped states gives $`Q_0\sigma`$. This works with noncommuting quantum side-memory blocks. The conjugation is a proof device and gives the learner no access to the hidden label.
 
-Second, the three dephasings of a single qubit satisfy a relative-entropy source budget. For $`a=(i,\alpha)`$ and $`g_i=D(\sigma_{S_iA}\|I_i/2\otimes\sigma_A)`$, two distinct axes obey $`d_{i,\alpha}+d_{i,\beta}\leq g_i`$, where $`d_{i,\alpha}=D(R_{i,\alpha}\sigma\|Q_0\sigma)`$. Summing these pair inequalities and using conditional subadditivity gives
+Second, the three dephasings of a single qubit satisfy a relative-entropy source budget. For $`a=(i,\alpha)`$ and $`g_i=D_{\mathrm{bits}}(\sigma_{S_iA}\|I_i/2\otimes\sigma_A)`$, two distinct axes obey $`d_{i,\alpha}+d_{i,\beta}\leq g_i`$, where $`d_{i,\alpha}=D_{\mathrm{bits}}(R_{i,\alpha}\sigma\|Q_0\sigma)`$. Summing these pair inequalities and using conditional subadditivity gives
 
 ```math
-\sum_{a\in\mathcal A_1}D(R_a\sigma\|Q_0\sigma)
-\leq\frac32\,[S(Q_0\sigma)-S(\sigma)].
+\begin{aligned}
+&\sum_{a\in\mathcal A_1}D_{\mathrm{bits}}(R_a\sigma\|Q_0\sigma)\\
+&\qquad\leq\frac32\,[H(Q_0\sigma)-H(\sigma)].
+\end{aligned}
 ```
 
-Finally, along the common null trajectory, each query's entropy increase is paid from the same initial negentropy. Unital controls cannot decrease entropy, so the query increases telescope to at most $`C\ln2`$. Combining the factor $`1/2`$ from amortization with the factor $`3/2`$ from the source budget gives $`3/4`$. The [authoritative proof](https://github.com/GoGoKo699/Quantum-Learning-Without-Resets/blob/61440dbbba8df6f65602c3a4d20f5b373359919a/science/entropy_bound.md) gives the identities, time ordering and support treatment in full.
+Finally, along the common null trajectory, each query's entropy increase is paid from the same initial negentropy. Unital controls cannot decrease entropy, so the query increases telescope to at most $`C`$ bits. Combining the factor $`1/2`$ from amortization with the factor $`3/2`$ from the source budget gives $`3/4`$. The [authoritative proof](https://github.com/GoGoKo699/Quantum-Learning-Without-Resets/blob/948e7dcb80f6c43f0cfa8c9291ae8f7bb5d43350/science/entropy_bound.md) gives the identities, time ordering and support treatment in full.
 
 ## What the side-width conclusion requires
 

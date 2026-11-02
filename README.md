@@ -2,7 +2,7 @@
 
 **How much coherent memory is needed to learn the coefficient of a quantum correlation whose support and measurement axes are revealed only after data collection?** This project gives a joint threshold in the correlation weight and the memory available beside an unknown Pauli channel.
 
-**Sister project: [Quantum Learning Without Resets](https://github.com/GoGoKo699/Quantum-Learning-Without-Resets).** The weight–memory frontier here permits fresh probes, resets and a classical history. The sister project charges the initial purity of the whole processor. Their [common weight-one, attenuated-spike task](science/no_reset_frontier.md) reveals an additional obstruction: at retained coefficient $`1/2`$ and worst-case error $`1/3`$, the no-reset processor needs at least $`4n/3`$ bits of initial negentropy. When every protected record fits within its side-width budget, it also needs at least $`n/3`$ physical side qubits. The [shared entropy proof](https://github.com/GoGoKo699/Quantum-Learning-Without-Resets/blob/61440dbbba8df6f65602c3a4d20f5b373359919a/science/entropy_bound.md) is authoritative in the sister repository; this repository owns the weight–memory law and its constructive learning account.
+**Sister project: [Quantum Learning Without Resets](https://github.com/GoGoKo699/Quantum-Learning-Without-Resets).** The weight–memory law here permits fresh probes, resets and classical records. The sister charges the initial purity of the whole processor. On their [common weight-one, attenuated-spike task](science/no_reset_frontier.md), retained coefficient $`1/2`$ and worst-case error $`1/3`$ require $`4n/3`$ bits of initial negentropy, for any finite query count. This also requires $`n/3`$ physical side qubits when every protected record is counted. The [shared entropy proof](https://github.com/GoGoKo699/Quantum-Learning-Without-Resets/blob/948e7dcb80f6c43f0cfa8c9291ae8f7bb5d43350/science/entropy_bound.md) has its authoritative home in the sister; this project supplies the weight–memory law, constructive learning protocols and model comparison.
 
 A Pauli correlation is a tensor product of the single-qubit operators $`I,X,Y,Z`$; its weight counts the factors different from $`I`$. A Pauli channel applies random Pauli errors, possibly correlated across sites. Its coefficient $`\lambda_P`$ describes how much of a correlation survives: $`\Lambda(P)=\lambda_P P`$.
 
@@ -51,6 +51,7 @@ The single educational anchor is John Watrous, [*The Theory of Quantum Informati
 
 | Entry | What it provides |
 |---|---|
+| [Explanatory report](learning/report/Pauli_Learning_Memory_Thresholds_Report.pdf) | A continuous, standalone explanation of the physical task, weighted converse, learning protocols and shared no-reset obstruction, with the distinction between coherent width and initial purity kept explicit. |
 | [30-milestone map](learning/MILESTONES.md) | M01–M14 build the background and access model. M15–M30 connect the weighted bounds, coherent and fresh converses, learning construction, detector, and weak-channel result. Each milestone has a central question, understanding target, dependencies, conceptual connection, and source pointers. |
 | [Watrous bridge](learning/WATROUS_BRIDGE.md) | Relevant sections and equations, translations of norms and notation, resource assumptions, and the additional arguments needed for this project. |
 | [Two-qubit worked example](learning/WORKED_EXAMPLE.md) | A complete partial-Bell setting with one reference qubit, a reusable coefficient estimator, binary syndrome detection, and finite call counts. |
@@ -66,7 +67,7 @@ python3 -m pip install -r verification/requirements.txt
 python3 verification/run_all.py
 ```
 
-The checks cover weighted operator responses, trace-norm identities, short coherent-query hybrids, and exact binary syndrome calculations. They use fixed inputs or random seeds and compare their outputs with the committed expectations. [Verification](verification/README.md) explains the numerical tolerances and exact-arithmetic checks. The universal lower bounds and asymptotic frontier are proved analytically. The [sister entropy verifier](https://github.com/GoGoKo699/Quantum-Learning-Without-Resets/blob/61440dbbba8df6f65602c3a4d20f5b373359919a/verification/README.md) reproduces the finite checks for the shared no-reset obstruction without duplicating that implementation here.
+The checks cover weighted operator responses, trace-norm identities, short coherent-query hybrids, and exact binary syndrome calculations. They use fixed inputs or random seeds and compare their outputs with the committed expectations. [Verification](verification/README.md) explains the numerical tolerances and exact-arithmetic checks. The universal lower bounds and asymptotic frontier are proved analytically. The [sister entropy verifier](https://github.com/GoGoKo699/Quantum-Learning-Without-Resets/blob/948e7dcb80f6c43f0cfa8c9291ae8f7bb5d43350/verification/README.md) reproduces the finite checks for the shared no-reset obstruction without duplicating that implementation here.
 
 ## Reproduce the resource figure
 
