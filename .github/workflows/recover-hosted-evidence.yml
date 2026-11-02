@@ -41,7 +41,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        half: [0, 1]
+        half: [0, 1, 2]
     steps:
       - uses: actions/checkout@v4
         with:
@@ -71,16 +71,16 @@ jobs:
           groups = {}
           for item in manifest['records']:
               groups.setdefault(item['source_page'], []).append(item)
-          halves, weights = [[], []], [0, 0]
+          halves, weights = [[], [], []], [0, 0, 0]
           weighted = sorted(groups.items(), key=lambda pair: (-sum((root/'review'/r['path']).stat().st_size for r in pair[1]), pair[0]))
           for page, records in weighted:
-              half = 0 if weights[0] <= weights[1] else 1
+              half = min(range(3), key=lambda i: weights[i])
               halves[half].extend(records)
               weights[half] += sum((root/'review'/r['path']).stat().st_size for r in records)
           selected = halves[int(os.environ['REVIEW_HALF'])]
           assert selected
           manifest['records'] = selected
-          manifest['recovery_scope'] = {'half': int(os.environ['REVIEW_HALF']), 'halves': 2,
+          manifest['recovery_scope'] = {'half': int(os.environ['REVIEW_HALF']), 'halves': 3,
               'original_review_manifest_sha256': hashlib.sha256(original_bytes).hexdigest(),
               'original_collector_report_sha256': hashlib.sha256((root/'hosted-report.json').read_bytes()).hexdigest(),
               'original_artifact_id': 13136990339, 'original_run_id': 41435975063,
