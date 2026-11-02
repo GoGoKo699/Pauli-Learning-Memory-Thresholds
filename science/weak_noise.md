@@ -2,6 +2,8 @@
 
 The weight-memory threshold also holds for channels close to the identity, provided the requested precision resolves their noise. In the fresh-experiment model, centering the estimator at the known identity response gives a variance proportional to the noise scale. A matching likelihood argument gives the same scale in the lower prefactor.
 
+The parameter $`\tau`$ below is an identity-mixture strength, not the hidden spike attenuation $`\lambda`$ in [the sister no-reset task](no_reset_frontier.md). In the exactly preserved-spike subfamily, every $`\tau`$ retains the distinguished eigenvalue at one. The fresh-probe upper bounds on this page allow new purity and stored outcomes; they are not fixed-initial-purity protocols.
+
 The references on this page are ideal. The additional promise concerns the unknown system channel.
 
 ## Channel class and finite bounds

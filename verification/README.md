@@ -67,3 +67,7 @@ Those conclusions depend on the explicit proofs and their cited analytic input.
 The programs simulate the ideal mathematical model. They do not evaluate
 hardware noise, imperfect state preparation or measurement, approximate
 preserved parities, or noisy reference storage.
+
+## Hosted mathematics
+
+The [read-only hosted collector](hosted/README.md) compares the pinned Markdown with actual GitHub MathML at wide and narrow viewports and saves screenshots for visual review. It runs on pull requests or manual dispatch; it is separate from the numerical scientific checks above.

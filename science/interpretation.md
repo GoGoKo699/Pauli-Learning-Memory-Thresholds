@@ -72,6 +72,12 @@ The additional logarithm accounts for the $`1/\tau`$ query factor. Even a full r
 
 These mixtures permit rare, globally correlated Pauli errors. They do not impose a local interaction geometry or independent single-qubit noise. For $`\tau<1`$, the identity mixture of an entanglement-breaking spike channel need not itself be entanglement breaking.
 
+## Initial purity changes the resource question
+
+The [sister comparison](no_reset_frontier.md) fixes one initialized processor and allows only unital controls, charging all retained records and initially polarized probes. For the common weight-one spike with hidden coefficient $`1/2`$, its shared entropy theorem requires $`C\geq4n/3`$ bits of initial negentropy at worst-case error $`1/3`$, for every finite query count. For product clean/mixed initialization, $`C=c`$ is the number of clean qubits. The immediate restriction of the sister’s collision-purity theorem gives only $`c\geq\log_2(1+4n^2)`$; the stronger entropy bound closes the logarithmic-purity possibility.
+
+If every protected record belongs to an $`n+k_{\mathrm{phys}}`$-qubit processor, $`C\leq n+k_{\mathrm{phys}}`$ gives the further necessity $`k_{\mathrm{phys}}\geq n/3`$. This dimension condition does not follow for a width convention that exempts additional classical registers. The original $`w(n-k)/n`$ frontier permits resets and fresh records and remains correct in that model. Linear-resource sufficiency and a sharp no-reset frontier are not established.
+
 ## Scope of the complete result
 
 The lower and upper bounds locate a joint threshold over all support and axis choices in the low-weight Pauli ball. Fixed-locality or polynomial-sized known observable families can have different costs. The lower bound uses ordinary memoryless channel access and the stated total width budget; the upper protocols assume ideal controls and reference qubits.

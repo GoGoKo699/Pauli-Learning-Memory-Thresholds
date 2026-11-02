@@ -8,9 +8,9 @@ The single educational anchor is John Watrous, *The Theory of Quantum Informatio
 
 The **background/preliminaries phase, M01–M14**, starts with one qubit and one measurement. It combines Pauli algebra, reference registers, operator norms, statistical records, and binary linear algebra into the complete access and output model. Fourteen targets are useful because the project connects quantum channel discrimination with classical estimation and syndrome processing.
 
-The **narrative/innovation phase, M15–M30**, starts with the response of one preparation and one measurement. Weighted rank estimates then control a whole adaptive experiment, and a constructive protocol supplies the opposite direction of the learning threshold. The last five milestones interpret and extend that mechanism through the physical one-bit promise, an efficient detector, and weak channels before giving the full synthesis.
+The **narrative/innovation phase, M15–M30**, starts with the response of one preparation and one measurement. Weighted rank estimates then control a whole adaptive experiment, and a constructive protocol supplies the opposite direction of the learning threshold. The last five milestones separate preserved and attenuated one-bit promises, transfer a stronger no-reset purity obstruction from the sister project, and retain the efficient rank detector and weak-channel rates before the full synthesis.
 
-Dependencies always refer to earlier milestones. Each phase progresses from local objects or arguments to an integrated understanding. Throughout the map, the authoritative definitions are in [the model](../science/model.md): $`n`$ channel-input qubits, at most $`k`$ coherent qubits outside that register at every invocation, maximum target weight $`w`$, deficit $`D=n-k`$, and $`R=wD/n`$.
+Dependencies always refer to earlier milestones. Each phase progresses from local objects or arguments to an integrated understanding. The width-only learning model and the fixed-initialization sister model are different contracts; [the no-reset transfer page](../science/no_reset_frontier.md) states their interface. For the original learning theorem, the authoritative definitions are in [the model](../science/model.md): $`n`$ channel-input qubits, at most $`k`$ coherent qubits outside that register at every invocation, maximum target weight $`w`$, deficit $`D=n-k`$, and $`R=wD/n`$.
 
 ## Phase I: Background and preliminaries
 
@@ -131,13 +131,13 @@ for rank $`r`$. Recognize where the factor $`r/d`$ enters and how Schatten Höld
 
 **Central question.** Which distances connect an operator calculation to the success of an experiment?
 
-**Understanding target.** Use trace distance $`\tfrac12\|\rho-\sigma\|_1`$ as a bound on the probability difference of any measurement event. Relate two decision errors at most $`\delta`$ to distance at least $`1-2\delta`$, and explain contraction under a common channel. Interpret the unsquared fidelity $`F(\rho,\sigma)=\|\sqrt\rho\sqrt\sigma\|_1`$; the project's quantity $`f_e`$ uses this same convention.
+**Understanding target.** Use trace distance $`\tfrac12\|\rho-\sigma\|_1`$ as a bound on the probability difference of any measurement event. Relate two decision errors at most $`\delta`$ to distance at least $`1-2\delta`$, and explain contraction under a common channel. Interpret the unsquared fidelity $`F(\rho,\sigma)=\|\sqrt\rho\sqrt\sigma\|_1`$; the project's quantity $`f_e`$ uses this same convention. For the later no-reset transfer, distinguish relative entropy $`D_2(\rho\Vert\sigma)`$ from a metric, use its data-processing inequality, and recognize that its order of arguments matters.
 
 **Dependencies and story role.** Uses [M04](#m04), [M06](#m06), and [M08](#m08). It links matrix norms to the operational distinction that a lower bound must prevent.
 
 **Conceptual connection.** Fidelity controls the response of a probe, while trace distance limits how much a later measurement or common physical evolution can reveal.
 
-**Source pointers.** [Watrous §3.1.1, Theorem 3.4; Definition 3.11 and Eq. (3.64)](https://cs.uwaterloo.ca/~watrous/TQI/TQI.3.pdf); [Weighted bounds: root-fidelity bound](../science/weighted_bounds.md#root-fidelity-bound); [Coherent memory: learning-to-testing reduction](../science/coherent_memory.md#learning-to-testing-reduction-and-finite-constants).
+**Source pointers.** [Watrous §3.1.1, Theorem 3.4; Definition 3.11 and Eq. (3.64)](https://cs.uwaterloo.ca/~watrous/TQI/TQI.3.pdf); [Weighted bounds: root-fidelity bound](../science/weighted_bounds.md#root-fidelity-bound); [Coherent memory: learning-to-testing reduction](../science/coherent_memory.md#learning-to-testing-reduction-and-finite-constants); [Watrous Chapter 5, Corollary 5.33 and Theorems 5.35–5.38](https://cs.uwaterloo.ca/~watrous/TQI/TQI.5.pdf); [entropy conventions](WATROUS_BRIDGE.md#entropy-and-relative-entropy).
 
 <a id="m10"></a>
 ### M10. Classical histories and coherent experiments
@@ -148,7 +148,7 @@ for rank $`r`$. Recognize where the factor $`r/d`$ enters and how Schatten Höld
 
 **Dependencies and story role.** Uses [M04](#m04), [M06](#m06), and [M09](#m09). It assembles local states and measurements into the sequential processor covered by the theorem.
 
-**Conceptual connection.** Classical adaptivity does not consume coherent width, but a coherent controller does. Worst-case call counts also charge long blocks and permit early stopping without replacing the budget by an expected count.
+**Conceptual connection.** Classical adaptivity does not consume the original coherent-width budget, but a coherent controller does. The fixed-purity model additionally charges the initial purity of every retained record and permits only unital processing of the complete initialized processor. An outcome register initialized in a standard pure state is a resource even after dephasing. Worst-case call counts charge long blocks and permit early stopping without replacing the budget by an expected count.
 
 **Source pointers.** [Watrous §2.2.3, Eq. (2.170), and §2.3.2, Eqs. (2.258)–(2.262)](https://cs.uwaterloo.ca/~watrous/TQI/TQI.2.pdf); [Model: coherent access](../science/model.md#coherent-access); [Model: fresh experiments](../science/model.md#fresh-experiments); [Coherent memory: statement and resource contract](../science/coherent_memory.md#statement-and-resource-contract).
 
@@ -196,13 +196,13 @@ for rank $`r`$. Recognize where the factor $`r/d`$ enters and how Schatten Höld
 
 **Central question.** What must be held fixed for a memory threshold to be a meaningful statement?
 
-**Understanding target.** Assemble the channel family, complete target set, index timing, accuracy and confidence, ordinary channel access, worst-case call budget, and total outside-register width. Distinguish the pointwise late-index guarantee, the stronger simultaneous guarantee, and the one-bit promise whose hidden label is never supplied. Identify the ideal controls used by the constructive protocols.
+**Understanding target.** Assemble the channel family, complete target set, index timing, accuracy and confidence, ordinary channel access, worst-case call budget, and total outside-register width. Distinguish the pointwise late-index guarantee, the stronger simultaneous guarantee, and the one-bit promise whose hidden label is never supplied. Identify the ideal controls used by the constructive protocols. State explicitly that fresh probes, resets, and unrestricted classical histories are allowed in that model, whereas the sister no-reset model fixes total initial entropy deficit and charges every record. Use Watrous's entropy language to interpret that deficit without turning it into a heat or work claim.
 
 **Dependencies and story role.** Integrates M01–M13, particularly [M03](#m03), [M06](#m06), [M10](#m10), [M11](#m11), and [M12](#m12). This is the background phase's global synthesis.
 
 **Conceptual connection.** The quantity $`R=w(n-k)/n`$ joins a target's possible support with the available reference width. Its significance can only be assessed with the output, access, and precision contract kept explicit.
 
-**Source pointers.** [Model and tasks](../science/model.md); [Interpretation: missing reference width and Pauli support](../science/interpretation.md#missing-reference-width-and-pauli-support); [Watrous bridge](WATROUS_BRIDGE.md).
+**Source pointers.** [Model and tasks](../science/model.md); [Interpretation: missing reference width and Pauli support](../science/interpretation.md#missing-reference-width-and-pauli-support); [fixed-initialization interface](../science/no_reset_frontier.md); [Watrous bridge](WATROUS_BRIDGE.md).
 
 ## Phase II: Narrative and innovation
 
@@ -367,30 +367,30 @@ N\leq\left\lceil
 **Source pointers.** [Coherent memory: polynomial query frontier](../science/coherent_memory.md#polynomial-query-frontier); [Partial-Bell protocol: physical and classical resources](../science/partial_bell.md#physical-and-classical-resources); [Interpretation: distinct asymptotic regimes](../science/interpretation.md#distinct-asymptotic-regimes).
 
 <a id="m26"></a>
-### M26. The physical meaning of one preserved correlation
+### M26. Preserved and attenuated one-bit promises
 
-**Central question.** What physical channel lies behind the positive-spike decision promise?
+**Central question.** Which physical spike promise is being tested, and which operations may prepare the experiment?
 
-**Understanding target.** Relate the positive spike to a uniform Pauli-error distribution on the commuting hyperplane and to measuring one parity followed by randomization within its eigenspace. Explain its succinct specification and sampler. Distinguish the entanglement-breaking channel at $`\tau=1`$ from its identity mixtures at smaller known $`\tau`$.
+**Understanding target.** Relate the exactly preserved positive spike to a uniform Pauli-error distribution on a commuting hyperplane and to measuring one parity followed by randomization within its eigenspace. Interpret its succinct sampler and entanglement-breaking form. State the direct bounded-reference hybrid lower bound $`N\ge(1-2\delta)\tau^{-1}2^{wD/[2(3n-w)]}`$ for the original $`\Gamma_0,\Gamma_P`$ promise. Then distinguish this identity-mixture parameter $`\tau`$ from an attenuated spike $`\mathcal E_{a,\lambda}`$ against complete depolarization: the former preserves the hidden mode exactly, while $`\lambda=1/2`$ does not. Fix detection with one common final measurement as the sister task.
 
-**Dependencies and story role.** Uses [M02](#m02), [M04](#m04), [M12](#m12), [M14](#m14), and [M25](#m25). It interprets the hard-family mechanism as a physical decision problem whose answer has only one bit.
+**Dependencies and story role.** Uses [M02](#m02), [M04](#m04), [M09](#m09), [M12](#m12), [M14](#m14), [M19](#m19), [M20](#m20), and [M25](#m25). It moves the width-only theorem into a physical one-bit setting and identifies the precise model boundary before transferring a purity result.
 
-**Conceptual connection.** The difficulty can concern access to an unknown preserved correlation even when the alternative has a short classical description and need not preserve input entanglement. The channel-distance witness does not grant the tester extra reference qubits.
+**Conceptual connection.** A short hidden-label description does not remove the measurement-access problem. A channel-norm witness grants no uncounted reference. Setting $`\tau=1/2`$ never turns an exactly preserved mode into the attenuated $`\lambda=1/2`$ promise.
 
-**Source pointers.** [Watrous §§3.3.1–3.3.3, channel discrimination and the completely bounded trace norm](https://cs.uwaterloo.ca/~watrous/TQI/TQI.3.pdf); [Correlation detection: promise and finite theorem](../science/correlation_detection.md#1-promise-and-finite-theorem); [Correlation detection: a succinct physical channel family](../science/correlation_detection.md#2-a-succinct-physical-channel-family); [Interpretation: one retained classical correlation is enough](../science/interpretation.md#one-retained-classical-correlation-is-enough); [ChenGong2025](../references/RELATED_WORK.md#chengong2025).
+**Source pointers.** [Watrous Chapter 3, channel discrimination](https://cs.uwaterloo.ca/~watrous/TQI/TQI.3.pdf); [preserved-mode promise and physical channel](../science/correlation_detection.md#1-promise-and-finite-theorem); [direct one-bit coherent converse](../science/correlation_detection.md#3-direct-coherent-lower-bound); [common attenuated task and ownership](../science/no_reset_frontier.md); [Chen–Gong attribution](../references/RELATED_WORK.md#chengong2025).
 
 <a id="m27"></a>
-### M27. A direct lower bound for a one-bit decision
+### M27. Initial purity cannot be replaced by more calls
 
-**Central question.** Why is deciding the positive-spike promise hard even when the hidden label is never requested?
+**Central question.** Why does the weight-one problem become impossible with logarithmic initialized purity once fresh preparations are removed?
 
-**Understanding target.** Apply the bounded-reference response and forward hybrid to the known baseline $`\Gamma_0`$ and each alternative $`\Gamma_P`$. Use the success of one fixed decision rule to force distance at least $`1-2\delta`$ for every allowed label. Obtain the direct lower bound proportional to $`\tau^{-1}2^{wD/[2(3n-w)]}`$.
+**Understanding target.** For $`3n`$ weight-one alternatives at $`\lambda=1/2`$, credit the immediate restricted-label collision-purity bound $`\mathrm{TD}\le\sqrt{2^c-1}/(6n)`$ and its necessity $`c\ge\log_2(1+4n^2)`$ at error $`1/3`$. Explain why that does not exclude $`c=O(\log n)`$. Follow the stronger proof route: one reverse-relative-entropy query increment is charged to the common null input, complementary Pauli axes bound the local source, and unital processing leaves a finite total null entropy budget. Read $`\sum_{|a|=1}D_2(\rho_T^0\Vert\rho_T^a)\le3C/4`$ and the resulting $`C\ge4n/3`$ at error $`1/3`$, where $`C=\log_2\dim(SA)-H(\rho_{\mathrm{in}})`$ and $`C=c`$ for clean-plus-mixed initialization.
 
-**Dependencies and story role.** Uses [M09](#m09), [M18](#m18), [M19](#m19), [M20](#m20), and [M26](#m26). It extends the established obstruction to the smaller-output task on its own terms.
+**Dependencies and story role.** Uses [M09](#m09), [M10](#m10), [M14](#m14), [M20](#m20), [M25](#m25), and [M26](#m26). It transfers the sister project's stronger entropy obstruction into this project's resource account; the full proof has one authoritative home.
 
-**Conceptual connection.** Detection hardness is proved directly, with neither a revealed index nor an inference that every detection problem must be as difficult as learning.
+**Conceptual connection.** At weight one the original width exponent is harmless, yet finite initialized purity still forbids constant-error detection for every finite query count. The conclusion survives arbitrary initially mixed protected memory. The extra inference $`k\ge n/3`$ uses a complete $`n+k`$-qubit processor containing every record; coherent-only width with an excluded classical history does not justify it. This is a necessary boundary, not a matched $`(k,c,T)`$ frontier.
 
-**Source pointers.** [Correlation detection: direct coherent lower bound](../science/correlation_detection.md#3-direct-coherent-lower-bound); [Coherent memory: detection and weak noise](../science/coherent_memory.md#detection-and-weak-noise).
+**Source pointers.** [No-reset transfer and exact qualification](../science/no_reset_frontier.md); [authoritative sister entropy theorem and proof](https://github.com/GoGoKo699/Quantum-Learning-Without-Resets/blob/892a1702e80ea1a8a56ac93b81bc0d7273a8f1ec/science/entropy_bound.md); [Watrous Chapter 5, Corollary 5.33 and Theorems 5.35, 5.36, 5.38](https://cs.uwaterloo.ca/~watrous/TQI/TQI.5.pdf); [entropy bridge](WATROUS_BRIDGE.md#the-fixed-initialization-sister-boundary).
 
 <a id="m28"></a>
 ### M28. An efficient rank detector
@@ -399,9 +399,9 @@ N\leq\left\lceil
 
 **Understanding target.** Explain why a compatible partial-Bell setting yields syndromes with an exact homogeneous constraint. Relate the number of random settings to compatibility and the number of repeated calls per setting to the null rank-deficiency probability. Explain the finite $`J,L`$ choices and streaming Gaussian elimination without searching all Pauli labels.
 
-**Dependencies and story role.** Uses [M07](#m07), [M12](#m12), [M23](#m23), [M26](#m26), and [M27](#m27). It completes the one-bit lower-and-upper result, including computational cost.
+**Dependencies and story role.** Uses [M07](#m07), [M12](#m12), [M23](#m23), [M26](#m26), and [M27](#m27). It completes the original preserved-mode lower-and-upper result, including computational cost, with its preparation-resource boundary kept explicit.
 
-**Conceptual connection.** Any compatible block under the alternative has deficient raw linear rank deterministically, while the specified null has deficient rank only with controlled probability. Exact preservation is essential to this algorithm; a noisy unknown parity need not leave a rank defect.
+**Conceptual connection.** Any compatible block under the alternative has deficient raw linear rank deterministically, while the specified null has deficient rank only with controlled probability. Exact preservation is essential to this algorithm; a noisy unknown parity need not leave a rank defect. Its fresh eigenstate/Bell probes and stored syndrome rows consume preparation and record resources in the fixed-purity model.
 
 **Source pointers.** [Correlation detection: partial-Bell settings expose a linear syndrome, Eqs. (D10)–(D11)](../science/correlation_detection.md#4-partial-bell-settings-expose-a-linear-syndrome); [Correlation detection: the linear-rank algorithm, Eqs. (D12)–(D14)](../science/correlation_detection.md#5-the-linear-rank-algorithm); [Correlation detection: scope and verification](../science/correlation_detection.md#6-scope-and-verification).
 
@@ -414,7 +414,7 @@ N\leq\left\lceil
 
 **Dependencies and story role.** Uses [M11](#m11), [M20](#m20), [M22](#m22), [M24](#m24), [M25](#m25), and [M28](#m28). It unifies the acquisition models and the one-bit result with the cost of rare information.
 
-**Conceptual connection.** No flag identifies the mixture branch. Resolving a fixed fraction of a very small noise scale still costs calls, even with a full reference. If instead $`\epsilon\geq\tau`$, returning the known midpoint $`1-\tau`$ requires no data. These weak channels allow rare global correlations and do not impose a local-noise model.
+**Conceptual connection.** No flag identifies the mixture branch. Resolving a fixed fraction of a very small noise scale still costs calls, even with a full reference. If instead $`\epsilon\geq\tau`$, returning the known midpoint $`1-\tau`$ requires no data. These weak channels allow rare global correlations and do not impose a local-noise model. This near-identity $`\tau`$ refinement retains the original preparation contract; it neither attenuates the preserved hidden eigenvalue in the detector nor evades the fixed-initialization obstruction of [M27](#m27).
 
 **Source pointers.** [Weak channels: channel class and finite bounds](../science/weak_noise.md#channel-class-and-finite-bounds); [Weak channels: a lower bound that counts the rare informative calls](../science/weak_noise.md#a-lower-bound-that-counts-the-rare-informative-calls); [Weak channels: an estimator centered at the identity](../science/weak_noise.md#an-estimator-centered-at-the-identity); [Weak channels: coherent processing and the polynomial frontier](../science/weak_noise.md#coherent-processing-and-the-polynomial-frontier).
 
@@ -423,13 +423,13 @@ N\leq\left\lceil
 
 **Central question.** What is the project's full scientific conclusion, and exactly which distinctions keep it valid?
 
-**Understanding target.** Explain one connected story from an unknown Pauli direction, through weighted rank suppression and a coherent hybrid, to the partial-Bell upper bound and the polynomial learning threshold. Extend that explanation to the promised efficient detector and the relative-noise criterion. Identify which foundations and mechanisms are established prior work, which weighted and operational statements are proved in the repository, and which stronger rate claims are not established.
+**Understanding target.** Explain one connected story from an unknown Pauli direction, through weighted rank suppression and a coherent hybrid, to the partial-Bell upper bound and the polynomial learning threshold. Extend that explanation to the promised efficient detector and the relative-noise criterion. Explain the sister consequence separately: the common weight-one attenuated task at $`\lambda=1/2`$ requires linear initial entropy deficit under unital no-reset processing, so logarithmic coherent width and logarithmic initial purity cannot be combined into a polynomial-query protocol. Identify which foundations and mechanisms are established prior work, which weighted and operational statements are proved in the repository, and which stronger rate claims are not established.
 
-**Dependencies and story role.** Integrates the entire map, especially [M16](#m16), [M17](#m17), [M21](#m21), [M22](#m22), [M25](#m25), [M28](#m28), and [M29](#m29). This is the narrative phase's global synthesis.
+**Dependencies and story role.** Integrates the entire map, especially [M16](#m16), [M17](#m17), [M21](#m21), [M22](#m22), [M25](#m25), [M26](#m26), [M27](#m27), [M28](#m28), and [M29](#m29). This is the narrative phase's global synthesis.
 
-**Conceptual connection.** Keep the complete support-and-axis family, ordinary memoryless access, charged coherent width, ideal constructive controls, distinct accuracy factors, and exact detection promise in the same account. Finite verification checks algebra and implementations; the analytical proofs establish the general bounds. Neither those checks nor the matched polynomial frontier establish an optimal exponent, Kim–Oh S85, a generic noisy-parity algorithm, or resilience to arbitrary reference and measurement noise.
+**Conceptual connection.** Keep the complete support-and-axis family, ordinary memoryless access, charged coherent width, ideal constructive controls, distinct accuracy factors, and exact detection promise in the same account. Finite verification checks algebra and implementations; the analytical proofs establish the general bounds. Neither those checks nor the original matched polynomial frontier establish an optimal exponent, Kim–Oh S85, a generic noisy-parity algorithm, or resilience to arbitrary reference and measurement noise. The new entropy converse settles the stated starting corner; it gives no matching linear-resource protocol or theorem for attenuation above $`1/2`$. Its query-coupling proof belongs to the sister entropy page, while this project owns the width/preparation transfer account.
 
-**Source pointers.** [Interpretation](../science/interpretation.md); [Model: computation, storage, and precision](../science/model.md#computation-storage-and-precision); [Related work: closest comparisons](../references/RELATED_WORK.md#closest-comparisons); [Related work: attribution and comparison rules](../references/RELATED_WORK.md#attribution-and-comparison-rules); [Verification](../verification/README.md).
+**Source pointers.** [Interpretation](../science/interpretation.md); [sister no-reset frontier](../science/no_reset_frontier.md); [Model: computation, storage, and precision](../science/model.md#computation-storage-and-precision); [Related work: closest comparisons](../references/RELATED_WORK.md#closest-comparisons); [Related work: attribution and comparison rules](../references/RELATED_WORK.md#attribution-and-comparison-rules); [Verification](../verification/README.md).
 
 ## Reading routes
 

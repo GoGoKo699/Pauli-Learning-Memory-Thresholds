@@ -2,6 +2,8 @@
 
 **How much coherent memory is needed to learn the coefficient of a quantum correlation whose support and measurement axes are revealed only after data collection?** This project gives a joint threshold in the correlation weight and the memory available beside an unknown Pauli channel.
 
+**Sister project: [Quantum Learning Without Resets](https://github.com/GoGoKo699/Quantum-Learning-Without-Resets).** The weight–memory frontier here permits fresh probes, resets and a classical history. The sister project charges the initial purity of the whole processor. Their [common weight-one, attenuated-spike task](science/no_reset_frontier.md) reveals an additional obstruction: at retained coefficient $`1/2`$ and worst-case error $`1/3`$, the no-reset processor needs at least $`4n/3`$ bits of initial negentropy. When every protected record fits within its side-width budget, it also needs at least $`n/3`$ physical side qubits. The [shared entropy proof](https://github.com/GoGoKo699/Quantum-Learning-Without-Resets/blob/892a1702e80ea1a8a56ac93b81bc0d7273a8f1ec/science/entropy_bound.md) is authoritative in the sister repository; this repository owns the weight–memory law and its constructive learning account.
+
 A Pauli correlation is a tensor product of the single-qubit operators $`I,X,Y,Z`$; its weight counts the factors different from $`I`$. A Pauli channel applies random Pauli errors, possibly correlated across sites. Its coefficient $`\lambda_P`$ describes how much of a correlation survives: $`\Lambda(P)=\lambda_P P`$.
 
 Let $`n`$ be the number of channel qubits and $`w`$ the maximum requested Pauli weight. At every channel invocation, count all coherent registers outside the queried $`n`$-qubit register in a budget of $`k`$ qubits, with $`0\le k\le n`$. Arbitrary coherent reuse, intermediate measurements, and adaptive feedback are allowed. At fixed nontrivial accuracy and confidence,
@@ -14,7 +16,7 @@ Let $`n`$ be the number of channel qubits and $`w`$ the maximum requested Pauli 
 }
 ```
 
-The acquisition procedure knows the complete family of supports and axes through weight $`w`$, but it does not know which member will be requested. It produces a reusable record from which that later coefficient can be estimated. Every channel invocation is charged, including invocations inside long coherent blocks. The upper protocol uses local Pauli measurements and partial Bell references; the lower bound allows arbitrary known quantum processing within the width budget.
+This equivalence uses the reset-permitting coherent-width model below; it is not a claim of feasibility at fixed initial purity. The acquisition procedure knows the complete family of supports and axes through weight $`w`$, but it does not know which member will be requested. It produces a reusable record from which that later coefficient can be estimated. Every channel invocation is charged, including invocations inside long coherent blocks. The upper protocol uses local Pauli measurements and partial Bell references; the lower bound allows arbitrary known quantum processing within the width budget.
 
 ## Principal results
 
@@ -27,6 +29,7 @@ Write $`D=n-k`$ for the missing reference width and $`R=wD/n`$. Here $`\epsilon`
 | Constructive learning | Random partial-Bell probes give simultaneous estimates with $`O(\epsilon^{-2}3^R\log(M_w/\delta))`$ calls and efficient evaluation of an individually requested coefficient. | [Partial-Bell protocol](science/partial_bell.md) |
 | One-bit detection | Under the positive-spike promise, detecting one hidden, exactly preserved Pauli correlation against the specified depolarizing baseline has the same frontier and an explicit polynomial-time algorithm in the polynomial regime. | [Correlation detection](science/correlation_detection.md) |
 | Weak channels | For known identity-mixture strength $`\tau`$, fixed relative accuracy adds a $`1/\tau`$ query factor. The frontier becomes $`R+\log(1/\tau)=O(\log n)`$. | [Weak-noise rates](science/weak_noise.md) |
+| No-reset obstruction | For weight one and retained coefficient $`1/2`$, constant-error detection requires linear initial negentropy, independently of call count; at error $`1/3`$, $`C\geq4n/3`$. | [Initial purity and width](science/no_reset_frontier.md) |
 
 For example, learning through weight $`w=\sqrt n`$ requires $`n-k=O(\sqrt n\log n)`$ for polynomial query cost. Learning through weight $`w=\Theta(n)`$ requires $`n-k=O(\log n)`$. The [interpretation](science/interpretation.md) explains these regimes and why coherent reuse does not remove the obstruction.
 
@@ -35,6 +38,8 @@ For example, learning through weight $`w=\sqrt n`$ requires $`n-k=O(\sqrt n\log 
 For the physical story, start with the [channel, memory budget, and exact tasks](science/model.md), then the [interpretation](science/interpretation.md). The [two-qubit example](learning/WORKED_EXAMPLE.md) shows the preparation, readout, and stored record concretely.
 
 For the proofs, the [weighted Pauli bounds](science/weighted_bounds.md) supply the common mathematical input. Follow either the [coherent](science/coherent_memory.md) or [fresh-experiment](science/fresh_experiments.md) converse, then the [partial-Bell construction](science/partial_bell.md). The [one-bit decision theorem](science/correlation_detection.md) makes the small-output consequence explicit, and [weak noise](science/weak_noise.md) treats rare informative events.
+
+To compare coherent width with a fixed initial purity budget, read [the common no-reset task and obstruction](science/no_reset_frontier.md). It credits the immediate logarithmic collision-purity bound, gives the stronger linear entropy restriction and specifies when it implies a side-width lower bound.
 
 The [related-work account](references/RELATED_WORK.md) and [bibliography](references/references.bib) distinguish imported ingredients, previously studied tasks, and nearby access models. Hypercontractivity, the Pauli-spike family, and the general benefit of reference entanglement are established ingredients. The contribution developed here is the evaluated joint support–memory frontier under the specified coherent-width budget.
 
@@ -61,7 +66,7 @@ python3 -m pip install -r verification/requirements.txt
 python3 verification/run_all.py
 ```
 
-The checks cover weighted operator responses, trace-norm identities, short coherent-query hybrids, and exact binary syndrome calculations. They use fixed inputs or random seeds and compare their outputs with the committed expectations. [Verification](verification/README.md) explains the numerical tolerances and exact-arithmetic checks. The universal lower bounds and asymptotic frontier are proved analytically.
+The checks cover weighted operator responses, trace-norm identities, short coherent-query hybrids, and exact binary syndrome calculations. They use fixed inputs or random seeds and compare their outputs with the committed expectations. [Verification](verification/README.md) explains the numerical tolerances and exact-arithmetic checks. The universal lower bounds and asymptotic frontier are proved analytically. The [sister entropy verifier](https://github.com/GoGoKo699/Quantum-Learning-Without-Resets/blob/892a1702e80ea1a8a56ac93b81bc0d7273a8f1ec/verification/README.md) reproduces the finite checks for the shared no-reset obstruction without duplicating that implementation here.
 
 ## Reproduce the resource figure
 
@@ -75,6 +80,8 @@ python3 figures/generate_resource_regimes.py
 The generator evaluates the stated formulas directly, using exact rational arithmetic for the partial-Bell usability probability before plotting. Accuracy, confidence, and target-count factors are omitted from the factor comparison; the full query bounds appear in the scientific pages.
 
 ## Scope
+
+The original coherent-width frontier permits nonunital preparation and resets, together with an unrestricted classical history. The shared no-reset theorem instead requires unital controls on the entire initialized processor, including every record. Its physical side-width consequence counts all protected registers, whereas the original $`k`$ counts coherent registers only. No matching linear-resource protocol or complete no-reset frontier is claimed.
 
 The channel is memoryless but may contain globally correlated Pauli errors. Its ordinary CPTP action is supplied without inverse, controlled, or purified-channel access. The constructive protocols use ideal controls and reference qubits and require no QRAM. The target family contains all supports and axes through weight $`w`$; a polynomial-sized known list is a different task.
 

@@ -16,6 +16,14 @@ particular, a lower bound over every Pauli label cannot simply be restricted
 to a low-weight family, and a state-copy theorem does not automatically
 preserve the width budget of a controlled channel experiment.
 
+## Sister result and its precise ownership
+
+[Quantum Learning Without Resets](https://github.com/GoGoKo699/Quantum-Learning-Without-Resets) studies the same attenuated Pauli-spike family when one complete initialized processor has only unital controls and no fresh records. Its [pre-existing common-effect collision theorem](https://github.com/GoGoKo699/Quantum-Learning-Without-Resets/blob/690dbd3f98c466d535fa531785ac64217380603d/science/decision_bound.md) immediately restricts to $`3n`$ weight-one labels. At retained coefficient $`1/2`$ and error $`1/3`$, it gives the inherited necessity $`c\geq\log_2(1+4n^2)`$ for clean/mixed initialization. This corollary is credited to that existing proof; it is not the new joint contribution.
+
+The stronger shared result uses reverse relative entropy and the three local Pauli-axis entropy budget to prove $`C\geq4n/3`$ at the same error, for every finite query count and protected dimension. Here $`C`$ is initial negentropy in bits and equals $`c`$ for product clean/mixed initialization. The [full shared entropy proof](https://github.com/GoGoKo699/Quantum-Learning-Without-Resets/blob/892a1702e80ea1a8a56ac93b81bc0d7273a8f1ec/science/entropy_bound.md) is authoritative in the sister repository. This repository owns the [self-contained common-task and width comparison](../science/no_reset_frontier.md), including the qualified $`k_{\mathrm{phys}}\geq n/3`$ corollary when every protected record is included in the side dimension. The original reset-permitting weight–memory theorem and constructive protocols retain their proof homes here.
+
+This is a new strengthening relative to the two repositories’ stated collision and width bounds. It is not a claim of a complete attaining no-reset frontier, or a priority determination over every related access model. The proof imports standard quantum relative-entropy joint convexity, data processing, conditional-expectation identities and strong subadditivity; its amortized inequality and resource consequence are supplied in the shared proof.
+
 ## Closest comparisons
 
 | Source | Established result relevant here | Relation to this repository |
@@ -269,6 +277,6 @@ and makes no categorical claim of priority over every possible formulation.
 
 Bibliographic keys and machine-readable entries are in
 [references.bib](references.bib). Primary metadata and the specified theorem
-versions were checked on 18 October 2026.
+versions were checked on 18 October 2026. The sister comparison and immutable source pointers were added on 2 November 2026.
 The closest comparisons with Kim–Oh, Chen–Gong, and Kang–Jeon–Oh were rechecked
 on 24 October 2026; the Kwon–Lie–Jiang comparison was added on that date.
