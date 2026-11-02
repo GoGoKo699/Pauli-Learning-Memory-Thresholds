@@ -390,7 +390,7 @@ N\leq\left\lceil
 
 **Conceptual connection.** At weight one the original width exponent is harmless, yet finite initialized purity still forbids constant-error detection for every finite query count. The conclusion survives arbitrary initially mixed protected memory. The extra inference $`k\ge n/3`$ uses a complete $`n+k`$-qubit processor containing every record; coherent-only width with an excluded classical history does not justify it. This is a necessary boundary, not a matched $`(k,c,T)`$ frontier.
 
-**Source pointers.** [No-reset transfer and exact qualification](../science/no_reset_frontier.md); [authoritative sister entropy theorem and proof](https://github.com/GoGoKo699/Quantum-Learning-Without-Resets/blob/7f82182280a4bd332374ca1da63df8b69c4307c8/science/entropy_bound.md); [Watrous Chapter 5, Corollary 5.33 and Theorems 5.35, 5.36, 5.38](https://cs.uwaterloo.ca/~watrous/TQI/TQI.5.pdf); [entropy bridge](WATROUS_BRIDGE.md#the-fixed-initialization-sister-boundary).
+**Source pointers.** [No-reset transfer and exact qualification](../science/no_reset_frontier.md); [authoritative sister entropy theorem and proof](https://github.com/GoGoKo699/Quantum-Learning-Without-Resets/blob/948e7dcb80f6c43f0cfa8c9291ae8f7bb5d43350/science/entropy_bound.md); [Watrous Chapter 5, Corollary 5.33 and Theorems 5.35, 5.36, 5.38](https://cs.uwaterloo.ca/~watrous/TQI/TQI.5.pdf); [entropy bridge](WATROUS_BRIDGE.md#the-fixed-initialization-sister-boundary).
 
 <a id="m28"></a>
 ### M28. An efficient rank detector

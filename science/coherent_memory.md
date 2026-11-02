@@ -146,13 +146,13 @@ This scalar $`b_e`$ is a nonnegative average of trace norms, distinct from the s
 
 ```math
 \mathbb E_{e\sim\nu_x(\cdot\mid\mathcal A_w)}b_e
-\le\sqrt{\frac{B_x}{p_A(x)}}.
+\le\frac{\sqrt{B_x}}{\sqrt{p_A(x)}}.
 ```
 
 Thus the mean trace distance from one changed channel call is at most
 
 ```math
-\frac a2\sqrt{\frac{B_x}{p_A(x)}}.
+\frac a2\frac{\sqrt{B_x}}{\sqrt{p_A(x)}}.
 ```
 
 The bound is independent of the number of classical histories. For continuous outcomes, the same calculation uses integrals against the history measure; convexity and Cauchy–Schwarz give the identical result.
@@ -178,7 +178,7 @@ where $`b_{e,j}`$ is computed on the common, label-independent input at slot $`j
 
 ```math
 \mathbb E_e\mathrm{TD}\bigl(\sigma_0^{(e)},\sigma_N\bigr)
-\le\frac{Na}{2}\sqrt{\frac{B_x}{p_A(x)}}.
+\le\frac{Na}{2}\frac{\sqrt{B_x}}{\sqrt{p_A(x)}}.
 ```
 
 This comparison permits intermediate measurements, adaptive controls, and coherent states surviving arbitrarily many invocations. The direction of the hybrid supplies a depolarizing prefix, so the prior is never applied to a label-dependent input state. The suffix may depend on the fixed hidden label; contraction only needs that suffix to be common to the two adjacent executions.

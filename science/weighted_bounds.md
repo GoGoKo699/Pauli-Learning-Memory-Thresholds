@@ -71,7 +71,7 @@ The indices $`p`$ and $`q`$ are real norm parameters. Normalization makes the id
 \|\mathcal T_s(A)\|_{q,\mathrm{av}}
 \le \|A\|_{p,\mathrm{av}}
 \quad\text{if}\quad
-0\le s\le\sqrt{\frac{p-1}{q-1}}.
+0\le s\le\frac{\sqrt{p-1}}{\sqrt{q-1}}.
 ```
 
 The induced norm in King's Eq. (6) ranges over all complex matrices, so this inequality applies to non-Hermitian matrices. We use $`q=2`$, $`p=1+t`$, and $`s=\sqrt t`$. This is the established input to the arguments below; the weighted response estimates are its applications here. See [King2014](../references/RELATED_WORK.md#king2014), Corollary 2, Eq. (17), and Remark 2.
@@ -313,7 +313,7 @@ For $`0\lt x\le1`$, this event has positive probability and conditioning rescale
 \le\frac{B_x}{p_A(x)},
 \qquad
 \mathbb E_{\nu_x(\cdot\mid\mathcal A_w)}|g_e|
-\le\sqrt{\frac{B_x}{p_A(x)}}.
+\le\frac{\sqrt{B_x}}{\sqrt{p_A(x)}}.
 ```
 
 The first statement discards nonnegative contributions outside the event; the second is Cauchy–Schwarz under the conditional probability measure. It applies to W1 and W2. The identity label is excluded here because the spike-channel formula used for learning would otherwise fail to preserve trace; see [the coherent hard family](coherent_memory.md#physical-hard-family).

@@ -11,7 +11,7 @@ history. The common no-reset weight-one task at retained coefficient 1/2
 requires linear initial negentropy for any finite query count. Read
 science/no_reset_frontier.md for the exact common model and consequences;
 the authoritative full shared entropy proof is
-https://github.com/GoGoKo699/Quantum-Learning-Without-Resets/blob/7f82182280a4bd332374ca1da63df8b69c4307c8/science/entropy_bound.md.
+https://github.com/GoGoKo699/Quantum-Learning-Without-Resets/blob/948e7dcb80f6c43f0cfa8c9291ae8f7bb5d43350/science/entropy_bound.md.
 
 Start with README.md and science/model.md; learning/WORKED_EXAMPLE.md gives
 a concrete two-qubit experiment. Pauli weight counts nonidentity tensor

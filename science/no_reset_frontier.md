@@ -2,7 +2,7 @@
 
 The weight–memory law in [the original model](model.md) counts coherent qubits beside each queried register while permitting new probe preparation, resets and a retained classical history. A fixed processor with no replenished purity has an additional obstruction. Already for weight one and a retained coefficient of one half, logarithmic initial purity cannot support a constant-error detector, for any finite query count.
 
-This result connects this repository to its sister, [Quantum Learning Without Resets](https://github.com/GoGoKo699/Quantum-Learning-Without-Resets). The present page supplies the common task, resource comparison and width consequences. The [complete shared relative-entropy proof](https://github.com/GoGoKo699/Quantum-Learning-Without-Resets/blob/7f82182280a4bd332374ca1da63df8b69c4307c8/science/entropy_bound.md) has its authoritative home in that repository. The original weight–memory proofs and constructive protocols remain authoritative here.
+This result connects this repository to its sister, [Quantum Learning Without Resets](https://github.com/GoGoKo699/Quantum-Learning-Without-Resets). The present page supplies the common task, resource comparison and width consequences. The [complete shared relative-entropy proof](https://github.com/GoGoKo699/Quantum-Learning-Without-Resets/blob/948e7dcb80f6c43f0cfa8c9291ae8f7bb5d43350/science/entropy_bound.md) has its authoritative home in that repository. The original weight–memory proofs and constructive protocols remain authoritative here.
 
 ## Common attenuated-spike task
 
@@ -109,7 +109,7 @@ Pinsker's inequality and averaging also imply
 
 ```math
 D_{\mathrm{tr}}(\bar\rho_T,\rho_T^0)
-\leq\min\left\{1,\sqrt{\frac{C\ln2}{8n}}\right\}.
+\leq\min\left\{1,\frac{\sqrt{C\ln2}}{\sqrt{8n}}\right\}.
 ```
 
 The binary relative-entropy calculation above gives the sharper stated constant for a specified worst-case error. No optimality of that constant or matching linear-purity protocol is claimed.
@@ -139,7 +139,7 @@ Second, the three dephasings of a single qubit satisfy a relative-entropy source
 \end{aligned}
 ```
 
-Finally, along the common null trajectory, each query's entropy increase is paid from the same initial negentropy. Unital controls cannot decrease entropy, so the query increases telescope to at most $`C`$ bits. Combining the factor $`1/2`$ from amortization with the factor $`3/2`$ from the source budget gives $`3/4`$. The [authoritative proof](https://github.com/GoGoKo699/Quantum-Learning-Without-Resets/blob/7f82182280a4bd332374ca1da63df8b69c4307c8/science/entropy_bound.md) gives the identities, time ordering and support treatment in full.
+Finally, along the common null trajectory, each query's entropy increase is paid from the same initial negentropy. Unital controls cannot decrease entropy, so the query increases telescope to at most $`C`$ bits. Combining the factor $`1/2`$ from amortization with the factor $`3/2`$ from the source budget gives $`3/4`$. The [authoritative proof](https://github.com/GoGoKo699/Quantum-Learning-Without-Resets/blob/948e7dcb80f6c43f0cfa8c9291ae8f7bb5d43350/science/entropy_bound.md) gives the identities, time ordering and support treatment in full.
 
 ## What the side-width conclusion requires
 
