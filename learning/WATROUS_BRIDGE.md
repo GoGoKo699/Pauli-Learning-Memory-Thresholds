@@ -208,7 +208,7 @@ The common sister task is complete depolarization versus one fixed hidden attenu
 
 The immediate restricted-label application of the sister's existing collision-purity theorem gives $`\mathrm{TD}\le\sqrt{2^c-1}/(6n)`$. At error $`1/3`$, it requires $`c\ge\log_2(1+4n^2)`$. That inherited condition still permits logarithmic $`c`$ and is not the new contribution.
 
-The stronger result uses entropy. A single changed query increases reverse relative entropy by at most half of a Pauli-direction source term evaluated on the common null input. Complementary local axes and strong subadditivity charge the sum of those source terms to $`3/2`$ times the null query's entropy increase. Across the complete experiment, unital controls leave at most $`C`$ bits to spend. The [authoritative entropy proof](https://github.com/GoGoKo699/Quantum-Learning-Without-Resets/blob/892a1702e80ea1a8a56ac93b81bc0d7273a8f1ec/science/entropy_bound.md) yields
+The stronger result uses entropy. A single changed query increases reverse relative entropy by at most half of a Pauli-direction source term evaluated on the common null input. Complementary local axes and strong subadditivity charge the sum of those source terms to $`3/2`$ times the null query's entropy increase. Across the complete experiment, unital controls leave at most $`C`$ bits to spend. The [authoritative entropy proof](https://github.com/GoGoKo699/Quantum-Learning-Without-Resets/blob/61440dbbba8df6f65602c3a4d20f5b373359919a/science/entropy_bound.md) yields
 
 ```math
 \sum_{|a|=1}D_2(\rho_T^0\Vert\rho_T^a)\le\frac34 C,

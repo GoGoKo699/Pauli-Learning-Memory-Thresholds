@@ -2,21 +2,21 @@
 
 The weight–memory law in [the original model](model.md) counts coherent qubits beside each queried register while permitting new probe preparation, resets and a retained classical history. A fixed processor with no replenished purity has an additional obstruction. Already for weight one and a retained coefficient of one half, logarithmic initial purity cannot support a constant-error detector, for any finite query count.
 
-This result connects this repository to its sister, [Quantum Learning Without Resets](https://github.com/GoGoKo699/Quantum-Learning-Without-Resets). The present page supplies the common task, resource comparison and width consequences. The [complete shared relative-entropy proof](https://github.com/GoGoKo699/Quantum-Learning-Without-Resets/blob/892a1702e80ea1a8a56ac93b81bc0d7273a8f1ec/science/entropy_bound.md) has its authoritative home in that repository. The original weight–memory proofs and constructive protocols remain authoritative here.
+This result connects this repository to its sister, [Quantum Learning Without Resets](https://github.com/GoGoKo699/Quantum-Learning-Without-Resets). The present page supplies the common task, resource comparison and width consequences. The [complete shared relative-entropy proof](https://github.com/GoGoKo699/Quantum-Learning-Without-Resets/blob/61440dbbba8df6f65602c3a4d20f5b373359919a/science/entropy_bound.md) has its authoritative home in that repository. The original weight–memory proofs and constructive protocols remain authoritative here.
 
 ## Common attenuated-spike task
 
 Let $`n\geq1`$, $`d=2^n`$, and let $`\mathcal A_1=\{X_i,Y_i,Z_i:1\leq i\leq n\}`$ contain the $`M=3n`$ nonidentity weight-one Pauli operators. The unknown, memoryless channel is fixed throughout a run and is either
 
 ```math
-\mathcal D(X)=\frac{I\operatorname{Tr}X}{d}
+\mathcal D(X)=\frac{I\mathrm{Tr}X}{d}
 ```
 
 or, for one hidden $`a\in\mathcal A_1`$,
 
 ```math
 \mathcal E_{a,\lambda}(X)
-=\frac{I\operatorname{Tr}X+\lambda P_a\operatorname{Tr}(P_aX)}{d},
+=\frac{I\mathrm{Tr}X+\lambda P_a\mathrm{Tr}(P_aX)}{d},
 \qquad \lambda=\frac12.
 ```
 
@@ -36,10 +36,10 @@ Define initial negentropy in bits and dimension-normalized collision purity by
 ```math
 C=\frac{\ln\dim(SA)-S(\rho_{\mathrm{in}})}{\ln2},
 \qquad
-\mathcal P=\dim(SA)\operatorname{Tr}(\rho_{\mathrm{in}}^2).
+\mathcal P=\dim(SA)\mathrm{Tr}(\rho_{\mathrm{in}}^2).
 ```
 
-Here $`S(\rho)=-\operatorname{Tr}(\rho\ln\rho)`$ and all relative entropies below use natural logarithms. For $`c`$ initially pure qubits tensored with maximally mixed qubits, $`C=c`$ and $`\mathcal P=2^c`$. For general initial states, $`C\leq\log_2\mathcal P`$; these resource parameters should not be interchanged.
+Here $`S(\rho)=-\mathrm{Tr}(\rho\ln\rho)`$ and all relative entropies below use natural logarithms. For $`c`$ initially pure qubits tensored with maximally mixed qubits, $`C=c`$ and $`\mathcal P=2^c`$. For general initial states, $`C\leq\log_2\mathcal P`$; these resource parameters should not be interchanged.
 
 ## The immediate collision-purity restriction
 
@@ -72,7 +72,7 @@ D(\rho_T^0\|\rho_T^a)
 }
 ```
 
-Here $`D(\rho\|\sigma)=\operatorname{Tr}[\rho(\ln\rho-\ln\sigma)]`$ with its usual support convention. Measurement data processing gives
+Here $`D(\rho\|\sigma)=\mathrm{Tr}[\rho(\ln\rho-\ln\sigma)]`$ with its usual support convention. Measurement data processing gives
 
 ```math
 D(\rho_T^0\|\rho_T^a)
@@ -127,7 +127,7 @@ Second, the three dephasings of a single qubit satisfy a relative-entropy source
 \leq\frac32\,[S(Q_0\sigma)-S(\sigma)].
 ```
 
-Finally, along the common null trajectory, each query's entropy increase is paid from the same initial negentropy. Unital controls cannot decrease entropy, so the query increases telescope to at most $`C\ln2`$. Combining the factor $`1/2`$ from amortization with the factor $`3/2`$ from the source budget gives $`3/4`$. The [authoritative proof](https://github.com/GoGoKo699/Quantum-Learning-Without-Resets/blob/892a1702e80ea1a8a56ac93b81bc0d7273a8f1ec/science/entropy_bound.md) gives the identities, time ordering and support treatment in full.
+Finally, along the common null trajectory, each query's entropy increase is paid from the same initial negentropy. Unital controls cannot decrease entropy, so the query increases telescope to at most $`C\ln2`$. Combining the factor $`1/2`$ from amortization with the factor $`3/2`$ from the source budget gives $`3/4`$. The [authoritative proof](https://github.com/GoGoKo699/Quantum-Learning-Without-Resets/blob/61440dbbba8df6f65602c3a4d20f5b373359919a/science/entropy_bound.md) gives the identities, time ordering and support treatment in full.
 
 ## What the side-width conclusion requires
 
