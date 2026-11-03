@@ -388,7 +388,7 @@ T\leq\left\lceil
 
 **Dependencies and story role.** Uses [M09](#m09), [M10](#m10), [M14](#m14), [M20](#m20), [M25](#m25), and [M26](#m26). It transfers the sister project's stronger entropy obstruction into this project's resource account; the full proof has one authoritative home.
 
-**Conceptual connection.** At weight one the original width exponent is harmless, yet finite initialized purity still forbids constant-error detection for every finite query count. The conclusion survives arbitrary initially mixed protected memory. The extra inference $`k\ge n/3`$ uses a complete $`n+k`$-qubit processor containing every record; coherent-only width with an excluded classical history does not justify it. This is a necessary boundary, not a matched $`(k,c,T)`$ frontier.
+**Conceptual connection.** At weight one the original width exponent is harmless, yet finite initialized purity still forbids constant-error detection for every finite query count. The conclusion survives arbitrary initially mixed protected memory. The extra inference $`k_{\mathrm{phys}}\ge n/3`$ uses a complete $`n+k_{\mathrm{phys}}`$-qubit processor containing every record; coherent-only width with an excluded classical history does not justify it. This is a necessary boundary, not a matched $`(k,c,T)`$ frontier.
 
 **Source pointers.** [No-reset transfer and exact qualification](../science/no_reset_frontier.md); [authoritative sister entropy theorem and proof](https://github.com/GoGoKo699/Quantum-Learning-Without-Resets/blob/main/science/entropy_bound.md); [Watrous Chapter 5, Corollary 5.33 and Theorems 5.35, 5.36, 5.38](https://cs.uwaterloo.ca/~watrous/TQI/TQI.5.pdf); [entropy bridge](WATROUS_BRIDGE.md#the-fixed-initialization-sister-boundary).
 

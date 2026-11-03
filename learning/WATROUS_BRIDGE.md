@@ -212,15 +212,15 @@ The immediate restricted-label application of the sister's existing collision-pu
 The stronger result uses entropy. A single changed query increases reverse relative entropy by at most half of a Pauli-direction source term evaluated on the common null input. Complementary local axes and strong subadditivity charge the sum of those source terms to $`3/2`$ times the null query's entropy increase. Across the complete experiment, unital controls leave at most $`C`$ bits to spend. The [authoritative entropy proof](https://github.com/GoGoKo699/Quantum-Learning-Without-Resets/blob/main/science/entropy_bound.md) yields
 
 ```math
-\begin{eligned}
+\begin{aligned}
 \sum_{|e|=1}D_{\mathrm{bits}}(\rho_T^0\Vert\rho_T^e)&\le\frac34 C,\\
 C&\ge4n(1-2\delta)\log_2\frac{1-\delta}{\delta}.
-\end{eligned}
+\end{aligned}
 ```
 
 for a worst-case error $`\delta<1/2`$. Thus $`C\ge4n/3`$ at error $`1/3`$. This excludes logarithmic initial purity for every finite query count, even with arbitrary initially mixed protected memory. The queried system can remain correlated with that memory; the proof does not assume a fresh state at query cuts.
 
-The additional conclusion $`k\ge n/3`$ uses $`C\le n+k`$ and therefore requires **all** protected registers and records to fit in the $`k`$ side qubits. It does not follow from this project's coherent-only width definition with an excluded classical history. The logarithmic-purity impossibility has no such width dependence.
+The additional conclusion $`k_{\mathrm{phys}}\ge n/3`$ uses $`C\le n+k_{\mathrm{phys}}`$ and therefore requires **all** protected registers and records to fit in the $`k_{\mathrm{phys}}`$ side qubits. It does not follow from this project's coherent-only width definition with an excluded classical history. The logarithmic-purity impossibility has no such width dependence.
 
 The joint result closes the proposed starting corner by an obstruction. It supplies neither a matched linear-resource protocol nor the full $`(k,c,T)`$ frontier, and no claim for attenuation above $`1/2`$ follows. [M26–M30](MILESTONES.md#m26) connect this transfer with the original detector and weak-channel claims. The local statement and source ownership are recorded in [the no-reset frontier](../science/no_reset_frontier.md); the proof is developed once in the sister repository. The entropy and complementary-basis inequalities remain standard foundations, with primary attribution preserved in the scientific accounts.
 
