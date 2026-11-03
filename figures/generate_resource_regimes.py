@@ -15,7 +15,7 @@ and the logarithmic target-count cost. They are not optimal query counts.
 
 Panel (a): n=256; every integer w=1,...,n and k=0,...,n.
            Contours R=c log2(n), c=1,2,4, are illustrative finite-n slices.
-Panel (b): n=256,w=16; every integer deficit D=0,...,n.
+Panel (b): n=256,w=16; every integer deficit n-k=0,...,n.
            p_w is evaluated by exact integer arithmetic before taking logs.
 
 Scientific homes: science/model.md; science/partial_bell.md (exact usability
@@ -126,12 +126,12 @@ def main():
     axb.plot(deficits/N, exact_log2, color='#207f8a',
              label=r'Exact usability factor $p_w^{-1}$')
     axb.plot(deficits/N, coherent_log2, color='#594c83', ls='-.',
-             label=r'Coherent factor $2^{wD/[2(3n-w)]}$')
+             label=r'Coherent factor $2^{w(n-k)/[2(3n-w)]}$')
     axb.set_xlim(0, 1)
     axb.set_ylim(0, 27)
     axb.set_xticks([0, .25, .5, .75, 1])
     axb.set_yticks([0, 5, 10, 15, 20, 25])
-    axb.set_xlabel(r'Reference deficit fraction $D/n=1-k/n$')
+    axb.set_xlabel(r'Reference deficit fraction $(n-k)/n$')
     axb.set_ylabel(r'$\log_2$ of the indicated resource factor')
     axb.set_title(r'(b) Finite factors: $n=256,\ w=16$', loc='left', pad=8)
     axb.grid(axis='y', color='#dddddd', linewidth=.5)
@@ -150,9 +150,9 @@ def main():
     plt.close(fig)
     print('Wrote', OUTPUT)
     print('n =', N, '; fixed w =', FIXED_W)
-    print('Endpoint D=n: log2 exact usability factor =', exact_log2[-1])
-    print('Endpoint D=n: log2 Jensen factor =', jensen_log2[-1])
-    print('Endpoint D=n: log2 coherent factor =', coherent_log2[-1])
+    print('Endpoint n-k=n: log2 exact usability factor =', exact_log2[-1])
+    print('Endpoint n-k=n: log2 Jensen factor =', jensen_log2[-1])
+    print('Endpoint n-k=n: log2 coherent factor =', coherent_log2[-1])
     print('Largest log2 exact-minus-Jensen =', float(np.max(exact_log2-jensen_log2)))
 
 
