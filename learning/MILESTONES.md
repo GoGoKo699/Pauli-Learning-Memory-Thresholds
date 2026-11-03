@@ -10,7 +10,7 @@ The **background/preliminaries phase, M01–M14**, starts with one qubit and one
 
 The **narrative/innovation phase, M15–M30**, starts with the response of one preparation and one measurement. Weighted rank estimates then control a whole adaptive experiment, and a constructive protocol supplies the opposite direction of the learning threshold. The last five milestones separate preserved and attenuated one-bit promises, transfer a stronger no-reset purity obstruction from the sister project, and retain the efficient rank detector and weak-channel rates before the full synthesis.
 
-Dependencies always refer to earlier milestones. Each phase progresses from local objects or arguments to an integrated understanding. The width-only learning model and the fixed-initialization sister model are different contracts; [the no-reset transfer page](../science/no_reset_frontier.md) states their interface. For the original learning theorem, the authoritative definitions are in [the model](../science/model.md): $`n`$ channel-input qubits, at most $`k`$ coherent qubits outside that register at every invocation, maximum target weight $`w`$, deficit $`D=n-k`$, and $`R=wD/n`$.
+Dependencies always refer to earlier milestones. Each phase progresses from local objects or arguments to an integrated understanding. The width-only learning model and the fixed-initialization sister model are different contracts; [the no-reset transfer page](../science/no_reset_frontier.md) states their interface. For the original learning theorem, the authoritative definitions are in [the model](../science/model.md): $`n`$ channel-input qubits, at most $`k`$ coherent qubits outside that register at every invocation, maximum target weight $`w`$, deficit $`n-k`$, and $`R=w(n-k)/n`$.
 
 ## Phase I: Background and preliminaries
 
@@ -122,7 +122,7 @@ for rank $`r`$. Recognize where the factor $`r/d`$ enters and how Schatten Höld
 
 **Dependencies and story role.** Uses [M06](#m06). It provides the quantitative bridge from a reference dimension to a response bound.
 
-**Conceptual connection.** The normalization by $`d=2^n`$ is essential: combining $`r\leq2^k`$ with the norm comparison produces a dependence on the missing reference width $`D=n-k`$.
+**Conceptual connection.** The normalization by $`d=2^n`$ is essential: combining $`r\leq2^k`$ with the norm comparison produces a dependence on the missing reference width $`n-k`$.
 
 **Source pointers.** [Watrous §1.1.3, especially Eq. (1.169)](https://cs.uwaterloo.ca/~watrous/TQI/TQI.1.pdf); [Weighted bounds: hypercontractivity and the rank comparison](../science/weighted_bounds.md#hypercontractivity-and-the-rank-comparison).
 
@@ -228,7 +228,7 @@ for rank $`r`$. Recognize where the factor $`r/d`$ enters and how Schatten Höld
 
 ```math
 \mathbb E_{\nu_x}G_e(C)^2
-\leq(r/d)^\gamma\leq2^{-D\gamma},
+\leq(r/d)^\gamma\leq2^{-(n-k)\gamma},
 \qquad \gamma=\frac{2x}{1+x}.
 ```
 
@@ -261,7 +261,7 @@ for rank $`r`$. Recognize where the factor $`r/d`$ enters and how Schatten Höld
 
 **Central question.** How can the convenient product prior be restricted to the actual target family without losing the exponent?
 
-**Understanding target.** Explain why the identity label cannot be used as a nonidentity spike hypothesis. Track the conditioning factor $`1/p_A`$, the binomial weight distribution, and the choice $`x=w/[3(2n-w)]`$. Relate $`p_A\geq1/4`$ and $`\gamma=w/(3n-w)`$ to the uniform finite bounds.
+**Understanding target.** Explain why the identity label cannot be used as a nonidentity spike hypothesis. Track the conditioning factor $`1/p_{\mathcal A}(x)`$, the binomial weight distribution, and the choice $`x=w/[3(2n-w)]`$. Relate $`p_{\mathcal A}(x)\geq1/4`$ and $`\gamma=w/(3n-w)`$ to the uniform finite bounds.
 
 **Dependencies and story role.** Uses [M03](#m03), [M04](#m04), [M13](#m13), [M16](#m16), and [M17](#m17). It makes both averaged operator estimates applicable to valid physical alternatives.
 
@@ -313,7 +313,7 @@ for rank $`r`$. Recognize where the factor $`r/d`$ enters and how Schatten Höld
 
 **Central question.** Why does complete measurement between calls permit a quadratic inverse-accuracy lower bound?
 
-**Understanding target.** Form the likelihood product for one fixed channel sign across the entire execution. Explain why averaging the two complete transcript laws is different from averaging the channel independently at every call. Use the signed-product inequality and the weighted second moment at null histories to obtain the fresh lower bound proportional to $`\epsilon^{-2}2^{wD/(3n-w)}`$.
+**Understanding target.** Form the likelihood product for one fixed channel sign across the entire execution. Explain why averaging the two complete transcript laws is different from averaging the channel independently at every call. Use the signed-product inequality and the weighted second moment at null histories to obtain the fresh lower bound proportional to $`\epsilon^{-2}2^{w(n-k)/(3n-w)}`$.
 
 **Dependencies and story role.** Uses [M09](#m09), [M10](#m10), [M15](#m15), [M16](#m16), [M18](#m18), and [M21](#m21). It sharpens the finite rate for the restricted fresh model and explains why that sharpening needs another argument.
 
@@ -326,11 +326,11 @@ for rank $`r`$. Recognize where the factor $`r/d`$ enters and how Schatten Höld
 
 **Central question.** How does randomly distributing $`k`$ Bell pairs make one record useful for a later unknown target?
 
-**Understanding target.** Define compatibility by the target's nonidentity factors at unpaired sites. Derive the exact hypergeometric usability probability $`p_u`$ for a target of weight $`u`$, and explain the Jensen lower bound $`p_u\geq3^{-uD/n}`$. Interpret the full-reference and no-reference endpoints.
+**Understanding target.** Define compatibility by the target's nonidentity factors at unpaired sites. Derive the exact hypergeometric usability probability $`p_u`$ for a target of weight $`u`$, and explain the Jensen lower bound $`p_u\geq3^{-u(n-k)/n}`$. Interpret the full-reference and no-reference endpoints.
 
 **Dependencies and story role.** Uses [M03](#m03), [M05](#m05), [M07](#m07), [M11](#m11), and [M14](#m14). It gives the local-to-global construction that complements the lower bounds.
 
-**Conceptual connection.** Random paired sites spread a fixed reference budget across every possible support. The average number of unpaired relevant sites, $`uD/n`$, is the constructive origin of the threshold parameter.
+**Conceptual connection.** Random paired sites spread a fixed reference budget across every possible support. The average number of unpaired relevant sites, $`u(n-k)/n`$, is the constructive origin of the threshold parameter.
 
 **Source pointers.** [Partial-Bell protocol: compatibility with a requested target](../science/partial_bell.md#compatibility-with-a-requested-target); [Partial-Bell protocol: exact usability probability](../science/partial_bell.md#exact-usability-probability); [Partial-Bell protocol: endpoints and related tasks](../science/partial_bell.md#endpoints-and-related-tasks).
 
@@ -342,7 +342,7 @@ for rank $`r`$. Recognize where the factor $`r/d`$ enters and how Schatten Höld
 **Understanding target.** Explain the estimator $`X_e=H_eY_e/p_u`$, its mean $`\lambda_e`$, and its second moment $`1/p_u`$. Combine Bernstein concentration with a union bound to show that the simultaneous guarantee is achievable with
 
 ```math
-N\leq\left\lceil
+T\leq\left\lceil
 4\epsilon^{-2}3^R\ln(2M_w/\delta)
 \right\rceil.
 ```
@@ -362,7 +362,7 @@ N\leq\left\lceil
 
 **Dependencies and story role.** Uses [M14](#m14), [M21](#m21), [M22](#m22), and [M24](#m24). This is the first global synthesis of the narrative: the complete learning theorem and its implementation.
 
-**Conceptual connection.** Acquisition uses $`O(nN)`$ classical bits, and one coefficient can be decoded by scanning that record with polynomial-bit arithmetic. A polynomial query theorem does not promise polynomial time to print an exponentially long output list. The detector developed next addresses a one-bit output directly.
+**Conceptual connection.** Acquisition uses $`O(nT)`$ classical bits, and one coefficient can be decoded by scanning that record with polynomial-bit arithmetic. A polynomial query theorem does not promise polynomial time to print an exponentially long output list. The detector developed next addresses a one-bit output directly.
 
 **Source pointers.** [Coherent memory: polynomial query frontier](../science/coherent_memory.md#polynomial-query-frontier); [Partial-Bell protocol: physical and classical resources](../science/partial_bell.md#physical-and-classical-resources); [Interpretation: distinct asymptotic regimes](../science/interpretation.md#distinct-asymptotic-regimes).
 
@@ -371,7 +371,7 @@ N\leq\left\lceil
 
 **Central question.** Which physical spike promise is being tested, and which operations may prepare the experiment?
 
-**Understanding target.** Relate the exactly preserved positive spike to a uniform Pauli-error distribution on a commuting hyperplane and to measuring one parity followed by randomization within its eigenspace. Interpret its succinct sampler and entanglement-breaking form. State the direct bounded-reference hybrid lower bound $`N\ge(1-2\delta)\tau^{-1}2^{wD/[2(3n-w)]}`$ for the original $`\Gamma_0,\Gamma_P`$ promise. Then distinguish this identity-mixture parameter $`\tau`$ from an attenuated spike $`\mathcal E_{a,\lambda}`$ against complete depolarization: the former preserves the hidden mode exactly, while $`\lambda=1/2`$ does not. Fix detection with one common final measurement as the sister task.
+**Understanding target.** Relate the exactly preserved positive spike to a uniform Pauli-error distribution on a commuting hyperplane and to measuring one parity followed by randomization within its eigenspace. Interpret its succinct sampler and entanglement-breaking form. State the direct bounded-reference hybrid lower bound $`T\ge(1-2\delta)\tau^{-1}2^{w(n-k)/[2(3n-w)]}`$ for the original $`\Gamma_0,\Gamma_e`$ promise. Then distinguish this identity-mixture parameter $`\tau`$ from an attenuated spike $`\mathcal E_{e,\lambda}`$ against complete depolarization: the former preserves the hidden mode exactly, while $`\lambda=1/2`$ does not. Fix detection with one common final measurement as the sister task.
 
 **Dependencies and story role.** Uses [M02](#m02), [M04](#m04), [M09](#m09), [M12](#m12), [M14](#m14), [M19](#m19), [M20](#m20), and [M25](#m25). It moves the width-only theorem into a physical one-bit setting and identifies the precise model boundary before transferring a purity result.
 
@@ -384,13 +384,13 @@ N\leq\left\lceil
 
 **Central question.** Why does the weight-one problem become impossible with logarithmic initialized purity once fresh preparations are removed?
 
-**Understanding target.** For $`3n`$ weight-one alternatives at $`\lambda=1/2`$, credit the immediate restricted-label collision-purity bound $`\mathrm{TD}\le\sqrt{2^c-1}/(6n)`$ and its necessity $`c\ge\log_2(1+4n^2)`$ at error $`1/3`$. Explain why that does not exclude $`c=O(\log n)`$. Follow the stronger proof route: one reverse-relative-entropy query increment is charged to the common null input, complementary Pauli axes bound the local source, and unital processing leaves a finite total null entropy budget. Read $`\sum_{|a|=1}D_{\mathrm{bits}}(\rho_T^0\Vert\rho_T^a)\le3C/4`$ and the resulting $`C\ge4n/3`$ at error $`1/3`$, where $`C=\log_2\dim(SA)-H(\rho_{\mathrm{in}})`$ and $`C=c`$ for clean-plus-mixed initialization.
+**Understanding target.** For $`3n`$ weight-one alternatives at $`\lambda=1/2`$, credit the immediate restricted-label collision-purity bound $`D_{\mathrm{tr}}\le\sqrt{2^c-1}/(6n)`$ and its necessity $`c\ge\log_2(1+4n^2)`$ at error $`1/3`$. Explain why that does not exclude $`c=O(\log n)`$. Follow the stronger proof route: one reverse-relative-entropy query increment is charged to the common null input, complementary Pauli axes bound the local source, and unital processing leaves a finite total null entropy budget. Read $`\sum_{|e|=1}D_{\mathrm{bits}}(\rho_T^0\Vert\rho_T^e)\le3C/4`$ and the resulting $`C\ge4n/3`$ at error $`1/3`$, where $`C=\log_2\dim(SA)-H(\rho_{\mathrm{in}})`$ and $`C=c`$ for clean-plus-mixed initialization.
 
 **Dependencies and story role.** Uses [M09](#m09), [M10](#m10), [M14](#m14), [M20](#m20), [M25](#m25), and [M26](#m26). It transfers the sister project's stronger entropy obstruction into this project's resource account; the full proof has one authoritative home.
 
 **Conceptual connection.** At weight one the original width exponent is harmless, yet finite initialized purity still forbids constant-error detection for every finite query count. The conclusion survives arbitrary initially mixed protected memory. The extra inference $`k\ge n/3`$ uses a complete $`n+k`$-qubit processor containing every record; coherent-only width with an excluded classical history does not justify it. This is a necessary boundary, not a matched $`(k,c,T)`$ frontier.
 
-**Source pointers.** [No-reset transfer and exact qualification](../science/no_reset_frontier.md); [authoritative sister entropy theorem and proof](https://github.com/GoGoKo699/Quantum-Learning-Without-Resets/blob/948e7dcb80f6c43f0cfa8c9291ae8f7bb5d43350/science/entropy_bound.md); [Watrous Chapter 5, Corollary 5.33 and Theorems 5.35, 5.36, 5.38](https://cs.uwaterloo.ca/~watrous/TQI/TQI.5.pdf); [entropy bridge](WATROUS_BRIDGE.md#the-fixed-initialization-sister-boundary).
+**Source pointers.** [No-reset transfer and exact qualification](../science/no_reset_frontier.md); [authoritative sister entropy theorem and proof](https://github.com/GoGoKo699/Quantum-Learning-Without-Resets/blob/main/science/entropy_bound.md); [Watrous Chapter 5, Corollary 5.33 and Theorems 5.35, 5.36, 5.38](https://cs.uwaterloo.ca/~watrous/TQI/TQI.5.pdf); [entropy bridge](WATROUS_BRIDGE.md#the-fixed-initialization-sister-boundary).
 
 <a id="m28"></a>
 ### M28. An efficient rank detector

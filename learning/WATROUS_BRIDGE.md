@@ -23,10 +23,10 @@ The experimenter must acquire a reusable record before learning which target wil
 The [model](../science/model.md) fixes the three parameters: the channel acts on $`n`$ qubits, every target has weight at most $`w`$, and all coherent registers outside the queried register have total width at most $`k`$ at each invocation. Write
 
 ```math
-D=n-k,\qquad R=\frac{wD}{n}.
+R=\frac{w(n-k)}{n}.
 ```
 
-In the upper construction, $`R`$ bounds the average number of target sites lacking a reference. In the converse, $`D`$ appears through a rank-to-dimension ratio and combines with the weight-dependent prior. Connecting these two mechanisms gives the polynomial-query frontier.
+In the upper construction, $`R`$ bounds the average number of target sites lacking a reference. In the converse, $`(n-k)`$ appears through a rank-to-dimension ratio and combines with the weight-dependent prior. Connecting these two mechanisms gives the polynomial-query frontier.
 
 ## Relevant parts of the anchor
 
@@ -73,7 +73,7 @@ Consequently, for rank $`r`$ and $`1\le p\le2`$, the ordinary rank comparison be
 
 The normalization makes the identity matrix have norm one. For example, two system qubits give $`d=4`$, while one reference qubit permits a pure probe with system rank at most two, hence $`r/d\le1/2`$.
 
-Here the division by $`d`$ is load-bearing. With $`r\le2^k`$ and $`d=2^n`$, the relevant ratio is at most $`2^{-D}`$. Dropping the normalization loses the dimension-dependent suppression. Conversely, inserting a normalized trace norm into a physical distinguishability formula introduces an incorrect factor of $`d`$. [The weighted proof](../science/weighted_bounds.md#hypercontractivity-and-the-rank-comparison) keeps these uses separate and derives the conversion explicitly.
+Here the division by $`d`$ is load-bearing. With $`r\le2^k`$ and $`d=2^n`$, the relevant ratio is at most $`2^{-(n-k)}`$. Dropping the normalization loses the dimension-dependent suppression. Conversely, inserting a normalized trace norm into a physical distinguishability formula introduces an incorrect factor of $`d`$. [The weighted proof](../science/weighted_bounds.md#hypercontractivity-and-the-rank-comparison) keeps these uses separate and derives the conversion explicitly.
 
 ### Root fidelity and squared fidelity
 
@@ -93,7 +93,7 @@ The final equality uses $`\sqrt{P_e\rho P_e}=P_e\sqrt{\rho}P_e`$ and unitary inv
 The project writes
 
 ```math
-\mathrm{TD}(\rho,\sigma)=\frac12\|\rho-\sigma\|_1,
+D_{\mathrm{tr}}(\rho,\sigma)=\frac12\|\rho-\sigma\|_1,
 \qquad
 \mathrm{TV}(p,q)=\frac12\sum_z|p(z)-q(z)|.
 ```
@@ -104,7 +104,7 @@ Watrous's completely bounded trace norm, denoted by a triple-bar trace norm in Â
 
 ### Entropy and relative entropy
 
-Watrous uses base-two logarithms for $`H`$ and $`D`$. Write $`D_{\mathrm{bits}}`$ for ordinary quantum relative entropy in bits. The conversion to natural-logarithm units is:
+Watrous uses base-two logarithms for $`H`$ and $`(n-k)`$. Write $`D_{\mathrm{bits}}`$ for ordinary quantum relative entropy in bits. The conversion to natural-logarithm units is:
 
 ```math
 \begin{aligned}
@@ -114,7 +114,7 @@ H_{\mathrm{nat}}(\rho)&=(\ln2)H(\rho).
 \end{aligned}
 ```
 
-Relative entropy is not a distance metric: its arguments cannot be exchanged. The sister converse uses the reverse order $`D_{\mathrm{bits}}(\rho_T^0\Vert\rho_T^a)`$, with the null first. Watrous's Theorem 5.38 says $`D_{\mathrm{bits}}\ge\|\rho-\sigma\|_1^2/(2\ln2)`$, hence $`D_{\mathrm{nat}}\ge2\,\mathrm{TD}^2`$ in the project's halved trace-distance convention. Mixing these conventions would change the constants.
+Relative entropy is not a distance metric: its arguments cannot be exchanged. The sister converse uses the reverse order $`D_{\mathrm{bits}}(\rho_T^0\Vert\rho_T^e)`$, with the null first. Watrous's Theorem 5.38 says $`D_{\mathrm{bits}}\ge\|\rho-\sigma\|_1^2/(2\ln2)`$, hence $`D_{\mathrm{nat}}\ge2\,D_{\mathrm{tr}}^2`$ in the project's halved trace-distance convention. Mixing these conventions would change the constants.
 
 For a complete initialized processor, define its entropy deficit in bits by
 
@@ -149,9 +149,9 @@ For a **pure** state on $`S\otimes A`$, the reduced state on $`S`$ has rank at m
 
 A channel's mathematical representation also needs to be separated from its access mechanism. Applying the channel to half of a normalized maximally entangled state would produce $`J(\Lambda)/d`$ in Watrous's Choi convention. Preparing that experiment uses $`n`$ reference qubits beside the $`n`$ queried qubits. Copies of this normalized Choi state are therefore not supplied for free when $`k\lt n`$. Similarly, a Stinespring representation establishes that a dilation exists; it does not grant access to the unknown environment or its inverse.
 
-The counted resource $`N`$ is the number of ordinary channel invocations. Ten invocations inside one coherent block cost ten queries even if only one measurement is made at the end. Independent channel uses also do not mean that an adaptive experiment's full quantum inputs or classical outcomes are independent. The [forward hybrid](../science/coherent_memory.md#forward-hybrid-for-adaptive-coherent-protocols) is what controls their dependence.
+The counted resource $`T`$ is the number of ordinary channel invocations. Ten invocations inside one coherent block cost ten queries even if only one measurement is made at the end. Independent channel uses also do not mean that an adaptive experiment's full quantum inputs or classical outcomes are independent. The [forward hybrid](../science/coherent_memory.md#forward-hybrid-for-adaptive-coherent-protocols) is what controls their dependence.
 
-The [fixed-initialization sister interface](../science/no_reset_frontier.md) adds a second resource contract. Every retained record belongs to one finite initialized processor, every known interleaving is unital, and the initial entropy deficit is charged. A record that has become classical still required an initialized physical register. The original partial-Bell upper protocol uses renewed polarized probes and $`O(nN)`$ stored bits, so its coherent-width theorem alone gives no protocol under a fixed initial-purity budget. An arbitrary mathematical purification is unavailable in both contracts.
+The [fixed-initialization sister interface](../science/no_reset_frontier.md) adds a second resource contract. Every retained record belongs to one finite initialized processor, every known interleaving is unital, and the initial entropy deficit is charged. A record that has become classical still required an initialized physical register. The original partial-Bell upper protocol uses renewed polarized probes and $`O(nT)`$ stored bits, so its coherent-width theorem alone gives no protocol under a fixed initial-purity budget. An arbitrary mathematical purification is unavailable in both contracts.
 
 ## The additional steps supplied by the project
 
@@ -175,7 +175,7 @@ The remaining problem is adaptivity: after seeing a spike, the apparatus can car
 
 ### 3. Use the additional structure of fresh experiments
 
-When every call ends in complete measurement, the outcome probabilities can be multiplied along a classical transcript. [The fresh converse](../science/fresh_experiments.md) uses signed spike alternatives with one sign fixed for the whole execution. Averaging the two complete transcript laws cancels the first-order likelihood response and leaves a second-moment bound proportional to $`N a^2`$.
+When every call ends in complete measurement, the outcome probabilities can be multiplied along a classical transcript. [The fresh converse](../science/fresh_experiments.md) uses signed spike alternatives with one sign fixed for the whole execution. Averaging the two complete transcript laws cancels the first-order likelihood response and leaves a second-moment bound proportional to $`T a^2`$.
 
 This yields the stronger $`\epsilon^{-2}`$ lower factor. Averaging the channel sign independently on each call would describe a different experiment and would not prove this result. The fresh and coherent lower bounds share a polynomial frontier while retaining distinct finite accuracy statements.
 
@@ -185,7 +185,7 @@ For a weight-$`u`$ target, the random partial-Bell setting is usable with probab
 
 ```math
 p_u=\mathbb E_K 3^{-|\mathrm{supp}(e)\setminus K|}
-\ge3^{-uD/n}.
+\ge3^{-u(n-k)/n}.
 ```
 
 The [construction](../science/partial_bell.md) divides a usable commutation sign by $`p_u`$ and returns zero on an unusable record. This gives an unbiased estimator with second moment $`1/p_u`$. A variance-sensitive concentration bound then costs $`p_u^{-1}`$ rather than $`p_u^{-2}`$. A union bound supplies simultaneous estimates from the same stored record. The output is that record and its evaluation rule; printing an exponentially long coefficient list has its own output cost.
@@ -207,15 +207,15 @@ The joint polynomial condition is consequently $`R+\log(1/\tau)=O(\log n)`$. At 
 
 The common sister task is complete depolarization versus one fixed hidden attenuated Pauli spike, restricted to $`X_i,Y_i,Z_i`$ and $`\lambda=1/2`$. Detection uses one final measurement common to all $`3n`$ alternatives. It is different from late-index learning and from the exactly preserved-mode detector. In particular, the detector's identity-mixture parameter $`\tau`$ does not equal $`\lambda`$: its hidden eigenvalue remains one even at $`\tau=1/2`$.
 
-The immediate restricted-label application of the sister's existing collision-purity theorem gives $`\mathrm{TD}\le\sqrt{2^c-1}/(6n)`$. At error $`1/3`$, it requires $`c\ge\log_2(1+4n^2)`$. That inherited condition still permits logarithmic $`c`$ and is not the new contribution.
+The immediate restricted-label application of the sister's existing collision-purity theorem gives $`D_{\mathrm{tr}}\le\sqrt{2^c-1}/(6n)`$. At error $`1/3`$, it requires $`c\ge\log_2(1+4n^2)`$. That inherited condition still permits logarithmic $`c`$ and is not the new contribution.
 
-The stronger result uses entropy. A single changed query increases reverse relative entropy by at most half of a Pauli-direction source term evaluated on the common null input. Complementary local axes and strong subadditivity charge the sum of those source terms to $`3/2`$ times the null query's entropy increase. Across the complete experiment, unital controls leave at most $`C`$ bits to spend. The [authoritative entropy proof](https://github.com/GoGoKo699/Quantum-Learning-Without-Resets/blob/948e7dcb80f6c43f0cfa8c9291ae8f7bb5d43350/science/entropy_bound.md) yields
+The stronger result uses entropy. A single changed query increases reverse relative entropy by at most half of a Pauli-direction source term evaluated on the common null input. Complementary local axes and strong subadditivity charge the sum of those source terms to $`3/2`$ times the null query's entropy increase. Across the complete experiment, unital controls leave at most $`C`$ bits to spend. The [authoritative entropy proof](https://github.com/GoGoKo699/Quantum-Learning-Without-Resets/blob/main/science/entropy_bound.md) yields
 
 ```math
-\begin{aligned}
-\sum_{|a|=1}D_{\mathrm{bits}}(\rho_T^0\Vert\rho_T^a)&\le\frac34 C,\\
+\begin{eligned}
+\sum_{|e|=1}D_{\mathrm{bits}}(\rho_T^0\Vert\rho_T^e)&\le\frac34 C,\\
 C&\ge4n(1-2\delta)\log_2\frac{1-\delta}{\delta}.
-\end{aligned}
+\end{eligned}
 ```
 
 for a worst-case error $`\delta<1/2`$. Thus $`C\ge4n/3`$ at error $`1/3`$. This excludes logarithmic initial purity for every finite query count, even with arbitrary initially mixed protected memory. The queried system can remain correlated with that memory; the proof does not assume a fresh state at query cuts.

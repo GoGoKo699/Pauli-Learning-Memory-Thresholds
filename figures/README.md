@@ -1,5 +1,7 @@
 # Analytical resource regimes
 
+For the standard quantitative plot, use the [weight–memory figure guide](../verification/Graph/README.md). This supplementary overview has its own renderer and output paths.
+
 This figure shows how the requested Pauli weight and the coherent reference budget enter the learning bounds. Its scalar parameter is $`R=w(n-k)/n`$, where $`n`$ is the number of channel-input qubits, $`k`$ counts the coherent qubits outside that register at every invocation, and $`w`$ is the largest requested weight.
 
 ![Analytical weight–memory geometry and finite resource factors](Graph/resource_regimes.png)
@@ -35,11 +37,11 @@ R=c\log_2n,\qquad
 
 These are illustrative finite-parameter levels. The proved polynomial-query criterion is the asymptotic condition $`R=O(\log n)`$ at fixed nontrivial accuracy and confidence for the complete weight-bounded Pauli family. No selected contour is a finite-size transition.
 
-**Panel (b): finite resource factors.** Fix $`n=256`$ and $`w=16`$, and vary the integer deficit $`D=n-k`$ from zero to $`256`$. For the partial-Bell construction, the exact usability probability is
+**Panel (b): finite resource factors.** Fix $`n=256`$ and $`w=16`$, and vary the integer deficit $`n-k`$ from zero to $`256`$. For the partial-Bell construction, the exact usability probability is
 
 ```math
 p_w=\frac{1}{\binom nw}
-\sum_{m=0}^{w}\binom Dm\binom{k}{w-m}3^{-m},
+\sum_{m=0}^{w}\binom{n-k}{m}\binom{k}{w-m}3^{-m},
 ```
 
 where an out-of-range binomial coefficient is zero. The generator evaluates this probability with exact integer arithmetic and rational reduction before taking logarithms. The three displayed quantities are
@@ -47,12 +49,12 @@ where an out-of-range binomial coefficient is zero. The generator evaluates this
 ```math
 \log_2(p_w^{-1}),\qquad
 \log_2(3^R),\qquad
-\log_2\!\left(2^{wD/[2(3n-w)]}\right).
+\log_2\!\left(2^{w(n-k)/[2(3n-w)]}\right).
 ```
 
 The first is the usability factor in the constructive bound; the second is its Jensen upper bound; the third is the exponential factor in the coherent converse. The full bounds also contain accuracy, confidence, and target-count factors. These plotted factors do not specify optimal channel-call counts or matching exponential constants. Every curve is an analytical evaluation, without fitted parameters or simulated data.
 
-At $`D=0`$, every record is usable and all three logarithms vanish. At $`D=n`$, $`p_w=3^{-w}`$ and the first two curves coincide. For the displayed $`w=16`$, their endpoint is $`16\log_2 3\approx25.3594`$; the coherent factor has endpoint exponent $`128/47\approx2.7234`$.
+At $`k=n`$, every record is usable and all three logarithms vanish. At $`k=0`$, $`p_w=3^{-w}`$ and the first two curves coincide. For the displayed $`w=16`$, their endpoint is $`16\log_2 3\approx25.3594`$; the coherent factor has endpoint exponent $`128/47\approx2.7234`$.
 
 ## Scientific sources
 

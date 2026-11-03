@@ -9,9 +9,7 @@ This page proves the lower bound. The [partial-Bell protocol](partial_bell.md), 
 Let $`n,k,w`$ be integers with $`n\ge1`$, $`0\le k\le n`$, and $`1\le w\le n`$. Let $`0<\epsilon<1/3`$ and $`0<\delta<1/2`$. Put
 
 ```math
-D=n-k,
-\qquad
-R=\frac{wD}{n}.
+R=\frac{w(n-k)}{n}.
 ```
 
 The target family $`\mathcal A_w=\{e:1\le|e|\le w\}`$ is known before acquisition. The particular index $`e`$ is supplied after all calls. The required pointwise guarantee is
@@ -24,10 +22,10 @@ The target family $`\mathcal A_w=\{e:1\le|e|\le w\}`$ is known before acquisitio
 
 A guarantee that holds simultaneously for the whole family is stronger and is therefore also covered by the lower bound.
 
-**Theorem C1.** Every learner satisfying this guarantee with at most $`N`$ channel calls on every execution branch obeys
+**Theorem C1.** Every learner satisfying this guarantee with at most $`T`$ channel calls on every execution branch obeys
 
 ```math
-N\ge\frac{1-2\delta}{3\epsilon}
+T\ge\frac{1-2\delta}{3\epsilon}
 \,2^{\frac{w(n-k)}{2(3n-w)}}.
 ```
 
@@ -49,24 +47,24 @@ The ordinary required output is a classical record. The lower-bound proof also p
 
 ## Physical hard family
 
-Let $`d=2^n`$ and let $`\mathcal D`$ be the completely depolarizing channel. For a nonidentity Pauli label $`e`$ and $`0\lt a\le1`$, define a positive spike by
+Let $`d=2^n`$ and let $`\mathcal D`$ be the completely depolarizing channel. For a nonidentity Pauli label $`e`$ and $`0\lt \lambda\le1`$, define a positive spike by
 
 ```math
 \mathcal D(X)=\frac{\mathrm{Tr}(X)}dI_d,
 \qquad
-\Lambda_e^{(a)}(X)
-=\mathcal D(X)+\frac a d\mathrm{Tr}(P_eX)P_e.
+\mathcal E_{e,\lambda}(X)
+=\mathcal D(X)+\frac \lambda d\mathrm{Tr}(P_eX)P_e.
 ```
 
 This is a Pauli channel with error probabilities
 
 ```math
-p_v^{(e,a)}=\frac{1+a(-1)^{[e,v]}}{d^2}.
+p_v^{(e,\lambda)}=\frac{1+\lambda(-1)^{[e,v]}}{d^2}.
 ```
 
-They are nonnegative. Since $`e\ne0`$, its nontrivial symplectic character sums to zero, so the probabilities sum to one. Their Pauli eigenvalues are $`1`$ at the identity, $`a`$ at $`P_e`$, and zero at every other nonidentity label. This proves the claimed channel formula and complete positivity. No random choice of spike sign is needed for the coherent lower bound.
+They are nonnegative. Since $`e\ne0`$, its nontrivial symplectic character sums to zero, so the probabilities sum to one. Their Pauli eigenvalues are $`1`$ at the identity, $`\lambda`$ at $`P_e`$, and zero at every other nonidentity label. This proves the claimed channel formula and complete positivity. No random choice of spike sign is needed for the coherent lower bound.
 
-The hidden label will be drawn from the prior $`\nu_x`$ conditioned on $`\mathcal A_w`$. Its mass $`p_A(x)>0`$, the exponent $`\gamma=2x/(1+x)`$, and $`B_x=2^{-D\gamma}`$ are defined and bounded in [the weighted estimates](weighted_bounds.md#conditioning-on-required-nonidentity-targets).
+The hidden label will be drawn from the prior $`\nu_x`$ conditioned on $`\mathcal A_w`$. Its mass $`p_{\mathcal A}(x)>0`$, the exponent $`\gamma=2x/(1+x)`$, and $`B_x=2^{-(n-k)\gamma}`$ are defined and bounded in [the weighted estimates](weighted_bounds.md#conditioning-on-required-nonidentity-targets).
 
 ## One call with a bounded reference
 
@@ -79,15 +77,15 @@ B_e(\omega)=\mathrm{Tr}_S\bigl[(P_e\otimes I_A)\omega\bigr].
 Hermiticity follows from cyclicity of the partial trace with respect to operators on $`S`$. The two channel outputs differ by
 
 ```math
-\bigl[(\Lambda_e^{(a)}-\mathcal D)\otimes\mathrm{id}_A\bigr](\omega)
-=\frac a d P_e\otimes B_e(\omega).
+\bigl[(\mathcal E_{e,\lambda}-\mathcal D)\otimes\mathrm{id}_A\bigr](\omega)
+=\frac \lambda d P_e\otimes B_e(\omega).
 ```
 
 Because $`\|P_e\|_1=d`$ and the trace norm is multiplicative on tensor products,
 
 ```math
-\left\|\bigl[(\Lambda_e^{(a)}-\mathcal D)\otimes\mathrm{id}_A\bigr](\omega)\right\|_1
-=a\,\|B_e(\omega)\|_1.
+\left\|\bigl[(\mathcal E_{e,\lambda}-\mathcal D)\otimes\mathrm{id}_A\bigr](\omega)\right\|_1
+=\lambda\,\|B_e(\omega)\|_1.
 ```
 
 ### Pure inputs
@@ -142,77 +140,77 @@ For a fixed classical–quantum input, define
 b_e=\sum_hq_h\|B_e(\omega_{h,SA})\|_1.
 ```
 
-This scalar $`b_e`$ is a nonnegative average of trace norms, distinct from the signed outcome response $`g_e`$ in the fresh-experiment argument. The norm of the output difference is $`a b_e`$, since the classical blocks are orthogonal. A second application of Jensen gives $`\mathbb E_{\nu_x}b_e^2\le B_x`$. These statements require the input state, including the probabilities $`q_h`$, to be independent of the hidden label being averaged. After conditioning on the required family, Cauchy–Schwarz gives
+This scalar $`b_e`$ is a nonnegative average of trace norms, distinct from the signed outcome response $`g_e`$ in the fresh-experiment argument. The norm of the output difference is $`\lambda b_e`$, since the classical blocks are orthogonal. A second application of Jensen gives $`\mathbb E_{\nu_x}b_e^2\le B_x`$. These statements require the input state, including the probabilities $`q_h`$, to be independent of the hidden label being averaged. After conditioning on the required family, Cauchy–Schwarz gives
 
 ```math
-\mathbb E_{e\sim\nu_x(\cdot\mid\mathcal A_w)}b_e
-\le\frac{\sqrt{B_x}}{\sqrt{p_A(x)}}.
+\mathbb E_{e\sim\pi_x}b_e
+\le\frac{\sqrt{B_x}}{\sqrt{p_{\mathcal A}(x)}}.
 ```
 
 Thus the mean trace distance from one changed channel call is at most
 
 ```math
-\frac a2\frac{\sqrt{B_x}}{\sqrt{p_A(x)}}.
+\frac \lambda2\frac{\sqrt{B_x}}{\sqrt{p_{\mathcal A}(x)}}.
 ```
 
 The bound is independent of the number of classical histories. For continuous outcomes, the same calculation uses integrals against the history measure; convexity and Cauchy–Schwarz give the identical result.
 
 ## Forward hybrid for adaptive coherent protocols
 
-Write $`\mathrm{TD}(\rho,\sigma)=\tfrac12\|\rho-\sigma\|_1`$. Fix a hidden label $`e`$ temporarily. For $`j=0,\ldots,N`$, let $`\sigma_j^{(e)}`$ be the acquisition output of the protocol whose first $`j`$ invocations use $`\mathcal D`$ and whose subsequent invocations use $`\Lambda_e^{(a)}`$. This output is taken before the target index is revealed and before any index-dependent decoding. Thus $`\sigma_0^{(e)}`$ is the all-spike output, whereas the all-depolarizing output $`\sigma_N`$ is independent of $`e`$.
+Write $`D_{\mathrm{tr}}(\rho,\sigma)=\tfrac12\|\rho-\sigma\|_1`$. Fix a hidden label $`e`$ temporarily. For $`j=0,\ldots,T`$, let $`\sigma_j^{(e)}`$ be the acquisition output of the protocol whose first $`j`$ invocations use $`\mathcal D`$ and whose subsequent invocations use $`\mathcal E_{e,\lambda}`$. This output is taken before the target index is revealed and before any index-dependent decoding. Thus $`\sigma_0^{(e)}`$ is the all-spike output, whereas the all-depolarizing output $`\sigma_T`$ is independent of $`e`$.
 
-Each $`\sigma_j^{(e)}`$ describes the retained quantum state together with its classical record. With three calls, the successive channel strings are $`(\Lambda_e^{(a)},\Lambda_e^{(a)},\Lambda_e^{(a)})`$, $`(\mathcal D,\Lambda_e^{(a)},\Lambda_e^{(a)})`$, $`(\mathcal D,\mathcal D,\Lambda_e^{(a)})`$, and $`(\mathcal D,\mathcal D,\mathcal D)`$. Comparing neighbors changes one call. Every earlier call is already null, supplying the label-independent input needed by the one-call estimate.
+Each $`\sigma_j^{(e)}`$ describes the retained quantum state together with its classical record. With three calls, the successive channel strings are $`(\mathcal E_{e,\lambda},\mathcal E_{e,\lambda},\mathcal E_{e,\lambda})`$, $`(\mathcal D,\mathcal E_{e,\lambda},\mathcal E_{e,\lambda})`$, $`(\mathcal D,\mathcal D,\mathcal E_{e,\lambda})`$, and $`(\mathcal D,\mathcal D,\mathcal D)`$. Comparing neighbors changes one call. Every earlier call is already null, supplying the label-independent input needed by the one-call estimate.
 
-For an at-most-$`N`$ worst-case budget, view the procedure as $`N`$ successive possible query slots. A classical halt branch is inactive in every later slot and is left unchanged. At slot $`j`$, only the active branches invoke the channel. They satisfy the width constraint above. In the one-call norm estimate, their probabilities have sum at most one; adjoining a zero response for the inactive mass preserves Jensen's inequality. This handles early stopping without adding a register for dummy queries. No bound on expected calls is substituted for the worst-case budget.
+For an at-most-$`T`$ worst-case budget, view the procedure as $`T`$ successive possible query slots. A classical halt branch is inactive in every later slot and is left unchanged. At slot $`j`$, only the active branches invoke the channel. They satisfy the width constraint above. In the one-call norm estimate, their probabilities have sum at most one; adjoining a zero response for the inactive mass preserves Jensen's inequality. This handles early stopping without adding a register for dummy queries. No bound on expected calls is substituted for the worst-case budget.
 
 The executions producing $`\sigma_{j-1}^{(e)}`$ and $`\sigma_j^{(e)}`$ have an identical prefix: their first $`j-1`$ active calls are depolarizing. Hence their state immediately before slot $`j`$, including all classical history probabilities, is independent of $`e`$. This is the fixed input required by the weighted estimate.
 
 At slot $`j`$, one execution uses the spike and the other uses the depolarizing channel. Their suffixes are identical for this fixed $`e`$: all later active calls use the spike and all known adaptive controls are the same. Including the retained classical outcomes, that suffix is one common completely positive trace-preserving map. Trace-distance contraction therefore gives
 
 ```math
-\mathrm{TD}\bigl(\sigma_{j-1}^{(e)},\sigma_j^{(e)}\bigr)
-\le\frac a2 b_{e,j},
+D_{\mathrm{tr}}\bigl(\sigma_{j-1}^{(e)},\sigma_j^{(e)}\bigr)
+\le\frac \lambda2 b_{e,j},
 ```
 
-where $`b_{e,j}`$ is computed on the common, label-independent input at slot $`j`$. Average over $`e\sim\nu_x(\cdot\mid\mathcal A_w)`$ and sum the triangle inequality over all slots:
+where $`b_{e,j}`$ is computed on the common, label-independent input at slot $`j`$. Average over $`e\sim\pi_x`$ and sum the triangle inequality over all slots:
 
 ```math
-\mathbb E_e\mathrm{TD}\bigl(\sigma_0^{(e)},\sigma_N\bigr)
-\le\frac{Na}{2}\frac{\sqrt{B_x}}{\sqrt{p_A(x)}}.
+\mathbb E_eD_{\mathrm{tr}}\bigl(\sigma_0^{(e)},\sigma_T\bigr)
+\le\frac{T\lambda}{2}\frac{\sqrt{B_x}}{\sqrt{p_{\mathcal A}(x)}}.
 ```
 
 This comparison permits intermediate measurements, adaptive controls, and coherent states surviving arbitrarily many invocations. The direction of the hybrid supplies a depolarizing prefix, so the prior is never applied to a label-dependent input state. The suffix may depend on the fixed hidden label; contraction only needs that suffix to be common to the two adjacent executions.
 
 ## Learning-to-testing reduction and finite constants
 
-Set $`a=3\epsilon<1`$. For each revealed target $`e\in\mathcal A_w`$, threshold the learner's estimate at $`a/2`$. Under $`\mathcal D`$, an accurate estimate lies in $`[-\epsilon,\epsilon]`$ and the test returns the null hypothesis. Under $`\Lambda_e^{(a)}`$, an accurate estimate lies in $`[2\epsilon,4\epsilon]`$ and the test returns the spike hypothesis. The closed accuracy intervals are separated, so no tie convention is required for successful estimates.
+Set $`\lambda=3\epsilon<1`$. For each revealed target $`e\in\mathcal A_w`$, threshold the learner's estimate at $`\lambda/2`$. Under $`\mathcal D`$, an accurate estimate lies in $`[-\epsilon,\epsilon]`$ and the test returns the null hypothesis. Under $`\mathcal E_{e,\lambda}`$, an accurate estimate lies in $`[2\epsilon,4\epsilon]`$ and the test returns the spike hypothesis. The closed accuracy intervals are separated, so no tie convention is required for successful estimates.
 
 This is an $`e`$-dependent final test on two acquisition outputs. It does not make $`e`$ available during acquisition. Its probability of declaring a spike differs by at least $`1-2\delta`$ between those outputs. The variational characterization of trace distance implies, for each required label,
 
 ```math
-\mathrm{TD}\bigl(\sigma_0^{(e)},\sigma_N\bigr)\ge1-2\delta.
+D_{\mathrm{tr}}\bigl(\sigma_0^{(e)},\sigma_T\bigr)\ge1-2\delta.
 ```
 
 This reasoning also covers an index-dependent quantum decoder applied to a retained output state, because any such test is a measurement effect on that state. Combining with the hybrid proves the general-prior bound
 
 ```math
-N\ge
-\frac{2(1-2\delta)\sqrt{p_A(x)}}{3\epsilon}
-\,2^{D x/(1+x)},
+T\ge
+\frac{2(1-2\delta)\sqrt{p_{\mathcal A}(x)}}{3\epsilon}
+\,2^{(n-k) x/(1+x)},
 \qquad 0\lt x\le1.
 ```
 
-Choose $`x=w/[3(2n-w)]`$. Lemma W3 gives $`p_A(x)\ge1/4`$ and $`2x/(1+x)=w/(3n-w)`$. Substitution proves C1:
+Choose $`x=w/[3(2n-w)]`$. Lemma W3 gives $`p_{\mathcal A}(x)\ge1/4`$ and $`2x/(1+x)=w/(3n-w)`$. Substitution proves C1:
 
 ```math
-N\ge\frac{1-2\delta}{3\epsilon}
+T\ge\frac{1-2\delta}{3\epsilon}
 \,2^{\frac{w(n-k)}{2(3n-w)}}.
 ```
 
 For $`w=n`$, choosing $`x=1`$ gives the stronger endpoint
 
 ```math
-N\ge\frac{2(1-2\delta)\sqrt{1-4^{-n}}}{3\epsilon}
+T\ge\frac{2(1-2\delta)\sqrt{1-4^{-n}}}{3\epsilon}
 \,2^{(n-k)/2}.
 ```
 
@@ -230,7 +228,7 @@ The exponent in C1 obeys
 The [partial-Bell construction](partial_bell.md) is admissible under the coherent resource contract and gives simultaneous estimates using
 
 ```math
-N\le\left\lceil
+T\le\left\lceil
 4\epsilon^{-2}\ln\left(\frac{2M_w}{\delta}\right)3^R
 \right\rceil,
 \qquad
@@ -251,30 +249,30 @@ Coherent concatenation can change how many final measurements are made. The resu
 
 ## Detection and weak noise
 
-The hybrid bound holds for any amplitude $`0\lt a\le1`$ before choosing an estimation accuracy. A binary test distinguishing $`\mathcal D`$ from every unknown $`\Lambda_e^{(a)}`$, $`e\in\mathcal A_w`$, with error at most $`\delta`$ therefore requires
+The hybrid bound holds for any amplitude $`0\lt \lambda\le1`$ before choosing an estimation accuracy. A binary test distinguishing $`\mathcal D`$ from every unknown $`\mathcal E_{e,\lambda}`$, $`e\in\mathcal A_w`$, with error at most $`\delta`$ therefore requires
 
 ```math
-N\ge
-\frac{2(1-2\delta)\sqrt{p_A(x)}}a
-\,2^{D x/(1+x)}.
+T\ge
+\frac{2(1-2\delta)\sqrt{p_{\mathcal A}(x)}}\lambda
+\,2^{(n-k) x/(1+x)}.
 ```
 
-The test need not be given the label: a single valid decision rule is a special case of the label-dependent tests permitted in the argument. At $`a=1`$, the alternative preserves one hidden Pauli correlation exactly. The [correlation-detection account](correlation_detection.md) gives an efficient algorithm for this one-bit task and establishes the same polynomial frontier.
+The test need not be given the label: a single valid decision rule is a special case of the label-dependent tests permitted in the argument. At $`\lambda=1`$, the alternative preserves one hidden Pauli correlation exactly. The [correlation-detection account](correlation_detection.md) gives an efficient algorithm for this one-bit task and establishes the same polynomial frontier.
 
 For known $`0<\tau\le1`$, replace the two channels by
 
 ```math
 \widetilde\Lambda_0=(1-\tau)\mathrm{id}+\tau\mathcal D,
 \qquad
-\widetilde\Lambda_e=(1-\tau)\mathrm{id}+\tau\Lambda_e^{(a)}.
+\widetilde\Lambda_e=(1-\tau)\mathrm{id}+\tau\mathcal E_{e,\lambda}.
 ```
 
-Their one-call difference is multiplied by $`\tau`$. A hybrid whose prefix uses the known channel $`\widetilde\Lambda_0`$ still has a label-independent query state, so the preceding proof applies with $`a`$ replaced by $`\tau a`$. The resulting bound is
+Their one-call difference is multiplied by $`\tau`$. A hybrid whose prefix uses the known channel $`\widetilde\Lambda_0`$ still has a label-independent query state, so the preceding proof applies with $`\lambda`$ replaced by $`\tau \lambda`$. The resulting bound is
 
 ```math
-N\ge
-\frac{2(1-2\delta)\sqrt{p_A(x)}}{\tau a}
-\,2^{D x/(1+x)}.
+T\ge
+\frac{2(1-2\delta)\sqrt{p_{\mathcal A}(x)}}{\tau \lambda}
+\,2^{(n-k) x/(1+x)}.
 ```
 
 The [weak-noise account](weak_noise.md) relates this formula to absolute and relative estimation accuracy and supplies the matching polynomial frontier. Near-identity channels in this construction may still contain rare spatially correlated Pauli errors; no local or sparse noise promise is imposed.

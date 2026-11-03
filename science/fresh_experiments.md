@@ -9,11 +9,11 @@ The [resource model](model.md) specifies the learning task and its late target: 
 Let $`n\geq 1`$, $`0\leq k\leq n`$, and $`1\leq w\leq n`$ be integers. Write
 
 ```math
-D=n-k,\qquad R=\frac{wD}{n},\qquad
+R=\frac{w(n-k)}{n},\qquad
 \kappa=\frac{w}{3n-w}.
 ```
 
-Suppose a fresh-experiment learner uses at most $`N`$ channel calls and estimates each requested Pauli eigenvalue of weight from $`1`$ to $`w`$ to additive error $`\epsilon`$, with failure probability at most $`\delta`$, for every Pauli channel. For
+Suppose a fresh-experiment learner uses at most $`T`$ channel calls and estimates each requested Pauli eigenvalue of weight from $`1`$ to $`w`$ to additive error $`\epsilon`$, with failure probability at most $`\delta`$, for every Pauli channel. For
 
 ```math
 0<\epsilon<\frac13,\qquad 0<\delta<\frac12,
@@ -23,7 +23,7 @@ it must satisfy
 
 ```math
 \boxed{
-N\geq
+T\geq
 \frac{1-2\delta}{36\epsilon^2}\,
 2^{\,w(n-k)/(3n-w)}.
 }
@@ -45,21 +45,21 @@ The reference channel is complete depolarization,
 \mathcal D(X)=\frac{\mathrm{Tr}(X)}{d}I.
 ```
 
-For a **nonidentity** label $`e`$, a sign $`s\in\{-1,+1\}`$, and an amplitude $`0\lt a\lt1`$, define
+For a **nonidentity** label $`e`$, a sign $`s\in\{-1,+1\}`$, and an amplitude $`0\lt \lambda\lt1`$, define
 
 ```math
-\Lambda_{e,s}(X)
+\mathcal E_{e,s\lambda}(X)
 =\frac{\mathrm{Tr}(X)}{d}I
- +\frac{s a\,\mathrm{Tr}(P_eX)}{d}P_e.
+ +\frac{s \lambda\,\mathrm{Tr}(P_eX)}{d}P_e.
 ```
 
 These are physical Pauli channels. Their error distributions are
 
 ```math
-p_{e,s}(v)=\frac{1+s a\,\chi_e(v)}{d^2}.
+p_{e,s}(v)=\frac{1+s \lambda\,\chi_e(v)}{d^2}.
 ```
 
-Nonnegativity follows from $`a<1`$. Normalization follows from $`\sum_v\chi_e(v)=0`$ for every nonidentity $`e`$. The identity eigenvalue is $`1`$, the eigenvalue at $`P_e`$ is $`s a`$, and every other nonidentity eigenvalue is zero. The sign and label are selected once and remain fixed throughout all channel calls.
+Nonnegativity follows from $`\lambda<1`$. Normalization follows from $`\sum_v\chi_e(v)=0`$ for every nonidentity $`e`$. The identity eigenvalue is $`1`$, the eigenvalue at $`P_e`$ is $`s \lambda`$, and every other nonidentity eigenvalue is zero. The sign and label are selected once and remain fixed throughout all channel calls.
 
 For the algebraic averaging, use the product distribution
 
@@ -70,9 +70,9 @@ For the algebraic averaging, use the product distribution
 The actual hidden-label distribution is this law conditioned on the required, nonidentity target set:
 
 ```math
-A_w=\{e:1\leq |e|\leq w\},\qquad
-p_A=\nu_x(A_w),\qquad
-\nu_{x,A}(e)=\frac{\nu_x(e)\mathbf 1_{A_w}(e)}{p_A}.
+\mathcal A_w=\{e:1\leq |e|\leq w\},\qquad
+p_{\mathcal A}(x)=\nu_x(\mathcal A_w),\qquad
+\pi_x(e)=\frac{\nu_x(e)\mathbf 1_{\mathcal A_w}(e)}{p_{\mathcal A}(x)}.
 ```
 
 Thus the identity is used only in the algebraic product average, never as a channel hypothesis. The [prior-mass lemma](weighted_bounds.md#conditioning-on-required-nonidentity-targets) gives, for
@@ -84,11 +84,11 @@ x=\frac{w}{3(2n-w)},
 the uniform estimates
 
 ```math
-p_A\geq\frac14,\qquad
-B_x=2^{-D\,2x/(1+x)}=2^{-\kappa D}.
+p_{\mathcal A}(x)\geq\frac14,\qquad
+B_x=2^{-(n-k)\,2x/(1+x)}=2^{-\kappa (n-k)}.
 ```
 
-In particular, conditioning costs exactly the factor $`1/p_A`$. No unnormalized hypothesis distribution is used.
+In particular, conditioning costs exactly the factor $`1/p_{\mathcal A}(x)`$. No unnormalized hypothesis distribution is used.
 
 ## The one-experiment likelihood
 
@@ -138,14 +138,14 @@ Consequently,
 ```math
 q_{e,s}
 =q_{\mathcal D}
- +\frac{s a}{d}\mathrm{Tr}(P_e C P_e C^\dagger).
+ +\frac{s \lambda}{d}\mathrm{Tr}(P_e C P_e C^\dagger).
 ```
 
 At any outcome with $`q_{\mathcal D}>0`$, its likelihood ratio is therefore
 
 ```math
 \frac{q_{e,s}}{q_{\mathcal D}}
-=1+s a\,G_e(C),\qquad
+=1+s \lambda\,G_e(C),\qquad
 G_e(C)=
 \frac{\mathrm{Tr}(P_e C P_e C^\dagger)}
      {\mathrm{Tr}(CC^\dagger)}.
@@ -174,7 +174,7 @@ The weights in this convex combination depend on the preparation, effect, and nu
 ```math
 |g_e|\leq1,\qquad
 \mathbb E_{e\sim\nu_x}g_e^2\leq B_x,\qquad
-\mathbb E_{e\sim\nu_{x,A}}g_e^2\leq\frac{B_x}{p_A}.
+\mathbb E_{e\sim\pi_x}g_e^2\leq\frac{B_x}{p_{\mathcal A}(x)}.
 ```
 
 Each matrix $`C_{j\ell}`$ has rank at most $`2^k`$. Decomposing a mixed state in the declared system-reference space does not supply an additional purifying register.
@@ -183,13 +183,13 @@ If $`q_{\mathcal D}=0`$, every elementary term with positive preparation weight 
 
 ## The signed transcript bound
 
-Include the learner's ordinary classical randomness in its transcript. A protocol with a worst-case budget of at most $`N`$ calls can be padded with ignored fresh experiments, so take the length to be exactly $`N`$. Let $`Q_0`$ be the null transcript law and $`Q_{e,s}`$ the alternative transcript law. For discrete outcomes, the likelihood ratio at a specified transcript $`z`$ is $`Q_{e,s}(z)/Q_0(z)`$ whenever $`Q_0(z)>0`$. For general outcomes it is the density of the alternative law relative to the null law. It measures how much more or less likely the complete record is under the alternative.
+Include the learner's ordinary classical randomness in its transcript. A protocol with a worst-case budget of at most $`T`$ calls can be padded with ignored fresh experiments, so take the length to be exactly $`T`$. Let $`Q_0`$ be the null transcript law and $`Q_{e,s}`$ the alternative transcript law. For discrete outcomes, the likelihood ratio at a specified transcript $`z`$ is $`Q_{e,s}(z)/Q_0(z)`$ whenever $`Q_0(z)>0`$. For general outcomes it is the density of the alternative law relative to the null law. It measures how much more or less likely the complete record is under the alternative.
 
-For a complete transcript $`z=(z_1,\ldots,z_N)`$ with positive null probability, let $`g_{e,\ell}(z_{\leq\ell})`$ denote the response at its $`\ell`$th outcome. The preparation and POVM at that node depend on the preceding transcript. The likelihood of the full execution with the fixed channel $`\Lambda_{e,s}`$, relative to the all-depolarizing execution, is
+For a complete transcript $`z=(z_1,\ldots,z_T)`$ with positive null probability, let $`g_{e,\ell}(z_{\leq\ell})`$ denote the response at its $`\ell`$th outcome. The preparation and POVM at that node depend on the preceding transcript. The likelihood of the full execution with the fixed channel $`\mathcal E_{e,s\lambda}`$, relative to the all-depolarizing execution, is
 
 ```math
-L_{e,s}(z)=\prod_{\ell=1}^{N}
-\left(1+s a\,g_{e,\ell}(z_{\leq\ell})\right).
+L_{e,s}(z)=\prod_{\ell=1}^{T}
+\left(1+s \lambda\,g_{e,\ell}(z_{\leq\ell})\right).
 ```
 
 Each factor compares the probabilities of the next outcome, conditioned on the same preceding record. Multiplying those conditional ratios gives the ratio for the complete record, even when experiments adapt to earlier outcomes. Averaging over the one sign chosen at the beginning gives
@@ -199,22 +199,22 @@ Each factor compares the probabilities of the next outcome, conditioned on the s
 \overline L_e=\frac{L_{e,+}+L_{e,-}}2.
 ```
 
-This is a mixture of two complete executions. The sign remains fixed within each execution. Averaging the likelihood products cancels terms with an odd power of $`a`$; the following inequality controls the remaining deficit using quadratic terms.
+This is a mixture of two complete executions. The sign remains fixed within each execution. Averaging the likelihood products cancels terms with an odd power of $`\lambda`$; the following inequality controls the remaining deficit using quadratic terms.
 
 Because all likelihood factors are nonnegative, arithmetic-geometric mean gives
 
 ```math
 \overline L_e(z)
 \geq\sqrt{L_{e,+}(z)L_{e,-}(z)}
-=\prod_{\ell=1}^{N}
- \sqrt{1-a^2g_{e,\ell}(z_{\leq\ell})^2}.
+=\prod_{\ell=1}^{T}
+ \sqrt{1-\lambda^2g_{e,\ell}(z_{\leq\ell})^2}.
 ```
 
 For numbers $`0\leq u_\ell\leq1`$, one has $`\sqrt{1-u_\ell}\geq1-u_\ell`$ and $`\prod_\ell(1-u_\ell)\geq1-\sum_\ell u_\ell`$. It follows that
 
 ```math
 \left[1-\overline L_e(z)\right]_+
-\leq a^2\sum_{\ell=1}^{N}g_{e,\ell}(z_{\leq\ell})^2,
+\leq \lambda^2\sum_{\ell=1}^{T}g_{e,\ell}(z_{\leq\ell})^2,
 ```
 
 where $`[u]_+=\max\{u,0\}`$. With total variation normalized as one half of the $`L^1`$ distance,
@@ -229,14 +229,14 @@ Under $`Q_0`$, every history and every adaptively selected experiment is indepen
 
 ```math
 \begin{aligned}
-\mathbb E_{e\sim\nu_{x,A}}
+\mathbb E_{e\sim\pi_x}
 \mathrm{TV}(Q_0,\overline Q_e)
 &\leq
-a^2\sum_{\ell=1}^{N}
+\lambda^2\sum_{\ell=1}^{T}
 \mathbb E_{z\sim Q_0}
-\mathbb E_{e\sim\nu_{x,A}}
+\mathbb E_{e\sim\pi_x}
 g_{e,\ell}(z_{\leq\ell})^2\\
-&\leq \frac{N a^2 B_x}{p_A}.
+&\leq \frac{T \lambda^2 B_x}{p_{\mathcal A}(x)}.
 \end{aligned}
 ```
 
@@ -244,7 +244,7 @@ This is the point that handles arbitrary classical adaptivity. The proof average
 
 ## From learning to a decision
 
-Set $`a=3\epsilon`$. After acquisition, supply the hidden target $`e\in A_w`$ to the estimator and declare an alternative when
+Set $`\lambda=3\epsilon`$. After acquisition, supply the hidden target $`e\in \mathcal A_w`$ to the estimator and declare an alternative when
 
 ```math
 |\widehat\lambda_e|>\frac{3\epsilon}{2}.
@@ -261,17 +261,17 @@ For each $`e`$, the decision has false-positive and false-negative probabilities
 Any randomized final decoder is simply a statistical postprocessing and obeys the same total-variation bound. Combining the last two inequalities yields
 
 ```math
-N\geq
-\frac{(1-2\delta)p_A}{9\epsilon^2 B_x}
+T\geq
+\frac{(1-2\delta)p_{\mathcal A}(x)}{9\epsilon^2 B_x}
 \geq
-\frac{1-2\delta}{36\epsilon^2}2^{\kappa D}.
+\frac{1-2\delta}{36\epsilon^2}2^{\kappa (n-k)}.
 ```
 
 This completes the lower bound.
 
 ## Consequences and model boundary
 
-The [partial-Bell construction](partial_bell.md) supplies a simultaneous upper bound of order $`\epsilon^{-2}3^R\log(M_w/\delta)`$, where $`M_w`$ counts the Pauli targets including the known identity. Since $`\kappa D\geq R/3`$, the upper and lower exponents are both proportional to $`R`$. At fixed nontrivial accuracy and confidence, polynomially many calls are possible precisely when $`R=O(\log n)`$.
+The [partial-Bell construction](partial_bell.md) supplies a simultaneous upper bound of order $`\epsilon^{-2}3^R\ln(M_w/\delta)`$, where $`M_w`$ counts the Pauli targets including the known identity. Since $`\kappa (n-k)\geq R/3`$, the upper and lower exponents are both proportional to $`R`$. At fixed nontrivial accuracy and confidence, polynomially many calls are possible precisely when $`R=O(\log n)`$.
 
 The argument on this page requires a classical transcript between fresh experiments. Arbitrary persistent coherent memory is treated separately in [Coherent memory](coherent_memory.md), which obtains the same polynomial frontier through a different trace-distance argument. The stronger $`\epsilon^{-2}`$ lower prefactor proved here is not inferred from that coherent argument.
 

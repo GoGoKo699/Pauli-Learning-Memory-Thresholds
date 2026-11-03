@@ -113,9 +113,9 @@ The principal resource is an outside quantum reference. At each call, the device
 
 The learning frontier concerns integers \(n\geq1\), \(0\leq k\leq n\), and \(1\leq w\leq n\), with \(0<\epsilon<1/3\) and \(0<\delta<1/2\). The accuracy and confidence are held fixed when interpreting the basic asymptotic statement. Individual upper bounds below are valid on the larger ranges explicitly stated with them.
 
-Two integers describe the task: \(w\), the largest weight of a requested correlation, and \(D=n-k\), the deficit from a full \(n\)-qubit reference. Their combined parameter is
+The target weight \(w\) and the missing reference width \(n-k\) combine in the parameter
 \begin{equation}
- R=\frac{w(n-k)}{n}=\frac{wD}{n}.
+ R=\frac{w(n-k)}{n}.
  \label{eq:plmt-R}
 \end{equation}
 At fixed nontrivial accuracy and confidence, polynomially many channel calls suffice exactly when
@@ -199,7 +199,7 @@ Known controls may depend on \(h\), move information between \(S\) and \(A\), me
 
 The oracle is an ordinary use of \(\Lambda\otimes\operatorname{id}_A\). It supplies no inverse, controlled channel, channel environment, or purification of the channel action. In particular, an unlimited classical history is not an uncharged coherent controller.
 
-The call budget \(N\) is worst-case: every execution uses at most \(N\) invocations. A coherent block of length \(L\) costs \(L\) calls even if it has one terminal measurement. An early halt is allowed. The lower-bound argument treats later query slots on a halted branch as inactive; it does not replace a deterministic budget with an expected count.
+The call budget \(T\) is worst-case: every execution uses at most \(T\) invocations. A coherent block of length \(L\) costs \(L\) calls even if it has one terminal measurement. An early halt is allowed. The lower-bound argument treats later query slots on a halted branch as inactive; it does not replace a deterministic budget with an expected count.
 
 A fresh experiment is the restricted case in which a probe is prepared, the channel is used once, and the quantum output is completely measured before the next round. Preparation and measurement may still adapt to all earlier classical outcomes. This distinction will matter for the finite accuracy dependence.
 
@@ -211,9 +211,9 @@ One reference qubit paired with one queried qubit can identify a complete local 
 \]
 The four states \((P_v\otimes I)|\Phi^+\rangle\), for the four local labels \(v\), are orthogonal. A Bell-basis measurement therefore returns the two error bits. This information is obtained through an ordinary channel call and a joint measurement; the device does not reveal its sampled error as an extra output.
 
-At an unpaired site, choose an axis \(a_i\in\{X,Y,Z\}\), prepare its positive eigenstate, and measure along that axis after the call. The sign is
+At an unpaired site, choose an axis \(\alpha_i\in\{X,Y,Z\}\), prepare its positive eigenstate, and measure along that axis after the call. The sign is
 \begin{equation}
- b_i=(-1)^{[a_i,v_i]}.
+ b_i=(-1)^{[\alpha_i,v_i]}.
 \end{equation}
 It reveals one commutation bit, rather than both local error bits.
 
@@ -222,7 +222,7 @@ A fresh partial-Bell experiment chooses a uniform \(k\)-element subset \(K\) of 
 \subsection{Compatibility with a later target}
 Let the requested Pauli \(P_e\) have weight \(u\). Every paired site supplies both error bits, so it supports any local target axis. An unpaired active site supports the request only when its chosen axis agrees with that target factor. Define
 \begin{equation}
- H_e=\mathbf 1\{a_i=e_i\text{ for all }i\in\operatorname{supp}(e)\setminus K\}.
+ H_e=\mathbf 1\{\alpha_i=e_i\text{ for all }i\in\operatorname{supp}(e)\setminus K\}.
 \end{equation}
 On a compatible record, multiplying the appropriate Bell-label characters and local signs recovers
 \begin{equation}
@@ -239,16 +239,16 @@ Let \(p_u=\Pr(H_e=1)\), which depends only on the target weight. If \(j\) target
 \end{equation}
 Out-of-range binomial coefficients mean zero. Equivalently, if \(M\) is the number of unpaired active sites, then
 \[
- p_u=\mathbb E_K3^{-M},\qquad \mathbb E_KM=\frac{uD}{n}.
+ p_u=\mathbb E_K3^{-M},\qquad \mathbb E_KM=\frac{u(n-k)}{n}.
 \]
 Because \(3^{-m}\) is convex,
 \begin{equation}
- p_u\geq3^{-uD/n}.
+ p_u\geq3^{-u(n-k)/n}.
  \label{eq:plmt-compatibility}
 \end{equation}
 Adding a target site can only multiply its conditional usability by \(1\) or \(1/3\). Permutation symmetry then shows that \(p_u\) is nonincreasing in \(u\), and \(p_w\geq3^{-R}\).
 
-This explains the constructive meaning of \(R\). A weight-\(u\) target has, on average, \(uD/n\) active sites without references. Each is a possible axis mismatch. The converse must show that this mechanism reflects a universal width obstruction, rather than just a weakness of these particular probes.
+This explains the constructive meaning of \(R\). A weight-\(u\) target has, on average, \(u(n-k)/n\) active sites without references. Each is a possible axis mismatch. The converse must show that this mechanism reflects a universal width obstruction, rather than just a weakness of these particular probes.
 
 \subsection{Variance, rather than range alone, sets the sample cost}
 Use the one-record estimate
@@ -264,18 +264,18 @@ implemented as zero when the record is unusable. Settings are independent of the
 \end{equation}
 The normalization compensates for missing records. It can make an individual sample larger than one even though the coefficient being estimated lies in \([-1,1]\).
 
-For \(N\) independent calls, average the \(X_e\)'s. Their centered magnitude is at most \(2/p_u\). Bernstein's concentration inequality therefore gives
+For \(T\) independent calls, average the \(X_e\)'s. Their centered magnitude is at most \(2/p_u\). Bernstein's concentration inequality therefore gives
 \begin{equation}
  \Pr\{|\widehat\lambda_e-\lambda_e|\geq\epsilon\}
  \leq
- 2\exp\!\left[-\frac{N\epsilon^2p_u}{2+4\epsilon/3}\right].
+ 2\exp\!\left[-\frac{T\epsilon^2p_u}{2+4\epsilon/3}\right].
  \label{eq:plmt-bernstein}
 \end{equation}
 For \(0<\epsilon\leq1\), the denominator is below four. A range-only bound would unnecessarily use \(p_u^{-2}\); retaining the second moment gives \(p_u^{-1}\).
 
 For any \(0<\epsilon\leq1\) and \(0<\delta<1\), a union bound over the targets proves the simultaneous guarantee with
 \begin{equation}
- N=
+ T=
  \left\lceil4\epsilon^{-2}p_w^{-1}
  \ln\frac{2M_w}{\delta}\right\rceil
  \leq
@@ -285,7 +285,7 @@ For any \(0<\epsilon\leq1\) and \(0<\delta<1\), a union bound over the targets p
 \end{equation}
 Here and below, \(\ln\) denotes the natural logarithm. Estimates for different targets may be correlated because they use the same record; the union bound requires no independence between them.
 
-Each call uses \(n\) queried qubits, \(k\) reference qubits, and \(O(n)\) ideal local or Bell operations. Its record occupies \(O(n)\) bits, hence \(O(nN)\) bits over acquisition. One later coefficient can be decoded by scanning the records in \(O(nN)\) elementary operations with polynomial-bit arithmetic. The exact probability \eqref{eq:plmt-pu} is a computable rational number of polynomial bit length. There is no quantum random-access memory or exponentially large normalization table. Printing the entire family, however, must pay for its output length.
+Each call uses \(n\) queried qubits, \(k\) reference qubits, and \(O(n)\) ideal local or Bell operations. Its record occupies \(O(n)\) bits, hence \(O(nT)\) bits over acquisition. One later coefficient can be decoded by scanning the records in \(O(nT)\) elementary operations with polynomial-bit arithmetic. The exact probability \eqref{eq:plmt-pu} is a computable rational number of polynomial bit length. There is no quantum random-access memory or exponentially large normalization table. Printing the entire family, however, must pay for its output length.
 
 \subsection{A complete two-qubit example}
 Take \(n=2\), \(k=1\), and a later request \(P=X\otimes Z\). Pair the first site with the reference and choose the \(Z\) axis on the second. Prepare \(|\Phi^+\rangle_{S_1A}|0\rangle_{S_2}\). The record contains
@@ -314,16 +314,16 @@ Thus the system marginal \(\rho_S\) has rank at most \(2^k\). A mixed probe can 
 Low rank restricts the response averaged over unknown Pauli directions. We need one bound for the average quantum-output response of persistent coherent strategies and another for the squared likelihood response of fresh experiments. Both will follow from the same rank-dependent suppression factor.
 
 \subsection{A low-weight prior is an averaging device}
-For \(0\leq\xi\leq1\), introduce the normalized product distribution
+For \(0\leq x\leq1\), introduce the normalized product distribution
 \begin{equation}
- \nu_\xi(e)=\frac{\xi^{|e|}}{(1+3\xi)^n},\qquad
- t=\frac{1-\xi}{1+3\xi},\qquad
- \gamma=\frac{1-t}{1+t}=\frac{2\xi}{1+\xi}.
+ \nu_x(e)=\frac{x^{|e|}}{(1+3x)^n},\qquad
+ t=\frac{1-x}{1+3x},\qquad
+ \gamma=\frac{1-t}{1+t}=\frac{2x}{1+x}.
  \label{eq:plmt-prior}
 \end{equation}
-A site is identity with probability \(1/(1+3\xi)\), and each nonidentity axis has probability \(\xi/(1+3\xi)\). For any fixed Pauli label \(b\),
+A site is identity with probability \(1/(1+3x)\), and each nonidentity axis has probability \(x/(1+3x)\). For any fixed Pauli label \(b\),
 \[
- \mathbb E_{\nu_\xi}\chi_e(b)=t^{|b|}.
+ \mathbb E_{\nu_x}\chi_e(b)=t^{|b|}.
 \]
 The identity contributes a positive sign; a nonidentity local label commutes with itself and anticommutes with the other two axes.
 
@@ -331,7 +331,7 @@ For \(0\leq s\leq1\), let \(\Delta_s(F)=sF+(1-s)\operatorname{Tr}(F)I_2/2\) be a
 \begin{equation}
  \mathcal T_s(P_b)=s^{|b|}P_b,\quad
  \mathcal T_s\mathcal T_u=\mathcal T_{su},\quad
- \mathbb E_{\nu_\xi}P_eFP_e=\mathcal T_t(F).
+ \mathbb E_{\nu_x}P_eFP_e=\mathcal T_t(F).
  \label{eq:plmt-averaging}
 \end{equation}
 These maps average the proof's Pauli directions. They are not additional noise imposed on the learner's reference.
@@ -367,36 +367,36 @@ At \(t=0\), the same endpoint follows directly from
 At \(t=1\), the exponent is zero and the bound is an identity. This makes the complete interval precise.
 
 \subsection{The complex likelihood response}
-For a nonzero complex matrix \(F\) of rank \(r\), define
+For a nonzero complex matrix \(C\) of rank \(r\), define
 \begin{equation}
- G_e(F)=
- \frac{\operatorname{Tr}(P_eFP_eF^\dagger)}
- {\operatorname{Tr}(FF^\dagger)}.
+ G_e(C)=
+ \frac{\operatorname{Tr}(P_eCP_eC^\dagger)}
+ {\operatorname{Tr}(CC^\dagger)}.
 \end{equation}
-Although \(F\) need not be Hermitian, this response is real. To see why, expand in the orthogonal Pauli basis and define probability weights
+Although \(C\) need not be Hermitian, this response is real. To see why, expand in the orthogonal Pauli basis and define probability weights
 \[
- q_b=\frac{|\operatorname{Tr}(P_bF)|^2}
- {d\operatorname{Tr}(FF^\dagger)},\qquad \sum_bq_b=1.
+ q_b=\frac{|\operatorname{Tr}(P_bC)|^2}
+ {d\operatorname{Tr}(CC^\dagger)},\qquad \sum_bq_b=1.
 \]
 Equation \eqref{eq:plmt-pauli} gives
 \[
- G_e(F)=\sum_bq_b\chi_e(b),\qquad |G_e(F)|\leq1.
+ G_e(C)=\sum_bq_b\chi_e(b),\qquad |G_e(C)|\leq1.
 \]
 Averaging its square produces
 \[
- \mathbb E_{\nu_\xi}G_e(F)^2
+ \mathbb E_{\nu_x}G_e(C)^2
  =\sum_{b,c}q_bq_ct^{|b+c|}.
 \]
 For each fixed \(c\), multiplication by \(P_c\) shifts Pauli labels without changing rank or singular values. Parseval's identity therefore gives
 \[
  \sum_bq_bt^{|b+c|}
  =
- \frac{\|\mathcal T_{\sqrt t}(P_cF)\|_{2,\mathrm{av}}^2}
- {\|F\|_{2,\mathrm{av}}^2}.
+ \frac{\|\mathcal T_{\sqrt t}(P_cC)\|_{2,\mathrm{av}}^2}
+ {\|C\|_{2,\mathrm{av}}^2}.
 \]
 Every such row is bounded by \((r/d)^\gamma\) using \eqref{eq:plmt-hyper-rank}. Averaging the rows proves
 \begin{equation}
- \boxed{\mathbb E_{\nu_\xi}G_e(F)^2\leq(r/d)^\gamma.}
+ \boxed{\mathbb E_{\nu_x}G_e(C)^2\leq(r/d)^\gamma.}
  \label{eq:plmt-G}
 \end{equation}
 \subsection{The quantum-output response}
@@ -416,7 +416,7 @@ implies
 \]
 The right-hand side is nonnegative: it is the squared Hilbert--Schmidt norm of \(\rho^{1/4}P_e\rho^{1/4}\). Average using \eqref{eq:plmt-averaging}, put \(F=\sqrt\rho\), and use self-adjointness and the semigroup property:
 \begin{align}
- \mathbb E_{\nu_\xi}f_e(\rho)^2
+ \mathbb E_{\nu_x}f_e(\rho)^2
  &\leq \operatorname{Tr}(F\mathcal T_t(F))\\
  &=d\|\mathcal T_{\sqrt t}(F)\|_{2,\mathrm{av}}^2
  \leq(r/d)^\gamma.
@@ -424,25 +424,25 @@ The right-hand side is nonnegative: it is the squared Hilbert--Schmidt norm of \
 \end{align}
 The final equality of normalization uses \(\operatorname{Tr}(F^\dagger F)=1\). Both \eqref{eq:plmt-G} and \eqref{eq:plmt-f} thus give the suppression
 \[
- B_\xi=2^{-D\gamma}
+ B_x=2^{-(n-k)\gamma}
 \]
 whenever the relevant rank is at most \(2^k\).
 
 \subsection{Restricting the prior to physical targets}
-The product prior includes the identity and labels above weight \(w\). For \(0<\xi\leq1\), the physical hidden label can follow \(\nu_\xi\) conditioned on \(\mathcal A_w\). The endpoint \(\xi=0\) remains an algebraic endpoint of the unconditioned moment bounds, but cannot be conditioned this way because the family then has zero probability. Write \(p_{\mathcal A}=\nu_\xi(\mathcal A_w)\). For any nonnegative squared response, discarding terms outside that family and renormalizing gives
+The product prior includes the identity and labels above weight \(w\). For \(0<x\leq1\), the physical hidden label can follow \(\nu_x\) conditioned on \(\mathcal A_w\). The endpoint \(x=0\) remains an algebraic endpoint of the unconditioned moment bounds, but cannot be conditioned this way because the family then has zero probability. Write \(p_{\mathcal A}(x)=\nu_x(\mathcal A_w)\) and \(\pi_x=\nu_x(\cdot\mid\mathcal A_w)\). For any nonnegative squared response, discarding terms outside that family and renormalizing gives
 \begin{equation}
- \mathbb E_{\nu_\xi(\cdot\mid\mathcal A_w)}g_e^2
- \leq \frac{B_\xi}{p_{\mathcal A}},
+ \mathbb E_{\pi_x}g_e^2
+ \leq \frac{B_x}{p_{\mathcal A}(x)},
  \qquad
- \mathbb E_{\nu_\xi(\cdot\mid\mathcal A_w)}|g_e|
- \leq\sqrt{\frac{B_\xi}{p_{\mathcal A}}}.
+ \mathbb E_{\pi_x}|g_e|
+ \leq\sqrt{\frac{B_x}{p_{\mathcal A}(x)}}.
  \label{eq:plmt-conditioning}
 \end{equation}
 The second inequality is Cauchy--Schwarz under the conditioned probability measure. In the following width lower bounds, \(\mathbb E_e\) denotes this conditioned-prior average unless another prior is specified.
 
 Choose
 \begin{equation}
- \xi_*=\frac{w}{3(2n-w)},\qquad
+ x_*=\frac{w}{3(2n-w)},\qquad
  \kappa=\frac{w}{3n-w}.
  \label{eq:plmt-kappa}
 \end{equation}
@@ -450,16 +450,16 @@ The random weight under this prior is
 \(W\sim\operatorname{Bin}(n,w/(2n))\), so its mean is \(w/2\), and
 \(\gamma=\kappa\). Importantly,
 \begin{equation}
- p_{\mathcal A}=\Pr(1\leq W\leq w)\geq\frac14.
+ p_{\mathcal A}(x_*)=\Pr(1\leq W\leq w)\geq\frac14.
  \label{eq:plmt-mass}
 \end{equation}
 For \(w=1\), its exact value is
 \(\frac12(1-\frac1{2n})^{n-1}\geq(n+1)/(4n)\).
 For \(w=2\), the zero probability is at most \(e^{-1}\), while
-\(\Pr(W\geq3)\leq1/3\), giving \(p_{\mathcal A}\geq2/3-e^{-1}>1/4\).
+\(\Pr(W\geq3)\leq1/3\), giving \(p_{\mathcal A}(x)\geq2/3-e^{-1}>1/4\).
 For \(w\geq3\), the zero probability is at most \(e^{-3/2}\) and
 \(\Pr(W>w)\leq w/[2(w+1)]\leq1/2\), again giving the claim.
-The identity is therefore excluded without an exponentially small conditioning cost. The suppression becomes \(B_{\xi_*}=2^{-\kappa D}\).
+From now on use \(x=x_*\) unless a different endpoint prior is specified. The identity is therefore excluded without an exponentially small conditioning cost. The suppression becomes \(B_{x_*}=2^{-\kappa (n-k)}\).
 
 \section{The coherent lower bound counts every call}
 To lower-bound learning, consider depolarization and a channel with one coefficient equal to \(3\epsilon\). Requesting that coefficient after acquisition separates the two cases. We bound the change caused by one invocation, then sum over all invocations while retaining feedback and stored quantum states.
@@ -468,17 +468,17 @@ Against complete depolarization
 \[
  \Dep(F)=\frac{\operatorname{Tr}F}{d}I_d,
 \]
-consider a nonidentity label \(e\) and amplitude \(0<\eta\leq1\):
+consider a nonidentity label \(e\) and amplitude \(0<\lambda\leq1\):
 \begin{equation}
- \Lambda_e^{(\eta)}(F)=
- \Dep(F)+\frac{\eta}{d}\operatorname{Tr}(P_eF)P_e.
+ \mathcal E_{e,\lambda}(F)=
+ \Dep(F)+\frac{\lambda}{d}\operatorname{Tr}(P_eF)P_e.
  \label{eq:plmt-spike}
 \end{equation}
 This is a physical Pauli channel. Its error probabilities are
 \[
- p^{(e,\eta)}(v)=4^{-n}[1+\eta\chi_e(v)].
+ p^{(e,\lambda)}(v)=4^{-n}[1+\lambda\chi_e(v)].
 \]
-They are nonnegative, and sum to one because a nonidentity character has zero average. The Pauli eigenvalues are one at the identity, \(\eta\) at \(e\), and zero elsewhere. An identity label cannot be used in this formula as a spike: the extra term would change trace preservation.
+They are nonnegative, and sum to one because a nonidentity character has zero average. The Pauli eigenvalues are one at the identity, \(\lambda\) at \(e\), and zero elsewhere. An identity label cannot be used in this formula as a spike: the extra term would change trace preservation.
 
 \subsection{One changed invocation}
 For an input state \(\omega_{SA}\), define an operator on the reference,
@@ -488,11 +488,11 @@ For an input state \(\omega_{SA}\), define an operator on the reference,
 \]
 The difference of the two outputs is
 \[
- [(\Lambda_e^{(\eta)}-\Dep)\otimes\operatorname{id}_A](\omega)
- =\frac{\eta}{d}P_e\otimes B_e(\omega).
+ [(\mathcal E_{e,\lambda}-\Dep)\otimes\operatorname{id}_A](\omega)
+ =\frac{\lambda}{d}P_e\otimes B_e(\omega).
 \]
 Since \(\|P_e\|_1=d\), its trace norm is
-\(\eta\|B_e(\omega)\|_1\). For a pure input, the Schmidt representation shows that the nonzero block of \(B_e(\omega)\) is a transpose of the corresponding block of \(\sqrt{\rho_S}P_e\sqrt{\rho_S}\). Transposition preserves singular values. Equation \eqref{eq:plmt-f} therefore bounds its squared norm by \(B_\xi\) after averaging.
+\(\lambda\|B_e(\omega)\|_1\). For a pure input, the Schmidt representation shows that the nonzero block of \(B_e(\omega)\) is a transpose of the corresponding block of \(\sqrt{\rho_S}P_e\sqrt{\rho_S}\). Transposition preserves singular values. Equation \eqref{eq:plmt-f} therefore bounds its squared norm by \(B_x\) after averaging.
 
 For a mixed input, decompose \(\omega=\sum_ju_j|\psi_j\rangle\langle\psi_j|\) within the actual \(S\otimes A\). Trace-norm convexity and then Jensen's inequality give
 \[
@@ -501,38 +501,38 @@ For a mixed input, decompose \(\omega=\sum_ju_j|\psi_j\rangle\langle\psi_j|\) wi
 \]
 The same second-moment bound follows without assuming a low-rank mixed system marginal. The classical blocks in \eqref{eq:plmt-cut} are handled by the same convexity argument. Their number does not enter.
 
-Write \(\operatorname{TD}(\rho,\sigma)=\frac12\|\rho-\sigma\|_1\). It bounds the change in probability of any final measurement event and contracts under a common completely positive trace-preserving map. For an input independent of the hidden label, \eqref{eq:plmt-conditioning} gives the mean one-call distance bound
+Write \(D_{\mathrm{tr}}(\rho,\sigma)=\frac12\|\rho-\sigma\|_1\). It bounds the change in probability of any final measurement event and contracts under a common completely positive trace-preserving map. For an input independent of the hidden label, \eqref{eq:plmt-conditioning} gives the mean one-call distance bound
 \begin{equation}
- \mathbb E_e\operatorname{TD}(\text{spike output},\text{null output})
- \leq\frac{\eta}{2}\sqrt{\frac{B_\xi}{p_{\mathcal A}}}.
+ \mathbb E_eD_{\mathrm{tr}}(\text{spike output},\text{null output})
+ \leq\frac{\lambda}{2}\sqrt{\frac{B_x}{p_{\mathcal A}(x)}}.
  \label{eq:plmt-onecall}
 \end{equation}
 
 \subsection{Why adaptivity does not invalidate the average}
 The input during the actual spike execution can depend on \(e\). Applying \eqref{eq:plmt-onecall} directly to such a state would be invalid. Instead compare mathematical executions with increasing null prefixes. Execution \(j\) uses the null channel in its first \(j\) query slots and the spike afterward. Neighboring executions have the same null prefix, so their input at the differing call is independent of \(e\). Their subsequent operations are the same physical map for each fixed \(e\), even if that map includes further spike calls and feedback. Contraction applies to that common suffix.
 
-The triangle inequality over all \(N\) slots yields, for the full acquisition outputs \(\sigma_0^{(e)}\) and \(\sigma_N\),
+The triangle inequality over all \(T\) slots yields, for the full acquisition outputs \(\sigma_0^{(e)}\) and \(\sigma_T\),
 \begin{equation}
- \mathbb E_e\operatorname{TD}(\sigma_0^{(e)},\sigma_N)
- \leq\frac{N\eta}{2}\sqrt{\frac{B_\xi}{p_{\mathcal A}}}.
+ \mathbb E_eD_{\mathrm{tr}}(\sigma_0^{(e)},\sigma_T)
+ \leq\frac{T\lambda}{2}\sqrt{\frac{B_x}{p_{\mathcal A}(x)}}.
  \label{eq:plmt-hybrid}
 \end{equation}
 On a halted classical branch, later slots are inactive and contribute zero. The active probabilities sum to at most one, which preserves the convex bound. This is why a worst-case budget and ordinary early stopping are compatible with the argument.
 
-Set \(\eta=3\epsilon<1\). Once the label is revealed, threshold the estimated coefficient at \(3\epsilon/2\). Accurate null estimates are at most \(\epsilon\); accurate positive-spike estimates are at least \(2\epsilon\). Thus a valid learner gives a test whose probability of accepting the alternative differs by at least \(1-2\delta\). This holds for every label separately, even when its final measurement depends on that label. Therefore each output distance is at least \(1-2\delta\).
+Set \(\lambda=3\epsilon<1\). Once the label is revealed, threshold the estimated coefficient at \(3\epsilon/2\). Accurate null estimates are at most \(\epsilon\); accurate positive-spike estimates are at least \(2\epsilon\). Thus a valid learner gives a test whose probability of accepting the alternative differs by at least \(1-2\delta\). This holds for every label separately, even when its final measurement depends on that label. Therefore each output distance is at least \(1-2\delta\).
 
 Combining with \eqref{eq:plmt-hybrid} and using \eqref{eq:plmt-kappa}--\eqref{eq:plmt-mass} proves
 \begin{equation}
- \boxed{N_{\mathrm{coherent}}\geq
+ \boxed{T_{\mathrm{coherent}}\geq
  \frac{1-2\delta}{3\epsilon}
  2^{\,w(n-k)/[2(3n-w)]}.}
  \label{eq:plmt-coherent-lower}
 \end{equation}
 The proof permits quantum information to survive for arbitrarily many calls. Its inverse-accuracy factor is \(\epsilon^{-1}\), not \(\epsilon^{-2}\).
 
-For the full family \(w=n\), one can instead take the uniform Pauli prior \(\xi=1\). Its nonidentity mass is \(1-4^{-n}\) and \(\gamma=1\), giving the stronger endpoint
+For the full family \(w=n\), one can instead take the uniform Pauli prior \(x=1\). Its nonidentity mass is \(1-4^{-n}\) and \(\gamma=1\), giving the stronger endpoint
 \[
- N_{\mathrm{coherent}}\geq
+ T_{\mathrm{coherent}}\geq
  \frac{2(1-2\delta)\sqrt{1-4^{-n}}}{3\epsilon}\,2^{(n-k)/2}.
 \]
 The uniform finite expression \eqref{eq:plmt-coherent-lower} is convenient across all weights, but is not the strongest available expression at this endpoint.
@@ -546,18 +546,18 @@ These inequalities prove \eqref{eq:plmt-frontier}. In particular, if
 
 \section{Why fresh experiments give a sharper accuracy factor}
 A classical transcript permits a different argument. Use a sign \(s\in\{-1,+1\}\) chosen once at the start, and let
-\(\Lambda_{e,s}^{(\eta)}=\Dep+s\eta\,\operatorname{Tr}(P_e\,\cdot)P_e/d\), with \(0<\eta<1\). Its probabilities
-\(4^{-n}[1+s\eta\chi_e(v)]\) remain physical.
+\(\mathcal E_{e,s\lambda}=\Dep+s\lambda\,\operatorname{Tr}(P_e\,\cdot)P_e/d\), with \(0<\lambda<1\). Its probabilities
+\(4^{-n}[1+s\lambda\chi_e(v)]\) remain physical.
 
 Fix a history and one fresh experiment. For a pure probe and rank-one measurement effect, write their system-by-reference amplitude matrices as \(\Psi\) and \(M\):
 \[
  |\psi\rangle=\sum_{i,\alpha}\Psi_{i\alpha}|i\rangle|\alpha\rangle,
  \qquad |m\rangle=\sum_{i,\alpha}M_{i\alpha}|i\rangle|\alpha\rangle .
 \]
-Here \(i=1,\ldots,d\), \(\alpha=1,\ldots,r\), \(r\leq2^k\), and \(\|\Psi\|_F=1\). The effect vector need not be normalized. The contraction \(F=M\Psi^\dagger\) has rank at most \(r\). Direct substitution into the channel gives
+Here \(i=1,\ldots,d\), \(\alpha=1,\ldots,r\), \(r\leq2^k\), and \(\|\Psi\|_F=1\). The effect vector need not be normalized. The contraction \(C=M\Psi^\dagger\) has rank at most \(r\). Direct substitution into the channel gives
 \begin{equation}
- q_{\Dep}=\frac{\|F\|_F^2}{d},\qquad
- \frac{q_{e,s}}{q_{\Dep}}=1+s\eta G_e(F)
+ q_{\Dep}=\frac{\|C\|_F^2}{d},\qquad
+ \frac{q_{e,s}}{q_{\Dep}}=1+s\lambda G_e(C)
  \quad(q_{\Dep}>0).
  \label{eq:plmt-likelihood}
 \end{equation}
@@ -569,19 +569,19 @@ together with the probe's reference block
 produces the numerator in \(G_e\). The transpose is a basis convention, not an extra physical operation.
 
 Mixed preparations and general measurement effects are positive sums of these elementary pairs. Their normalized null weights express the complete outcome response \(g_e\) as a convex combination of \(G_e\)'s. Those weights are independent of \(e,s\), so \(|g_e|\leq1\) and
-\(\mathbb E_e g_e^2\leq B_\xi/p_{\mathcal A}\).
-If a null outcome has probability zero, every positively weighted elementary pair has \(F=0\), hence zero signal as well. No missing alternative-only outcome invalidates the likelihood ratio.
+\(\mathbb E_e g_e^2\leq B_x/p_{\mathcal A}(x)\).
+If a null outcome has probability zero, every positively weighted elementary pair has \(C=0\), hence zero signal as well. No missing alternative-only outcome invalidates the likelihood ratio.
 
-For a transcript \(z=(z_1,\ldots,z_N)\), the likelihood ratio of a whole execution is a product,
+For a transcript \(z=(z_1,\ldots,z_T)\), the likelihood ratio of a whole execution is a product,
 \[
- L_{e,s}(z)=\prod_{\ell=1}^N
- (1+s\eta g_{e,\ell}(z_{\leq\ell})).
+ L_{e,s}(z)=\prod_{\ell=1}^T
+ (1+s\lambda g_{e,\ell}(z_{\leq\ell})).
 \]
 The sign is fixed across the entire execution. Averaging the two complete transcript laws, rather than independently resampling the sign at each call, gives
 \[
  \overline L_e=\frac{L_{e,+}+L_{e,-}}2
- \geq\prod_{\ell=1}^N\sqrt{1-\eta^2g_{e,\ell}^2}
- \geq1-\eta^2\sum_{\ell=1}^Ng_{e,\ell}^2.
+ \geq\prod_{\ell=1}^T\sqrt{1-\lambda^2g_{e,\ell}^2}
+ \geq1-\lambda^2\sum_{\ell=1}^Tg_{e,\ell}^2.
 \]
 The first inequality is arithmetic--geometric mean; the second follows from
 \(\sqrt{1-u}\geq1-u\) and \(\prod_\ell(1-u_\ell)\geq1-\sum_\ell u_\ell\).
@@ -590,14 +590,14 @@ Under the null, every history is independent of the hidden label, including the 
 \[
  \mathbb E_e\operatorname{TV}
  \left(Q_0,\frac{Q_{e,+}+Q_{e,-}}2\right)
- \leq\frac{N\eta^2B_\xi}{p_{\mathcal A}}.
+ \leq\frac{T\lambda^2B_x}{p_{\mathcal A}(x)}.
 \]
 This step never replaces the posterior of a spike execution by the original prior.
 
-Choose \(\eta=3\epsilon\) and accept either signed alternative when
+Choose \(\lambda=3\epsilon\) and accept either signed alternative when
 \(|\widehat\lambda_e|>3\epsilon/2\). Successful estimation requires total variation at least \(1-2\delta\). Consequently
 \begin{equation}
- \boxed{N_{\mathrm{fresh}}\geq
+ \boxed{T_{\mathrm{fresh}}\geq
  \frac{1-2\delta}{36\epsilon^2}
  2^{\,w(n-k)/(3n-w)}.}
  \label{eq:plmt-fresh-lower}
@@ -610,7 +610,7 @@ Learning coefficients is not necessary if the only desired answer is whether one
 \begin{equation}
  \Gamma_0=(1-\tau)\operatorname{id}+\tau\Dep,
  \qquad
- \Gamma_e=(1-\tau)\operatorname{id}+\tau\Lambda_e^{(1)},
+ \Gamma_e=(1-\tau)\operatorname{id}+\tau\mathcal E_{e,1},
  \quad e\in\mathcal A_w.
  \label{eq:plmt-detect-promise}
 \end{equation}
@@ -622,7 +622,7 @@ Under the null, every nonidentity coefficient is \(1-\tau\). Under the alternati
 \]
 This has \(2^{2n-1}\) labels. Given \(e\), it can be sampled with \(2n-1\) random bits and one parity equation, so the physical family has a succinct description. The learner is not given that description.
 
-The channel \(\Lambda_e^{(1)}\) also measures the parity projectors
+The channel \(\mathcal E_{e,1}\) also measures the parity projectors
 \(\Pi_\pm=(I\pm P_e)/2\) and prepares \(2\Pi_\pm/d\) after the corresponding outcome. It is entanglement breaking, even though a reference can help learn its hidden axis. The identity mixture for \(\tau<1\) need not be entanglement breaking.
 
 For orientation, the full diamond norm obeys
@@ -631,7 +631,7 @@ For orientation, the full diamond norm obeys
 
 The direct hybrid from the previous section, now with null \(\Gamma_0\) and amplitude \(\tau\), gives
 \begin{equation}
- N\geq\frac{1-2\delta}{\tau}
+ T\geq\frac{1-2\delta}{\tau}
  2^{\,w(n-k)/[2(3n-w)]}.
  \label{eq:plmt-det-lower}
 \end{equation}
@@ -664,12 +664,12 @@ Thus the finite choices
  J=\left\lceil3^R\ln\frac2\delta\right\rceil,\qquad
  L=\left\lceil\frac2\tau
  \left(m\ln2+\ln\frac{2J}{\delta}\right)\right\rceil,
- \qquad N=JL
+ \qquad T=JL
  \label{eq:plmt-JL}
 \end{equation}
-control both error types. Streaming Gaussian elimination uses \(O(m^2)\) stored classical bits and \(O(Nm^2)\) bit operations. This is polynomial processing in the polynomial-call regime.
+control both error types. Streaming Gaussian elimination uses \(O(m^2)\) stored classical bits and \(O(Tm^2)\) bit operations. This is polynomial processing in the polynomial-call regime.
 
-For the two-qubit example, \(m=3\), \(R=1\), \(\delta=1/10\), and \(\tau=1\), these sufficient formulas give \(J=9\), \(L=15\), and \(N=135\). With hidden \(X\otimes Z\), the compatible setting previously described satisfies \(y_2+y_3=0\). Its rows \((1,0,0),(0,1,1),(1,1,1)\) have rank two: the third is the binary sum of the first two. A null block can have deficient rank by chance, but its probability is at most \(7\,2^{-L}\). At \(\tau=1/4\), the same prescription gives \(L=59\) and \(N=531\); rare nonzero syndromes require more repetitions.
+For the two-qubit example, \(m=3\), \(R=1\), \(\delta=1/10\), and \(\tau=1\), these sufficient formulas give \(J=9\), \(L=15\), and \(T=135\). With hidden \(X\otimes Z\), the compatible setting previously described satisfies \(y_2+y_3=0\). Its rows \((1,0,0),(0,1,1),(1,1,1)\) have rank two: the third is the binary sum of the first two. A null block can have deficient rank by chance, but its probability is at most \(7\,2^{-L}\). At \(\tau=1/4\), the same prescription gives \(L=59\) and \(T=531\); rare nonzero syndromes require more repetitions.
 
 Together with \eqref{eq:plmt-det-lower}, the construction establishes
 \begin{equation}
@@ -705,7 +705,7 @@ It is one on every unusable record and whenever the actual error is identity. Pu
 \end{equation}
 The centered magnitude is at most \(2/p_u\). Bernstein concentration and a union bound, now for \(0<\epsilon<\tau/3\), give the sufficient count
 \begin{equation}
- N_{\mathrm{fresh}}\leq
+ T_{\mathrm{fresh}}\leq
  \left\lceil9\tau\epsilon^{-2}3^R
  \ln\frac{2M_w}{\delta}\right\rceil.
  \label{eq:plmt-weak-upper}
@@ -717,23 +717,23 @@ The matching scale in the lower prefactor requires more than rescaling the eigen
 The signed alternatives have likelihood
 \[
  \frac{\widetilde q_{e,s}(y)}{q_0(y)}
- =1+s\eta h_e(y),\qquad
+ =1+s\lambda h_e(y),\qquad
  h_e(y)=\frac{\tau q_{\Dep}(y)}{q_0(y)}g_e(y).
 \]
 Zero-probability outcomes are omitted as before; set \(h_e=0\) when
 \(q_{\Dep}=0<q_0\). The inequality \(q_0\geq\tau q_{\Dep}\) gives
 \[
  \sum_yq_0(y)\mathbb E_eh_e(y)^2
- \leq\frac{\tau B_\xi}{p_{\mathcal A}}.
+ \leq\frac{\tau B_x}{p_{\mathcal A}(x)}.
 \]
-Apply the signed-transcript argument with \(\eta=3\epsilon/\tau<1\).
+Apply the signed-transcript argument with \(\lambda=3\epsilon/\tau<1\).
 It yields
 \begin{equation}
- N_{\mathrm{fresh}}\geq
- \frac{(1-2\delta)\tau}{36\epsilon^2}\,2^{\kappa D},
+ T_{\mathrm{fresh}}\geq
+ \frac{(1-2\delta)\tau}{36\epsilon^2}\,2^{\kappa (n-k)},
  \qquad
- N_{\mathrm{coherent}}\geq
- \frac{1-2\delta}{3\epsilon}\,2^{\kappa D/2}.
+ T_{\mathrm{coherent}}\geq
+ \frac{1-2\delta}{3\epsilon}\,2^{\kappa (n-k)/2}.
  \label{eq:plmt-weak-lower}
 \end{equation}
 The factor \(\tau\) in the fresh bound comes from an outcome-weighted second moment under the weak null. No mixture flag or expected-query shortcut is assumed.
@@ -751,20 +751,20 @@ The width model permits resets, freshly prepared probes, and a growing classical
 \]
 They are also completely positive and trace preserving. A unitary or nonselective dephasing is allowed. A reset to a pure state is not. A measurement record is permitted only through a complete implementation respecting this same initialized-memory and unital-control contract. There is no free fresh record after a measurement.
 
-The null is complete depolarization of \(S\). The alternative retains one of the \(3n\) weight-one Paulis at coefficient \(1/2\). Write the label as \(a=(i,\alpha)\), where \(i=1,\ldots,n\) and \(\alpha\in\{X,Y,Z\}\). On the complete processor define
+The null is complete depolarization of \(S\). The alternative retains one of the \(3n\) weight-one Paulis at coefficient \(1/2\). Write the label as \(e=(i,\alpha)\), where \(i=1,\ldots,n\) and \(\alpha\in\{X,Y,Z\}\). On the complete processor define
 \begin{align}
  Q_0(F)&=\frac{I_S}{d}\otimes\operatorname{Tr}_S F,\\
- Q_a(F)&=\frac{P_a}{d}\otimes
- \operatorname{Tr}_S[(P_a\otimes I_A)F],\\
- R_a&=Q_0+Q_a,\qquad E_a=Q_0+\frac12Q_a.
+ Q_e(F)&=\frac{P_e}{d}\otimes
+ \operatorname{Tr}_S[(P_e\otimes I_A)F],\\
+ R_e&=Q_0+Q_e,\qquad E_e=Q_0+\frac12Q_e.
  \label{eq:plmt-entropy-maps}
 \end{align}
-The unknown query is \(Q_0\) or one fixed \(E_a\). The map \(R_a\) retains one Pauli axis and the side algebra; it is also a channel. Ordinary access gives none of the hidden label, environment, inverse, or controlled unknown operation.
+The unknown query is \(Q_0\) or one fixed \(E_e\). The map \(R_e\) retains one Pauli axis and the side algebra; it is also a channel. Ordinary access gives none of the hidden label, environment, inverse, or controlled unknown operation.
 
-Let the known, hypothesis-independent initial state be \(\rho_{\mathrm{in}}\). With entropy in bits, set
+Let the known, hypothesis-independent initial state be \(\rho_{\mathrm{in}}\). Write \(D=\dim(SA)\) for the complete processor dimension. With entropy in bits, set
 \begin{equation}
  H(\rho)=-\operatorname{Tr}(\rho\log_2\rho),\qquad
- C=\log_2\dim(SA)-H(\rho_{\mathrm{in}}).
+ C=\log_2D-H(\rho_{\mathrm{in}}).
  \label{eq:plmt-C}
 \end{equation}
 The dimensionless number \(C\) is the initial entropy deficit. For \(c\) pure qubits tensored with otherwise maximally mixed qubits, \(C=c\), counting all initially clean qubits in the processor. Appending independent maximally mixed memory leaves \(C\) unchanged.
@@ -774,12 +774,12 @@ The dimensionless number \(C\) is the initial entropy deficit. For \(c\) pure qu
 \subsection{The inherited collision comparison}
 A useful pre-existing converse uses dimension-normalized collision purity
 \[
- \mathcal P=\dim(SA)\operatorname{Tr}(\rho_{\mathrm{in}}^2).
+ \mathcal P=D\operatorname{Tr}(\rho_{\mathrm{in}}^2).
 \]
 For the average final alternative
-\(\bar\rho_T=(3n)^{-1}\sum_a\rho_T^a\), its restricted-label form is
+\(\bar\rho_T=(3n)^{-1}\sum_e\rho_T^e\), its restricted-label form is
 \begin{equation}
- \operatorname{TD}(\bar\rho_T,\rho_T^0)
+ D_{\mathrm{tr}}(\bar\rho_T,\rho_T^0)
  \leq\min\left\{1,\frac{\sqrt{\mathcal P-1}}{6n}\right\}.
  \label{eq:plmt-inherited}
 \end{equation}
@@ -801,9 +801,9 @@ Define quantum relative entropy in bits by
 \]
 Relative entropy is generally asymmetric. Its value is infinite when the first state's support is not contained in the second's. It cannot increase under a common physical channel; measurement is one such channel.
 
-For any finite number \(T\) of queries, let \(\rho_T^0\) and \(\rho_T^a\) be the complete null and alternative states before the terminal readout. The shared theorem is
+For any finite number \(T\) of queries, let \(\rho_T^0\) and \(\rho_T^e\) be the complete null and alternative states before the terminal readout. The shared theorem is
 \begin{equation}
- \boxed{\sum_{a:\,|a|=1}D_{\rm bits}(\rho_T^0\Vert\rho_T^a)
+ \boxed{\sum_{e:\,|e|=1}D_{\rm bits}(\rho_T^0\Vert\rho_T^e)
  \leq\frac34 C.}
  \label{eq:plmt-entropy-theorem}
 \end{equation}
@@ -812,7 +812,7 @@ There is no factor of \(T\). The reverse order, null first and alternative secon
 \subsection{One query is charged to a common null state}
 For arbitrary prequery states \(\sigma,\rho\), write
 \[
- \sigma'=R_a\sigma,\quad \rho'=R_a\rho,\quad
+ \sigma'=R_e\sigma,\quad \rho'=R_e\rho,\quad
  \omega=Q_0\sigma,\quad \zeta=Q_0\rho.
 \]
 A Pauli conjugation anticommuting with the retained axis swaps the two positive, possibly noncommuting, memory-valued blocks of \(\sigma'\). It produces the state
@@ -821,11 +821,11 @@ A Pauli conjugation anticommuting with the retained axis swaps the two positive,
 Now
 \[
  \omega=\frac{\sigma'+\sigma_{\mathrm{flip}}}{2},
- \qquad E_a\rho=\frac{\rho'+\zeta}{2}.
+ \qquad E_e\rho=\frac{\rho'+\zeta}{2}.
 \]
 Joint convexity of relative entropy gives
 \[
- D_{\rm bits}(\omega\Vert E_a\rho)
+ D_{\rm bits}(\omega\Vert E_e\rho)
  \leq\frac12D_{\rm bits}(\sigma'\Vert\rho')
  +\frac12D_{\rm bits}(\sigma_{\mathrm{flip}}\Vert\zeta).
 \]
@@ -839,9 +839,9 @@ Indeed, the first term is the entropy deficit of \(\sigma'\) relative to a maxim
 \(D_{\rm bits}(\sigma_A\Vert\rho_A)\). The flip preserves the first entropy and the marginal. Data processing bounds each of
 \(D_{\rm bits}(\sigma'\Vert\rho')\) and \(D_{\rm bits}(\omega\Vert\zeta)\) by \(D_{\rm bits}(\sigma\Vert\rho)\). Therefore
 \begin{equation}
- D_{\rm bits}(Q_0\sigma\Vert E_a\rho)
+ D_{\rm bits}(Q_0\sigma\Vert E_e\rho)
  \leq D_{\rm bits}(\sigma\Vert\rho)
- +\frac12D_{\rm bits}(R_a\sigma\Vert Q_0\sigma).
+ +\frac12D_{\rm bits}(R_e\sigma\Vert Q_0\sigma).
  \label{eq:plmt-entropy-coupling}
 \end{equation}
 The null and alternative inputs may differ. This is what permits previously acquired information to return from protected memory.
@@ -874,7 +874,7 @@ Sum the three pairwise inequalities. Every \(d_{i,\alpha}\) appears twice:
 Strong subadditivity implies
 \(\sum_iH(S_i|A)\geq H(S|A)\). Consequently
 \begin{equation}
- \sum_aD_{\rm bits}(R_a\sigma\Vert Q_0\sigma)
+ \sum_eD_{\rm bits}(R_e\sigma\Vert Q_0\sigma)
  \leq\frac32[n-H(S|A)_\sigma]
  =\frac32[H(Q_0\sigma)-H(\sigma)].
  \label{eq:plmt-entropy-source}
@@ -884,13 +884,13 @@ Thus the \(3n\) possible directions are all charged to the entropy created by th
 \subsection{The null entropy gains telescope}
 Let \(\sigma_t=\mathcal C_t(\rho_{t-1}^0)\) be the null state immediately before query \(t\). Apply \eqref{eq:plmt-entropy-coupling} to it and the corresponding alternative prequery state. The initial states are identical, so their initial divergence is zero. Data processing through the known controls yields
 \[
- D_{\rm bits}(\rho_T^0\Vert\rho_T^a)
+ D_{\rm bits}(\rho_T^0\Vert\rho_T^e)
  \leq\frac12\sum_{t=1}^T
- D_{\rm bits}(R_a\sigma_t\Vert Q_0\sigma_t).
+ D_{\rm bits}(R_e\sigma_t\Vert Q_0\sigma_t).
 \]
-Sum over \(a\) and use \eqref{eq:plmt-entropy-source}:
+Sum over \(e\) and use \eqref{eq:plmt-entropy-source}:
 \[
- \sum_aD_{\rm bits}(\rho_T^0\Vert\rho_T^a)
+ \sum_eD_{\rm bits}(\rho_T^0\Vert\rho_T^e)
  \leq\frac34\sum_{t=1}^T
  [H(\rho_t^0)-H(\sigma_t)].
 \]
@@ -898,7 +898,7 @@ A unital control cannot decrease entropy. One way to see this is to apply relati
 \[
  \sum_{t=1}^T[H(\rho_t^0)-H(\sigma_t)]
  \leq H(\rho_T^0)-H(\rho_{\mathrm{in}})
- \leq\log_2\dim(SA)-H(\rho_{\mathrm{in}})=C.
+ \leq\log_2D-H(\rho_{\mathrm{in}})=C.
 \]
 This proves \eqref{eq:plmt-entropy-theorem}. The factors \(1/2\) from the positive-block coupling and \(3/2\) from complementary axes produce \(3/4\). Protected memory can preserve information indefinitely; the proof charges cumulative exposure to noisy query sectors and does not assume strict contraction of every nonidentity operator on the complete processor.
 
@@ -906,20 +906,20 @@ The identities can first be applied to full-rank regularized initial states and 
 
 \subsection{Decision error, late requests, and physical width}
 Suppose a final decision accepts the alternative with probabilities
-\(p_0\leq\delta\) under the null and \(p_a\geq1-\delta\) under every alternative, for \(0<\delta<1/2\). Measurement data processing gives
+\(p_0\leq\delta\) under the null and \(p_e\geq1-\delta\) under every alternative, for \(0<\delta<1/2\). Measurement data processing gives
 \[
- D_{\rm bits}(\rho_T^0\Vert\rho_T^a)
- \geq d_{\rm bits}(p_0\Vert p_a)
+ D_{\rm bits}(\rho_T^0\Vert\rho_T^e)
+ \geq d_{\rm bits}(p_0\Vert p_e)
  \geq(1-2\delta)\log_2\frac{1-\delta}{\delta}
  =j(\delta),
 \]
-where \(d_{\rm bits}\) is the relative entropy of two binary distributions. Over the stated probability ranges its minimum occurs at \(p_0=\delta,p_a=1-\delta\). There are \(3n\) labels, so
+where \(d_{\rm bits}\) is the relative entropy of two binary distributions. Over the stated probability ranges its minimum occurs at \(p_0=\delta,p_e=1-\delta\). There are \(3n\) labels, so
 \begin{equation}
  C\geq4n\,j(\delta),\qquad
  \boxed{C\geq\frac43n\quad\text{when }\delta=\frac13.}
  \label{eq:plmt-linear-purity}
 \end{equation}
-The same conclusion holds for later-requested coefficient estimates with merely per-target success \(2/3\) and absolute error strictly below \(1/4\). When the request is \(a\), threshold its estimate at \(1/4\); this separates the null coefficient zero from the alternative coefficient \(1/2\). Each label may have a different terminal effect, since the entropy theorem bounds its divergence before summing. Simultaneous estimation is not required. Under a simultaneous guarantee, thresholding the largest estimate additionally gives one common detector.
+The same conclusion holds for later-requested coefficient estimates with merely per-target success \(2/3\) and absolute error strictly below \(1/4\). When the request is \(e\), threshold its estimate at \(1/4\); this separates the null coefficient zero from the alternative coefficient \(1/2\). Each label may have a different terminal effect, since the entropy theorem bounds its divergence before summing. Simultaneous estimation is not required. Under a simultaneous guarantee, thresholding the largest estimate additionally gives one common detector.
 
 For \(c\) clean qubits and otherwise maximally mixed initialization, \(C=c\). Equation \eqref{eq:plmt-linear-purity} rules out \(c=O(\log n)\), even with arbitrary additional mixed protected memory and arbitrarily many finite calls. If the \emph{entire} processor has \(n+k_{\mathrm{phys}}\) qubits, including all classical records, then \(C\leq n+k_{\mathrm{phys}}\) also implies
 \begin{equation}
@@ -929,13 +929,13 @@ This is not automatically a bound on the earlier coherent-only \(k\), whose conv
 
 \JointBudgetFigure
 
-For product clean-plus-mixed initialization, the two available necessary conditions can be retained together as
+For a common decision with worst-case error at most \(1/3\), and product clean-plus-mixed initialization, the two available necessary conditions can be retained together as
 \[
  c\geq\max\left\{\frac{4n}{3},\log_2(1+4n^2)\right\}.
 \]
 At small \(n\), the collision condition can be numerically stronger. The entropy condition is stronger asymptotically for constant-error feasibility and, unlike a collision-purity requirement alone, directly constrains arbitrary initial entropy deficit.
 
-At weight one, the original width parameter satisfies \(R=(n-k)/n\leq1\), so its fresh-preparation protocol is polynomial even at \(k=0\). The initial-purity obstruction is not a contradiction: fresh polarized probes and newly initialized outcome records replenish resources forbidden by the fixed-processor contract. Nor does the exactly preserved-correlation rank detector evade it. That detector keeps the hidden coefficient at one for every \(\tau\), whereas the present alternative fixes it at \(1/2\).
+At weight one, the original width parameter satisfies \(R=(n-k)/n\leq1\), so its fresh-preparation protocol is polynomial even at \(k=0\). That protocol uses fresh polarized probes and newly initialized outcome records; the fixed processor instead draws on its initial purity supply. The exactly preserved-correlation detector keeps the hidden coefficient at one for every \(\tau\), while the common attenuated alternative fixes it at \(1/2\).
 
 \section{What the complete result establishes}
 The original learning theorem has one connected mechanism. A random partial-Bell probe loses access only at target sites without references, producing usability at least \(3^{-w(n-k)/n}\). For every possible strategy, a reference rank bound and a weighted Pauli average limit the mean one-call response. A null-prefix hybrid extends that limit to arbitrary persistent coherence and feedback. The upper and lower bounds jointly locate the polynomial frontier.
@@ -949,10 +949,10 @@ The following regimes illustrate it at fixed accuracy and confidence:
 \toprule
 Maximum weight & Permitted deficit for polynomial calls & Meaning\\
 \midrule
-\(w=O(\log n)\) & Any \(0\leq D\leq n\) & No reference is required\\
-\(w=(\log n)^2\) & \(D=O(n/\log n)\) & Missing fraction must vanish\\
-\(w=\sqrt n\) & \(D=O(\sqrt n\log n)\) & Nearly full reference may be needed\\
-\(w=\Theta(n)\) & \(D=O(\log n)\) & Only logarithmically many may be missing\\
+\(w=O(\log n)\) & Any \(0\leq n-k\leq n\) & No reference is required\\
+\(w=(\log n)^2\) & \(n-k=O(n/\log n)\) & Missing fraction must vanish\\
+\(w=\sqrt n\) & \(n-k=O(\sqrt n\log n)\) & Nearly full reference may be needed\\
+\(w=\Theta(n)\) & \(n-k=O(\log n)\) & Only logarithmically many may be missing\\
 \bottomrule
 \end{tabular}
 \end{center}

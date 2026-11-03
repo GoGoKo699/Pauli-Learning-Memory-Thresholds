@@ -4,12 +4,12 @@ The relevant obstruction is access to an unknown correlation. A Pauli channel ha
 
 ## Missing reference width and Pauli support
 
-Write $`D=n-k`$ for the deficit from a full $`n`$-qubit reference and $`R=wD/n`$. A partial-Bell probe reads both Pauli-error bits at each of its $`k`$ paired sites. At an unpaired site it reads only the commutation bit for one chosen axis. A target coefficient is usable precisely when every nonidentity factor on an unpaired site agrees with that chosen axis.
+Write $`n-k`$ for the deficit from a full $`n`$-qubit reference and $`R=w(n-k)/n`$. A partial-Bell probe reads both Pauli-error bits at each of its $`k`$ paired sites. At an unpaired site it reads only the commutation bit for one chosen axis. A target coefficient is usable precisely when every nonidentity factor on an unpaired site agrees with that chosen axis.
 
-For a target of weight $`u`$, a random paired subset leaves an average of $`uD/n`$ relevant sites unpaired. Each such site contributes a factor $`1/3`$ to compatibility. The exact hypergeometric average obeys
+For a target of weight $`u`$, a random paired subset leaves an average of $`u(n-k)/n`$ relevant sites unpaired. Each such site contributes a factor $`1/3`$ to compatibility. The exact hypergeometric average obeys
 
 ```math
-p_u\ge3^{-uD/n}.
+p_u\ge3^{-u(n-k)/n}.
 ```
 
 This gives the constructive exponential dependence on $`R`$. The lower bound allows arbitrary entangled probes and coherent reuse, so its dependence cannot be explained merely by a weakness of these local measurements. The [weighted bounds](weighted_bounds.md) control the average signal accessible with a limited reference for every allowed input.
@@ -24,10 +24,10 @@ At fixed learning accuracy and confidence:
 
 | Maximum weight | Required deficit for polynomial calls | Consequence |
 |---|---|---|
-| $`w=O(\log n)`$ | Every $`0\le D\le n`$ is allowed. | No reference qubits are necessary for polynomial query complexity. |
-| $`w=(\log n)^2`$ | $`D=O(n/\log n)`$ | The fraction of missing reference qubits must vanish. |
-| $`w=\sqrt n`$ | $`D=O(\sqrt n\log n)`$ | A sublinear correlation support can still require nearly $`n`$ reference qubits. |
-| $`w=\Theta(n)`$ | $`D=O(\log n)`$ | Only a logarithmic deficit from a full reference is allowed. |
+| $`w=O(\log n)`$ | Every $`0\le (n-k)\le n`$ is allowed. | No reference qubits are necessary for polynomial query complexity. |
+| $`w=(\log n)^2`$ | $`(n-k)=O(n/\log n)`$ | The fraction of missing reference qubits must vanish. |
+| $`w=\sqrt n`$ | $`(n-k)=O(\sqrt n\log n)`$ | A sublinear correlation support can still require nearly $`n`$ reference qubits. |
+| $`w=\Theta(n)`$ | $`(n-k)=O(\log n)`$ | Only a logarithmic deficit from a full reference is allowed. |
 
 For $`w=n/4`$ and $`k=0.9n`$, the coherent theorem gives an exponential factor at least $`2^{n/220}`$, while the fresh-experiment theorem gives $`2^{n/110}`$. The earlier small-weight expression proportional to $`2^{-k}3^w`$ does not show exponential growth in this regime. This is a comparison of evaluated bounds, not a claim that the exact optimal exponent is known. The precise predecessor and its access model are discussed in [related work](../references/RELATED_WORK.md#kimoh2026).
 
@@ -46,7 +46,7 @@ The apparatus may retain all $`n+k`$ qubits between invocations. The constraint 
 At $`\tau=1`$, the positive-spike channel has a direct measure-and-prepare form. With $`\Pi_\pm=(I\pm P_e)/2`$,
 
 ```math
-\Lambda_e(X)
+\mathcal E_{e,1}(X)
 =\sum_{s=\pm1}\mathrm{Tr}(\Pi_sX)\frac{2\Pi_s}{d}.
 ```
 
@@ -62,7 +62,7 @@ The exact preserved-correlation promise is essential to this particular algorith
 
 For the known mixture $`\widetilde\Lambda=(1-\tau)\mathrm{Id}+\tau\Lambda`$, the distance to the identity is at most $`2\tau`$ in diamond norm. Small $`\tau`$ makes informative error events rare.
 
-At relative accuracy $`\varepsilon=\alpha\tau`$ with fixed $`0<\alpha<1/3`$, the [weak-noise bounds](weak_noise.md) give the same polynomial boundary in both acquisition models:
+At relative accuracy $`\epsilon=\alpha\tau`$ with fixed $`0<\alpha<1/3`$, the [weak-noise bounds](weak_noise.md) give the same polynomial boundary in both acquisition models:
 
 ```math
 R+\log(1/\tau)=O(\log n).
@@ -74,7 +74,7 @@ These mixtures permit rare, globally correlated Pauli errors. They do not impose
 
 ## Initial purity changes the resource question
 
-The [sister comparison](no_reset_frontier.md) fixes one initialized processor and allows only unital controls, charging all retained records and initially polarized probes. For the common weight-one spike with hidden coefficient $`1/2`$, its shared entropy theorem requires $`C\geq4n/3`$ bits of initial negentropy at worst-case error $`1/3`$, for every finite query count. For product clean/mixed initialization, $`C=c`$ is the number of clean qubits. The immediate restriction of the sister’s collision-purity theorem gives only $`c\geq\log_2(1+4n^2)`$; the stronger entropy bound closes the logarithmic-purity possibility.
+The [sister comparison](no_reset_frontier.md) fixes one initialized processor and allows only unital controls, charging all retained records and initially polarized probes. For the common weight-one spike with hidden coefficient $`1/2`$, its shared entropy theorem requires $`C\geq4n/3`$ bits of initial entropy deficit at worst-case error $`1/3`$, for every finite query count. For product clean/mixed initialization, $`C=c`$ is the number of clean qubits. The immediate restriction of the sister’s collision-purity theorem gives only $`c\geq\log_2(1+4n^2)`$; the stronger entropy bound closes the logarithmic-purity possibility.
 
 If every protected record belongs to an $`n+k_{\mathrm{phys}}`$-qubit processor, $`C\leq n+k_{\mathrm{phys}}`$ gives the further necessity $`k_{\mathrm{phys}}\geq n/3`$. This dimension condition does not follow for a width convention that exempts additional classical registers. The original $`w(n-k)/n`$ frontier permits resets and fresh records and remains correct in that model. Linear-resource sufficiency and a sharp no-reset frontier are not established.
 

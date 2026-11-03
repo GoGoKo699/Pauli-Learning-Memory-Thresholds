@@ -86,19 +86,19 @@ for n in range(1, 5):
             cut_states.append(null.copy())
             null = channel(null, np.eye(d), d, r, 0)
         for _, p in pp[1:]:
-            for a in (-0.7, 1.0):
+            for lam in (-0.7, 1.0):
                 hybrid_cases += 1
                 sig = rho0.copy()
                 for u in controls:
                     sig = u @ sig @ u.conj().T
-                    sig = channel(sig, p, d, r, a)
+                    sig = channel(sig, p, d, r, lam)
                 final_td = trace_norm_hermitian(sig-null)/2
                 budget = 0.0
                 for cut in cut_states:
                     b = partial_signal(cut, p, d, r)
-                    norm = trace_norm_hermitian(channel(cut, p, d, r, a)
+                    norm = trace_norm_hermitian(channel(cut, p, d, r, lam)
                                                 - channel(cut, p, d, r, 0))
-                    expected = abs(a)*trace_norm_hermitian(b)
+                    expected = abs(lam)*trace_norm_hermitian(b)
                     max_channel_norm_identity = max(max_channel_norm_identity,
                                                      abs(norm-expected))
                     budget += expected/2

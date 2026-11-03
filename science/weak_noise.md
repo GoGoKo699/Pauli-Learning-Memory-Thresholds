@@ -36,7 +36,7 @@ One realization leaves the input unchanged with probability $`1-\tau`$ and appli
 Use the [fresh-experiment and late-target contract](model.md), with $`n\geq1`$, $`0\leq k\leq n`$, and $`1\leq w\leq n`$. Let
 
 ```math
-D=n-k,\qquad R=\frac{wD}{n},\qquad
+R=\frac{w(n-k)}{n},\qquad
 \kappa=\frac{w}{3n-w},\qquad
 M_w=\sum_{u=0}^{w}\binom nu3^u.
 ```
@@ -45,10 +45,10 @@ For $`0<\epsilon<\tau/3`$ and $`0<\delta<1/2`$, any learner with a pointwise fai
 
 ```math
 \boxed{
-N_{\mathrm{fresh}}
+T_{\mathrm{fresh}}
 \geq
 \frac{(1-2\delta)\tau}{36\epsilon^2}
-2^{\kappa D}.
+2^{\kappa (n-k)}.
 }
 ```
 
@@ -56,23 +56,23 @@ An explicit learner achieves the stronger simultaneous guarantee with
 
 ```math
 \boxed{
-N_{\mathrm{fresh}}
+T_{\mathrm{fresh}}
 \leq
 \left\lceil
 9\tau\epsilon^{-2}3^R
-\log\!\left(\frac{2M_w}{\delta}\right)
+\ln\!\left(\frac{2M_w}{\delta}\right)
 \right\rceil.
 }
 ```
 
-The notation $`N_{\mathrm{fresh}}`$ in these two bounds denotes the optimal worst-case call count for the relevant learning guarantee. The upper bound also bounds the weaker pointwise task. The exponent constants are not asserted to coincide. The explicit dependence $`\tau/\epsilon^2`$ is shared by both bounds outside their exponential and confidence factors.
+The notation $`T_{\mathrm{fresh}}`$ in these two bounds denotes the optimal worst-case call count for the relevant learning guarantee. The upper bound also bounds the weaker pointwise task. The exponent constants are not asserted to coincide. The explicit dependence $`\tau/\epsilon^2`$ is shared by both bounds outside their exponential and confidence factors.
 
 ## A lower bound that counts the rare informative calls
 
 Use the nonidentity spike channels of [Fresh experiments](fresh_experiments.md), but choose amplitude
 
 ```math
-a=\frac{3\epsilon}{\tau}\in(0,1).
+\lambda=\frac{3\epsilon}{\tau}\in(0,1).
 ```
 
 The reference and alternative weak channels are
@@ -81,10 +81,10 @@ The reference and alternative weak channels are
 \widetilde\Lambda_0
 =(1-\tau)\mathrm{id}+\tau\mathcal D,\qquad
 \widetilde\Lambda_{e,s}
-=(1-\tau)\mathrm{id}+\tau\Lambda_{e,s}.
+=(1-\tau)\mathrm{id}+\tau\mathcal E_{e,s\lambda}.
 ```
 
-At the hidden nonidentity target, their eigenvalues differ by $`s\tau a=s\,3\epsilon`$. Thus a successful estimate distinguishes the null value $`1-\tau`$ from either alternative using the decision rule
+At the hidden nonidentity target, their eigenvalues differ by $`s\tau \lambda=s\,3\epsilon`$. Thus a successful estimate distinguishes the null value $`1-\tau`$ from either alternative using the decision rule
 
 ```math
 |\widehat{\widetilde\lambda}_e-(1-\tau)|
@@ -97,9 +97,9 @@ Take the same product prior and physical conditioning as in the [weighted prior 
 
 ```math
 x=\frac{w}{3(2n-w)},\qquad
-e\sim\nu_x(\,\cdot\mid A_w),\qquad
-p_A=\nu_x(A_w)\geq\frac14,\qquad
-B_x=2^{-\kappa D}.
+e\sim\nu_x(\,\cdot\mid \mathcal A_w),\qquad
+p_{\mathcal A}(x)=\nu_x(\mathcal A_w)\geq\frac14,\qquad
+B_x=2^{-\kappa (n-k)}.
 ```
 
 Fix a classical history under the weak null. Let $`q_{\mathrm{id}}(y)`$ and $`q_{\mathcal D}(y)`$ be the next-outcome probabilities for the preparation and POVM selected at that history. The weak null gives
@@ -112,17 +112,17 @@ q_0(y)=(1-\tau)q_{\mathrm{id}}(y)
 The general input/effect reduction in [Fresh experiments](fresh_experiments.md#the-one-experiment-likelihood) gives a real response $`g_e(y)`$ with
 
 ```math
-q_{e,s}(y)=q_{\mathcal D}(y)(1+s a g_e(y)),
+q_{e,s}(y)=q_{\mathcal D}(y)(1+s \lambda g_e(y)),
 \qquad
-\mathbb E_{e\sim\nu_x(\cdot\mid A_w)}g_e(y)^2
-\leq\frac{B_x}{p_A}.
+\mathbb E_{e\sim\nu_x(\cdot\mid \mathcal A_w)}g_e(y)^2
+\leq\frac{B_x}{p_{\mathcal A}(x)}.
 ```
 
 Therefore the weak alternative has likelihood
 
 ```math
 \frac{\widetilde q_{e,s}(y)}{q_0(y)}
-=1+s a h_e(y),\qquad
+=1+s \lambda h_e(y),\qquad
 h_e(y)=
 \frac{\tau q_{\mathcal D}(y)}{q_0(y)}g_e(y).
 ```
@@ -134,7 +134,7 @@ The useful bound averages over the next null outcome as well as the hidden targe
 ```math
 \begin{aligned}
 \sum_y q_0(y)
-\mathbb E_{e\sim\nu_x(\cdot\mid A_w)}h_e(y)^2
+\mathbb E_{e\sim\nu_x(\cdot\mid \mathcal A_w)}h_e(y)^2
 &=
 \tau^2\sum_{y:q_0(y)>0}
 \frac{q_{\mathcal D}(y)^2}{q_0(y)}
@@ -142,13 +142,13 @@ The useful bound averages over the next null outcome as well as the hidden targe
 &\leq
 \tau\sum_yq_{\mathcal D}(y)
 \mathbb E_e g_e(y)^2\\
-&\leq\frac{\tau B_x}{p_A}.
+&\leq\frac{\tau B_x}{p_{\mathcal A}(x)}.
 \end{aligned}
 ```
 
 The factor $`\tau`$ comes from this outcome-weighted second moment. Rescaling the eigenvalue displacement alone would miss it.
 
-For a full transcript, the two signed likelihoods are products of factors $`1\pm a h_e`$. Apply the [signed transcript inequality](fresh_experiments.md#the-signed-transcript-bound), and at every step average the displayed node bound against the weak-null history. That history is independent of the hidden label. The resulting laws obey
+For a full transcript, the two signed likelihoods are products of factors $`1\pm \lambda h_e`$. Apply the [signed transcript inequality](fresh_experiments.md#the-signed-transcript-bound), and at every step average the displayed node bound against the weak-null history. That history is independent of the hidden label. The resulting laws obey
 
 ```math
 \mathbb E_e\mathrm{TV}
@@ -156,16 +156,16 @@ For a full transcript, the two signed likelihoods are products of factors $`1\pm
 \widetilde Q_0,
 \frac{\widetilde Q_{e,+}+\widetilde Q_{e,-}}2
 \right)
-\leq\frac{N a^2\tau B_x}{p_A}.
+\leq\frac{T \lambda^2\tau B_x}{p_{\mathcal A}(x)}.
 ```
 
-Successful estimation requires the left side to be at least $`1-2\delta`$. Substituting $`a=3\epsilon/\tau`$ gives
+Successful estimation requires the left side to be at least $`1-2\delta`$. Substituting $`\lambda=3\epsilon/\tau`$ gives
 
 ```math
-N\geq
-\frac{(1-2\delta)\tau p_A}{9\epsilon^2 B_x}
+T\geq
+\frac{(1-2\delta)\tau p_{\mathcal A}(x)}{9\epsilon^2 B_x}
 \geq
-\frac{(1-2\delta)\tau}{36\epsilon^2}2^{\kappa D}.
+\frac{(1-2\delta)\tau}{36\epsilon^2}2^{\kappa (n-k)}.
 ```
 
 This proof allows arbitrary classical adaptivity and counts every invocation of the weak channel. It does not assume access to a flag revealing which mixture branch occurred, nor does it apply a deterministic-budget lower bound to an unproved expected-query reduction.
@@ -213,23 +213,23 @@ The Bernstein bound stated in [Partial-Bell estimation](partial_bell.md#unbiased
 ```math
 \Pr\!\left(
 \left|
-\frac1N\sum_{\ell=1}^{N}Z_{e,\ell}
+\frac1T\sum_{\ell=1}^{T}Z_{e,\ell}
 -\widetilde\lambda_e
 \right|\geq\epsilon
 \right)
 \leq
 2\exp\!\left[
--\frac{N\epsilon^2p_u}{8\tau+4\epsilon/3}
+-\frac{T\epsilon^2p_u}{8\tau+4\epsilon/3}
 \right].
 ```
 
-For $`\epsilon<\tau/3`$, the denominator is smaller than $`9\tau`$. A union bound over the targets and $`p_u\geq3^{-wD/n}`$ prove the stated sufficient count. Using the exact $`p_w`$ gives the sharper sufficient expression
+For $`\epsilon<\tau/3`$, the denominator is smaller than $`9\tau`$. A union bound over the targets and $`p_u\geq3^{-w(n-k)/n}`$ prove the stated sufficient count. Using the exact $`p_w`$ gives the sharper sufficient expression
 
 ```math
-N=
+T=
 \left\lceil
 9\tau\epsilon^{-2}p_w^{-1}
-\log\!\left(\frac{2M_w}{\delta}\right)
+\ln\!\left(\frac{2M_w}{\delta}\right)
 \right\rceil.
 ```
 
@@ -243,17 +243,17 @@ In the forward hybrid, the common prefix now uses $`\widetilde\Lambda_0`$. The q
 
 ```math
 \widetilde\Lambda_{e,s}-\widetilde\Lambda_0
-=\tau(\Lambda_{e,s}-\mathcal D).
+=\tau(\mathcal E_{e,s\lambda}-\mathcal D).
 ```
 
-Its trace-norm sensitivity has amplitude $`\tau a=3\epsilon`$. The same conditioned rank-fidelity bound therefore gives
+Its trace-norm sensitivity has amplitude $`\tau \lambda=3\epsilon`$. The same conditioned rank-fidelity bound therefore gives
 
 ```math
 \boxed{
-N_{\mathrm{coherent}}
+T_{\mathrm{coherent}}
 \geq
 \frac{1-2\delta}{3\epsilon}\,
-2^{\kappa D/2}.
+2^{\kappa (n-k)/2}.
 }
 ```
 
@@ -268,26 +268,26 @@ Now require a fixed relative accuracy
 and fix $`0<\delta<1/2`$. The fresh lower and upper bounds become
 
 ```math
-\frac{1-2\delta}{36\alpha^2\tau}\,2^{\kappa D}
-\leq N_{\mathrm{fresh}}
+\frac{1-2\delta}{36\alpha^2\tau}\,2^{\kappa (n-k)}
+\leq T_{\mathrm{fresh}}
 \leq
 \left\lceil
 \frac{9}{\alpha^2\tau}\,3^R
-\log\!\left(\frac{2M_w}{\delta}\right)
+\ln\!\left(\frac{2M_w}{\delta}\right)
 \right\rceil.
 ```
 
 The coherent lower bound becomes
 
 ```math
-N_{\mathrm{coherent}}
+T_{\mathrm{coherent}}
 \geq
-\frac{1-2\delta}{3\alpha\tau}\,2^{\kappa D/2}.
+\frac{1-2\delta}{3\alpha\tau}\,2^{\kappa (n-k)/2}.
 ```
 
 Averaging independent records divides their variance by the number of calls. At fixed usability probability, the centered variance bound is proportional to $`\tau`$, whereas the required squared error $`\alpha^2\tau^2`$ is proportional to $`\tau^2`$. Their ratio explains the sufficient $`1/\tau`$ call factor; the lower bounds show that a uniformly cheaper dependence on $`\tau`$ cannot resolve fixed relative precision in these models.
 
-The fresh upper protocol is also allowed in the coherent model. Since $`R/3\leq\kappa D\leq R/2`$ and $`\log M_w=O(n)`$, both models have the same joint criterion:
+The fresh upper protocol is also allowed in the coherent model. Since $`R/3\leq\kappa (n-k)\leq R/2`$ and $`\log M_w=O(n)`$, both models have the same joint criterion:
 
 ```math
 \boxed{

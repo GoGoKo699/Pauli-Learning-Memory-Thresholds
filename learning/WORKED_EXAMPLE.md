@@ -167,18 +167,18 @@ Now change the output task to one bit. The null channel is complete
 depolarization, while the alternative preserves one hidden nonidentity Pauli:
 
 ```math
-\mathrm{Dep}(Q)=\frac{I_4\mathrm{Tr}Q}{4},
+\mathcal D(Q)=\frac{I_4\mathrm{Tr}Q}{4},
 \qquad
-\Lambda_P^1(Q)=
-\frac{I_4\mathrm{Tr}Q+P\mathrm{Tr}(PQ)}{4}.
+\mathcal E_{e,1}(Q)=
+\frac{I_4\mathrm{Tr}Q+P_e\mathrm{Tr}(P_eQ)}{4}.
 ```
 
-The same tester must work for every allowed hidden $`P`$, which is not revealed
+Here $`P_e`$ is labeled by $`e\in\mathbb F_2^4\setminus\{0\}`$. The same tester must work for every allowed hidden $`P_e`$, which is not revealed
 after acquisition. Here $`Q`$ denotes a matrix argument of the channel.
 This is the [positive-spike promise](../science/correlation_detection.md#1-promise-and-finite-theorem).
 
 Under the null, $`v`$ is uniform on $`\mathbb F_2^4`$. Under the alternative
-with hidden $`P=X\otimes Z`$, it is uniform on
+with hidden $`P_e=X\otimes Z`$, it is uniform on
 
 ```math
 \{v:z_1+x_2=0\}.
@@ -217,7 +217,7 @@ homogeneous equation with probability $`2^{-L}`$. There are seven nonzero
 functionals on $`\mathbb F_2^3`$, so a union bound gives
 
 ```math
-\Pr_{\mathrm{Dep}}\{\mathrm{rank}Y<3\}
+\Pr_{\mathcal D}\{\mathrm{rank}Y<3\}
 \le 7\,2^{-L}.
 ```
 
@@ -236,7 +236,7 @@ strength $`\tau=1`$,
 ```math
 J=\left\lceil3\ln20\right\rceil=9,\qquad
 L=\left\lceil2(3\ln2+\ln180)\right\rceil=15,\qquad
-N=JL=135.
+T=JL=135.
 ```
 
 For a hidden weight-two Pauli, the missed-compatibility probability is
@@ -248,8 +248,8 @@ promise, without a claim of optimal constants.
 For known $`0<\tau\le1`$, replace the hypotheses by
 
 ```math
-\Gamma_0=(1-\tau)\mathrm{Id}+\tau\mathrm{Dep},\qquad
-\Gamma_P=(1-\tau)\mathrm{Id}+\tau\Lambda_P^1.
+\Gamma_0=(1-\tau)\mathrm{Id}+\tau\mathcal D,\qquad
+\Gamma_e=(1-\tau)\mathrm{Id}+\tau\mathcal E_{e,1}.
 ```
 
 The mixture branch is not revealed to the tester. The identity branch emits
@@ -270,7 +270,7 @@ Consequently, its rank-deficiency bound is
 ```
 
 At $`\tau=1/4`$, the same sufficient prescription gives $`J=9`$,
-$`L=59`$, and $`N=531`$. More repetitions are needed because most invocations
+$`L=59`$, and $`T=531`$. More repetitions are needed because most invocations
 produce the uninformative zero syndrome. The single-bit output and the
 one-qubit reference budget are unchanged. The
 [general theorem](../science/correlation_detection.md#5-the-linear-rank-algorithm)

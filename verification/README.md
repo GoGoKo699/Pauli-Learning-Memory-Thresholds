@@ -49,7 +49,7 @@ separate from report compilation.
 
 ## Analytical figure
 
-The [resource-figure guide](../figures/README.md) documents a separate plotting route, with its Python generator, pinned dependencies, panel parameters, and canonical formulas. The figure evaluates those formulas directly; the finite checks below verify the identities used in the proofs.
+The [weight–memory figure guide](Graph/README.md) documents the standard quantitative plot, its Python generator, pinned dependencies, panel parameters and canonical formulas. The [supplementary overview](../figures/README.md) retains a separate rendering of the same factors. Both figures evaluate the analytical formulas directly; the finite checks below verify the identities used in the proofs.
 
 ## What is checked
 
