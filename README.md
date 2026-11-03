@@ -2,7 +2,7 @@
 
 **How much coherent memory is needed to learn the coefficient of a quantum correlation whose support and measurement axes are revealed only after data collection?** This project gives a joint threshold in the correlation weight and the memory available beside an unknown Pauli channel.
 
-**Sister project: [Quantum Learning Without Resets](https://github.com/GoGoKo699/Quantum-Learning-Without-Resets).** The weight–memory law here permits fresh probes, resets and classical records. The sister charges the initial purity of the whole processor. On their [common weight-one, attenuated-spike task](science/no_reset_frontier.md), retained coefficient $`1/2`$ and worst-case error $`1/3`$ require $`4n/3`$ bits of initial negentropy, for any finite query count. This also requires $`n/3`$ physical side qubits when every protected record is counted. The [shared entropy proof](https://github.com/GoGoKo699/Quantum-Learning-Without-Resets/blob/948e7dcb80f6c43f0cfa8c9291ae8f7bb5d43350/science/entropy_bound.md) has its authoritative home in the sister; this project supplies the weight–memory law, constructive learning protocols and model comparison.
+**Sister project: [Quantum Learning Without Resets](https://github.com/GoGoKo699/Quantum-Learning-Without-Resets).** The weight–memory law here permits fresh probes, resets and classical records. The sister charges the initial purity of the whole processor. On their [common weight-one, attenuated-spike task](science/no_reset_frontier.md), retained coefficient $`1/2`$ and worst-case error $`1/3`$ require $`4n/3`$ bits of initial entropy deficit, for any finite query count. This also requires $`n/3`$ physical side qubits when every protected record is counted. The [shared entropy proof](https://github.com/GoGoKo699/Quantum-Learning-Without-Resets/blob/main/science/entropy_bound.md) has its authoritative home in the sister; this project supplies the weight–memory law, constructive learning protocols and model comparison.
 
 A Pauli correlation is a tensor product of the single-qubit operators $`I,X,Y,Z`$; its weight counts the factors different from $`I`$. A Pauli channel applies random Pauli errors, possibly correlated across sites. Its coefficient $`\lambda_P`$ describes how much of a correlation survives: $`\Lambda(P)=\lambda_P P`$.
 
@@ -20,16 +20,16 @@ This equivalence uses the reset-permitting coherent-width model below; it is not
 
 ## Principal results
 
-Write $`D=n-k`$ for the missing reference width and $`R=wD/n`$. Here $`\epsilon`$ is the additive coefficient error, $`\delta`$ the failure allowance, and $`M_w=\sum_{u=0}^w\binom nu3^u`$ the number of Pauli labels through weight $`w`$, including the known identity coefficient. The exact finite statements and proofs have the following homes.
+Write $`n-k`$ for the missing reference width and $`R=w(n-k)/n`$. Here $`\epsilon`$ is the additive coefficient error, $`\delta`$ the failure allowance, and $`M_w=\sum_{u=0}^w\binom nu3^u`$ the number of Pauli labels through weight $`w`$, including the known identity coefficient. The exact finite statements and proofs have the following homes.
 
 | Result | Content | Proof |
 |---|---|---|
 | Coherent memory | A weighted root-fidelity bound and a channel hybrid give a lower bound proportional to $`\epsilon^{-1}2^{w(n-k)/[2(3n-w)]}`$. | [Coherent lower bound](science/coherent_memory.md) |
 | Fresh experiments | Complete measurement after each call permits a stronger lower bound proportional to $`\epsilon^{-2}2^{w(n-k)/(3n-w)}`$. | [Fresh-experiment bound](science/fresh_experiments.md) |
-| Constructive learning | Random partial-Bell probes give simultaneous estimates with $`O(\epsilon^{-2}3^R\log(M_w/\delta))`$ calls and efficient evaluation of an individually requested coefficient. | [Partial-Bell protocol](science/partial_bell.md) |
+| Constructive learning | Random partial-Bell probes give simultaneous estimates with $`O(\epsilon^{-2}3^R\ln(M_w/\delta))`$ calls and efficient evaluation of an individually requested coefficient. | [Partial-Bell protocol](science/partial_bell.md) |
 | One-bit detection | Under the positive-spike promise, detecting one hidden, exactly preserved Pauli correlation against the specified depolarizing baseline has the same frontier and an explicit polynomial-time algorithm in the polynomial regime. | [Correlation detection](science/correlation_detection.md) |
 | Weak channels | For known identity-mixture strength $`\tau`$, fixed relative accuracy adds a $`1/\tau`$ query factor. The frontier becomes $`R+\log(1/\tau)=O(\log n)`$. | [Weak-noise rates](science/weak_noise.md) |
-| No-reset obstruction | For weight one and retained coefficient $`1/2`$, constant-error detection requires linear initial negentropy, independently of call count; at error $`1/3`$, $`C\geq4n/3`$. | [Initial purity and width](science/no_reset_frontier.md) |
+| No-reset obstruction | For weight one and retained coefficient $`1/2`$, constant-error detection requires linear initial entropy deficit, independently of call count; at error $`1/3`$, $`C\geq4n/3`$. | [Initial purity and width](science/no_reset_frontier.md) |
 
 For example, learning through weight $`w=\sqrt n`$ requires $`n-k=O(\sqrt n\log n)`$ for polynomial query cost. Learning through weight $`w=\Theta(n)`$ requires $`n-k=O(\log n)`$. The [interpretation](science/interpretation.md) explains these regimes and why coherent reuse does not remove the obstruction.
 
@@ -67,9 +67,20 @@ python3 -m pip install -r verification/requirements.txt
 python3 verification/run_all.py
 ```
 
-The checks cover weighted operator responses, trace-norm identities, short coherent-query hybrids, and exact binary syndrome calculations. They use fixed inputs or random seeds and compare their outputs with the committed expectations. [Verification](verification/README.md) explains the numerical tolerances and exact-arithmetic checks. The universal lower bounds and asymptotic frontier are proved analytically. The [sister entropy verifier](https://github.com/GoGoKo699/Quantum-Learning-Without-Resets/blob/948e7dcb80f6c43f0cfa8c9291ae8f7bb5d43350/verification/README.md) reproduces the finite checks for the shared no-reset obstruction without duplicating that implementation here.
+The checks cover weighted operator responses, trace-norm identities, short coherent-query hybrids, and exact binary syndrome calculations. They use fixed inputs or random seeds and compare their outputs with the committed expectations. [Verification](verification/README.md) explains the numerical tolerances and exact-arithmetic checks. The universal lower bounds and asymptotic frontier are proved analytically. The [sister entropy verifier](https://github.com/GoGoKo699/Quantum-Learning-Without-Resets/blob/main/verification/README.md) reproduces the finite checks for the shared no-reset obstruction without duplicating that implementation here.
 
-## Reproduce the resource figure
+## Reproduce the figures
+
+The [weight–memory regimes plot](verification/Graph/weight_memory_regimes.pdf) is generated by the repository’s Python implementation with pinned dependencies:
+
+```bash
+python3 -m pip install -r verification/Graph/requirements.txt
+python3 verification/Graph/generate_weight_memory_regimes.py --output verification/Graph/weight_memory_regimes.pdf
+```
+
+The generator evaluates the analytical envelopes and exact usability factors in the scientific account. Accuracy, confidence, and target-count prefactors are stated in the full query bounds.
+
+### Additional resource figure
 
 The [analytical resource figure](figures/Graph/resource_regimes.pdf) displays the joint weight–memory geometry and the finite factors in the construction and coherent converse. The [figure guide](figures/README.md) gives the formulas, parameters, and reproduction steps.
 
@@ -90,4 +101,4 @@ Query complexity, terminal measurement count, classical processing, and explicit
 
 ## Purpose and contact
 
-This repository serves as a record of the work and a guide for the author’s self-directed learning. For discussion or potential collaboration, please contact Ruge Lin at [gogoko699@gmail.com](mailto:gogoko699@gmail.com).
+The project is currently under collaboration, and the manuscript is being written. For questions, please contact Ruge Lin at [gogoko699@gmail.com](mailto:gogoko699@gmail.com).

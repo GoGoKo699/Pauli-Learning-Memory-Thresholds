@@ -18,15 +18,15 @@ For purposes of analyzing this protocol, a call is a draw of a Pauli error label
 Perform each experiment as follows.
 
 1. Choose a uniformly random $`k`$-element subset $`K`$ of the $`n`$ system sites.
-2. At each site in $`K`$, prepare a Bell pair between the system qubit and one reference qubit. At every other site $`i`$, choose an independent, uniform axis $`a_i\in\{X,Y,Z\}`$ and prepare its $`+1`$ eigenstate.
+2. At each site in $`K`$, prepare a Bell pair between the system qubit and one reference qubit. At every other site $`i`$, choose an independent, uniform axis $`\alpha_i\in\{X,Y,Z\}`$ and prepare its $`+1`$ eigenstate.
 3. Apply the unknown channel once to all $`n`$ system qubits.
 4. Measure each paired system-reference pair in the Bell basis. Measure every unpaired output qubit along its preparation axis.
 5. Store $`K`$, the unpaired axes, the Bell labels, and the unpaired measurement signs.
 
-The Bell label identifies $`v_i`$ on a paired site, with the labels fixed by the convention $`(P_{v_i}\otimes I)|\Phi^+\rangle`$. Overall Pauli phases do not affect that label. In the pairings and compatibility tests below, each axis $`a_i`$ also denotes its corresponding nonzero local binary label. At an unpaired site the recorded sign is exactly
+The Bell label identifies $`v_i`$ on a paired site, with the labels fixed by the convention $`(P_{v_i}\otimes I)|\Phi^+\rangle`$. Overall Pauli phases do not affect that label. In the pairings and compatibility tests below, each axis $`\alpha_i`$ also denotes its corresponding nonzero local binary label. At an unpaired site the recorded sign is exactly
 
 ```math
-b_i=(-1)^{[a_i,v_i]}.
+b_i=(-1)^{[\alpha_i,v_i]}.
 ```
 
 Indeed, applying a Pauli error to an eigenstate of the chosen axis either preserves or flips its eigenvalue according to commutation. These observations hold conditional on the complete error label, so they require no spatial independence assumption.
@@ -41,7 +41,7 @@ Let the later request be a Pauli $`P_e`$ of weight $`u`$. A record is usable for
 
 ```math
 H_e=
-\mathbf 1\{a_i=e_i
+\mathbf 1\{\alpha_i=e_i
 \text{ for every }i\in\mathrm{supp}(e)\setminus K\}.
 ```
 
@@ -64,7 +64,7 @@ On an unusable record, the algorithm does not need to reconstruct this character
 
 ### Exact usability probability
 
-Put $`D=n-k`$. Conditional on $`K`$, let $`M=|\mathrm{supp}(e)\setminus K|`$ be the number of unpaired target sites. All required axes agree with probability $`3^{-M}`$. Thus usability depends only on the target weight:
+Conditional on $`K`$, let $`M=|\mathrm{supp}(e)\setminus K|`$ be the number of unpaired target sites. All required axes agree with probability $`3^{-M}`$. Thus usability depends only on the target weight:
 
 ```math
 p_u=\Pr(H_e=1)=\mathbb E_K\,3^{-M}.
@@ -89,21 +89,21 @@ Here an out-of-range binomial coefficient is zero, and $`j`$ is the number of pa
 p_u=
 \frac{1}{\binom nu}
 \sum_{m=0}^{u}
-\binom Dm\binom{k}{u-m}\,3^{-m}.
+\binom{n-k}m\binom{k}{u-m}\,3^{-m}.
 ```
 
 These formulas also cover $`u=0`$, for which $`p_0=1`$. The settings are selected independently of the channel, so $`H_e`$ is independent of its Pauli error draw.
 
-Since $`\mathbb E M=uD/n`$ and the function $`3^{-m}`$ is convex,
+Since $`\mathbb E M=u(n-k)/n`$ and the function $`3^{-m}`$ is convex,
 
 ```math
-p_u\geq3^{-uD/n}.
+p_u\geq3^{-u(n-k)/n}.
 ```
 
 Moreover, $`p_u`$ is nonincreasing in $`u`$. To see this, choose nested supports of sizes $`u`$ and $`u+1`$ and use the same random subset $`K`$. Adding one target site multiplies $`3^{-M}`$ by either $`1`$ or $`1/3`$. Permutation symmetry makes this expectation depend only on the support size. Therefore,
 
 ```math
-\min_{0\leq u\leq w}p_u=p_w\geq3^{-wD/n}.
+\min_{0\leq u\leq w}p_u=p_w\geq3^{-w(n-k)/n}.
 ```
 
 ## Unbiased estimation and its variance
@@ -133,21 +133,21 @@ Because $`p_u\leq1`$ and $`|\lambda_e|\leq1`$,
 \leq\frac2{p_u}.
 ```
 
-Run the experiment with independent settings on $`N`$ independent calls and use
+Run the experiment with independent settings on $`T`$ independent calls and use
 
 ```math
-\widehat\lambda_e=\frac1N\sum_{\ell=1}^{N}X_{e,\ell}.
+\widehat\lambda_e=\frac1T\sum_{\ell=1}^{T}X_{e,\ell}.
 ```
 
 Bernstein's inequality for independent, centered random variables with variance at most $`\sigma^2`$ and absolute value at most $`b`$ states
 
 ```math
 \Pr\!\left(
-\left|\frac1N\sum_{\ell=1}^{N}Z_\ell\right|\geq\epsilon
+\left|\frac1T\sum_{\ell=1}^{T}Z_\ell\right|\geq\epsilon
 \right)
 \leq
 2\exp\!\left[
--\frac{N\epsilon^2}{2\sigma^2+2b\epsilon/3}
+-\frac{T\epsilon^2}{2\sigma^2+2b\epsilon/3}
 \right].
 ```
 
@@ -157,7 +157,7 @@ Substituting the preceding moments yields
 \Pr(|\widehat\lambda_e-\lambda_e|\geq\epsilon)
 \leq
 2\exp\!\left[
--\frac{N\epsilon^2p_u}{2+4\epsilon/3}
+-\frac{T\epsilon^2p_u}{2+4\epsilon/3}
 \right].
 ```
 
@@ -174,10 +174,10 @@ M_w=\sum_{u=0}^{w}\binom nu3^u.
 The identity eigenvalue is known to be $`1`$ and can be returned exactly. Including it in $`M_w`$ is a harmless counting convenience. A union bound over the remaining targets shows that, for $`0<\epsilon\leq1`$ and $`0<\delta<1`$,
 
 ```math
-N=
+T=
 \left\lceil
 4\epsilon^{-2}p_w^{-1}
-\log\!\left(\frac{2M_w}{\delta}\right)
+\ln\!\left(\frac{2M_w}{\delta}\right)
 \right\rceil
 ```
 
@@ -194,11 +194,11 @@ All logarithms in confidence bounds are natural. Replacing the exact usability p
 
 ```math
 \boxed{
-N=
+T=
 \left\lceil
 4\epsilon^{-2}
 3^{\,w(n-k)/n}
-\log\!\left(\frac{2M_w}{\delta}\right)
+\ln\!\left(\frac{2M_w}{\delta}\right)
 \right\rceil
 \quad\text{is sufficient.}
 }
@@ -210,11 +210,11 @@ No simultaneous independence between different target estimators is assumed. The
 
 Every experiment uses exactly $`n`$ channel-input qubits, at most $`k`$ reference qubits, one ordinary channel call, and $`O(n)`$ local or Bell preparation and measurement operations. A fixed ordering of the sites in $`K`$ fixes the assignment to reference qubits. No purification of the channel, controlled call, inverse call, or QRAM is used.
 
-A record can be stored in $`O(n)`$ bits: an $`n`$-bit subset mask, one axis label and measurement sign per unpaired site, and one two-bit Bell label per paired site. The complete record therefore occupies $`O(nN)`$ bits. The exact probabilities $`p_u`$ are rational numbers obtainable by polynomial-time integer arithmetic from the binomial formula.
+A record can be stored in $`O(n)`$ bits: an $`n`$-bit subset mask, one axis label and measurement sign per unpaired site, and one two-bit Bell label per paired site. The complete record therefore occupies $`O(nT)`$ bits. The exact probabilities $`p_u`$ are rational numbers obtainable by polynomial-time integer arithmetic from the binomial formula.
 
-After acquisition, one requested coefficient is evaluated by scanning the records, checking compatibility, and multiplying the available signs. This requires $`O(nN)`$ elementary bit inspections and sign operations, plus polynomial arithmetic for the normalization. The protocol returns the record and its evaluation rule; it does not print an exponentially long list of coefficients.
+After acquisition, one requested coefficient is evaluated by scanning the records, checking compatibility, and multiplying the available signs. This requires $`O(nT)`$ elementary bit inspections and sign operations, plus polynomial arithmetic for the normalization. The protocol returns the record and its evaluation rule; it does not print an exponentially long list of coefficients.
 
-The simultaneous event above supports every later request, including requests selected using the record. Its acquisition cost includes only a logarithmic target-count factor. Since $`M_w\leq4^n`$, that factor is $`O(n+\log(1/\delta))`$.
+The simultaneous event above supports every later request, including requests selected using the record. Its acquisition cost includes only a logarithmic target-count factor. Since $`M_w\leq4^n`$, that factor is $`O(n+\ln(1/\delta))`$.
 
 ## Endpoints and related tasks
 

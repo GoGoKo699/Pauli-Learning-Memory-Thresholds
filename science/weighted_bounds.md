@@ -131,12 +131,12 @@ F_x(C):=\mathbb E_{e\sim\nu_x}G_e(C)^2
 \le\left(\frac rd\right)^{\gamma}.
 ```
 
-In particular, if $`r\le2^k`$ and $`D=n-k`$,
+In particular, if $`r\le2^k`$,
 
 ```math
 F_x(C)\le B_x,
 \qquad
-B_x:=2^{-D\gamma}
+B_x:=2^{-(n-k)\gamma}
 =2^{-(n-k)2x/(1+x)}.
 ```
 
@@ -235,7 +235,7 @@ This is the root fidelity between $`\rho`$ and $`P_e\rho P_e`$. It satisfies
 
 In particular, the right side is at most $`B_x`$ whenever $`r\le2^k`$.
 
-For a pure probe, [the one-call identity](coherent_memory.md#pure-inputs) will show that $`a f_e(\rho)`$ is the trace norm of the change from depolarization to a spike of amplitude $`a`$. This is why the coherent argument needs a response bound that remains valid before measurement. The following factorization converts its trace norm into a quadratic expression that the Pauli averaging map can evaluate.
+For a pure probe, [the one-call identity](coherent_memory.md#pure-inputs) will show that $`\lambda f_e(\rho)`$ is the trace norm of the change from depolarization to a spike of amplitude $`\lambda`$. This is why the coherent argument needs a response bound that remains valid before measurement. The following factorization converts its trace norm into a quadratic expression that the Pauli averaging map can evaluate.
 
 ### Proof
 
@@ -294,7 +294,7 @@ Define the required family and its prior mass by
 ```math
 \mathcal A_w=\{e:1\le|e|\le w\},
 \qquad
-p_A(x)=\nu_x(\mathcal A_w),
+p_{\mathcal A}(x)=\nu_x(\mathcal A_w),
 \qquad 1\le w\le n.
 ```
 
@@ -303,17 +303,17 @@ The number of nonidentity sites under $`\nu_x`$ has distribution
 ```math
 W\sim\mathrm{Bin}\left(n,\frac{3x}{1+3x}\right),
 \qquad
-p_A(x)=\Pr(1\le W\le w).
+p_{\mathcal A}(x)=\Pr(1\le W\le w).
 ```
 
-For $`0\lt x\le1`$, this event has positive probability and conditioning rescales its remaining probabilities by $`1/p_A(x)`$. At $`x=0`$ all mass is on the excluded identity, so the conditioned law is undefined. If a function $`g_e`$ obeys $`\mathbb E_{\nu_x}|g_e|^2\le B_x`$, then
+For $`0\lt x\le1`$, this event has positive probability. Write $`\pi_x=\nu_x(\cdot\mid\mathcal A_w)`$ for the normalized conditional prior; conditioning rescales its remaining probabilities by $`1/p_{\mathcal A}(x)`$. At $`x=0`$ all mass is on the excluded identity, so the conditioned law is undefined. If a function $`g_e`$ obeys $`\mathbb E_{\nu_x}|g_e|^2\le B_x`$, then
 
 ```math
-\mathbb E_{\nu_x(\cdot\mid\mathcal A_w)}|g_e|^2
-\le\frac{B_x}{p_A(x)},
+\mathbb E_{\pi_x}|g_e|^2
+\le\frac{B_x}{p_{\mathcal A}(x)},
 \qquad
-\mathbb E_{\nu_x(\cdot\mid\mathcal A_w)}|g_e|
-\le\frac{\sqrt{B_x}}{\sqrt{p_A(x)}}.
+\mathbb E_{\pi_x}|g_e|
+\le\frac{\sqrt{B_x}}{\sqrt{p_{\mathcal A}(x)}}.
 ```
 
 The first statement discards nonnegative contributions outside the event; the second is Cauchy–Schwarz under the conditional probability measure. It applies to W1 and W2. The identity label is excluded here because the spike-channel formula used for learning would otherwise fail to preserve trace; see [the coherent hard family](coherent_memory.md#physical-hard-family).
@@ -331,7 +331,7 @@ W\sim\mathrm{Bin}\left(n,\frac{w}{2n}\right),
 \qquad
 \gamma_* = \frac{w}{3n-w},
 \qquad
-p_A(x_*)\ge\frac14.
+p_{\mathcal A}(x_*)\ge\frac14.
 ```
 
 **Proof.** The binomial parameter and the value of $`\gamma_*`$ follow by substitution. Its mean is $`w/2`$. Three elementary bounds cover all weights.
@@ -339,7 +339,7 @@ p_A(x_*)\ge\frac14.
 For $`w=1`$, Bernoulli's inequality gives
 
 ```math
-p_A(x_*)=\Pr(W=1)
+p_{\mathcal A}(x_*)=\Pr(W=1)
 =\frac12\left(1-\frac1{2n}\right)^{n-1}
 \ge\frac12\left(1-\frac{n-1}{2n}\right)
 =\frac{n+1}{4n}\ge\frac14.
@@ -348,7 +348,7 @@ p_A(x_*)=\Pr(W=1)
 For $`w=2`$, the mean is one. The zero probability is at most $`e^{-1}`$, and Markov's inequality gives $`\Pr(W\ge3)\le1/3`$. Hence
 
 ```math
-p_A(x_*)\ge1-e^{-1}-\frac13
+p_{\mathcal A}(x_*)\ge1-e^{-1}-\frac13
 =\frac23-e^{-1}>\frac14.
 ```
 
@@ -359,12 +359,12 @@ For $`w\ge3`$, the zero probability is at most $`e^{-w/2}\le e^{-3/2}`$, while
 \le\frac{w}{2(w+1)}\le\frac12.
 ```
 
-It follows that $`p_A(x_*)\ge1/2-e^{-3/2}>1/4`$. ∎
+It follows that $`p_{\mathcal A}(x_*)\ge1/2-e^{-3/2}>1/4`$. ∎
 
 For the full family $`w=n`$, a stronger endpoint follows by choosing $`x=1`$ instead:
 
 ```math
-p_A(1)=1-4^{-n},
+p_{\mathcal A}(1)=1-4^{-n},
 \qquad
 \gamma=1,
 \qquad

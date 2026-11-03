@@ -79,7 +79,7 @@ The channel oracle is the ordinary map $`\Lambda\otimes\mathrm{Id}_A`$. Its envi
 
 This coherent-width model does not fix the processor’s initial purity. Its permission to reset, prepare new probes and retain the classical history $`H`$ is consequential. The sister comparison in [no_reset_frontier.md](no_reset_frontier.md) instead requires unital controls on one complete initialized processor, with no fresh records. Its physical side-width corollary counts all protected registers; it is not automatically a bound on $`k`$ when $`H`$ is exempt.
 
-The resource $`N`$ is a worst-case upper bound on the number of channel invocations. A long coherent block pays for every call it contains. An adaptive strategy may stop early. The hybrid proof treats halted classical branches as inactive, so it also covers this case without adding uncounted quantum storage. No claim about an expected-only query budget is needed.
+The resource $`T`$ is a worst-case upper bound on the number of channel invocations. A long coherent block pays for every call it contains. An adaptive strategy may stop early. The hybrid proof treats halted classical branches as inactive, so it also covers this case without adding uncounted quantum storage. No claim about an expected-only query budget is needed.
 
 The lower bound allows unlimited classical computation and arbitrary known operations. The constructive upper bound uses ideal local Clifford operations, Bell preparation and readout, and classical processing whose cost is given below. Imperfect reference qubits and general preparation or readout errors are not part of the upper-bound model.
 
@@ -89,15 +89,15 @@ The family $`\mathcal A_w`$ is known before data acquisition. A learner produces
 
 ```math
 \Pr_\Lambda\!\left[
-  |\widehat\lambda_e(Z)-\lambda_e|\le\varepsilon
+  |\widehat\lambda_e(Z)-\lambda_e|\le\epsilon
 \right]\ge1-\delta.
 ```
 
 The particular index $`e`$ may be supplied after acquisition. The [upper construction](partial_bell.md) satisfies the stronger simultaneous guarantee for every index in the family. The [lower bound](coherent_memory.md) needs only the pointwise guarantee above and remains valid if the final decoder may measure a bounded retained quantum output after receiving $`e`$.
 
-The hat marks an estimate from the record. The tolerance $`\varepsilon`$ is an absolute error in the coefficient, and $`\delta`$ is the allowed failure probability. A pointwise guarantee controls each requested index separately; a simultaneous guarantee controls the event that every estimate is accurate on the same record.
+The hat marks an estimate from the record. The tolerance $`\epsilon`$ is an absolute error in the coefficient, and $`\delta`$ is the allowed failure probability. A pointwise guarantee controls each requested index separately; a simultaneous guarantee controls the event that every estimate is accurate on the same record.
 
-The timing of the index matters. If one Pauli is supplied before the experiment, its eigenvalue can be estimated directly with no reference qubits and $`O(\varepsilon^{-2}\log(1/\delta))`$ calls. Likewise, a polynomial-sized known list can be measured one observable at a time. The necessity result concerns the complete support-and-axis family $`\mathcal A_w`$, not every list whose observables happen to have weight at most $`w`$.
+The timing of the index matters. If one Pauli is supplied before the experiment, its eigenvalue can be estimated directly with no reference qubits and $`O(\epsilon^{-2}\ln(1/\delta))`$ calls. Likewise, a polynomial-sized known list can be measured one observable at a time. The necessity result concerns the complete support-and-axis family $`\mathcal A_w`$, not every list whose observables happen to have weight at most $`w`$.
 
 ## Fresh experiments
 
@@ -105,7 +105,7 @@ The fresh-experiment model is a subclass of coherent access. At each round the l
 
 A POVM is a general quantum measurement. Thus “fresh” describes the loss of all quantum information between rounds; it still permits entangled probes within a round and adaptation based on earlier outcomes.
 
-This restriction gives a stronger lower bound in [fresh experiments](fresh_experiments.md), including an $`\varepsilon^{-2}`$ accuracy factor. The general coherent proof has an $`\varepsilon^{-1}`$ factor. Both lower bounds lead to the same polynomial-versus-superpolynomial frontier, but their finite rates are distinct statements.
+This restriction gives a stronger lower bound in [fresh experiments](fresh_experiments.md), including an $`\epsilon^{-2}`$ accuracy factor. The general coherent proof has an $`\epsilon^{-1}`$ factor. Both lower bounds lead to the same polynomial-versus-superpolynomial frontier, but their finite rates are distinct statements.
 
 ## A one-bit decision task
 
@@ -113,13 +113,13 @@ The [correlation detection theorem](correlation_detection.md) uses the promise
 
 ```math
 \begin{aligned}
-\Lambda_{\tau,0}
-  &=(1-\tau)\mathrm{Id}+\tau\Lambda_{\rm dep},\\
-\Lambda_{\tau,e}
-  &=(1-\tau)\mathrm{Id}+\tau\Lambda_e,\\
-\Lambda_{\rm dep}(X)
+\Gamma_0
+  &=(1-\tau)\mathrm{Id}+\tau\mathcal D,\\
+\Gamma_e
+  &=(1-\tau)\mathrm{Id}+\tau\mathcal E_{e,1},\\
+\mathcal D(X)
   &=\frac{I\,\mathrm{Tr}X}{d},\\
-\Lambda_e(X)
+\mathcal E_{e,1}(X)
   &=\frac{I\,\mathrm{Tr}X+P_e\mathrm{Tr}(P_eX)}{d}.
 \end{aligned}
 ```
@@ -143,14 +143,14 @@ at fixed nontrivial confidence. The direct decision lower bound does not assume 
 | Unknown-channel access | One ordinary invocation per fresh probe; all invocations are counted. |
 | Coherent width at a call | $`n`$ channel-input qubits plus at most $`k`$ reference qubits. |
 | Known quantum operations | $`O(n)`$ local Clifford and Bell operations per probe, with ideal preparation and readout. |
-| Classical acquisition record | $`O(nN)`$ bits for settings and syndrome outcomes. No QRAM is used. |
-| One requested coefficient | A scan of the record, using $`O(nN)`$ elementary operations and polynomial-bit arithmetic for the stated parameter regimes. |
+| Classical acquisition record | $`O(nT)`$ bits for settings and syndrome outcomes. No QRAM is used. |
+| One requested coefficient | A scan of the record, using $`O(nT)`$ elementary operations and polynomial-bit arithmetic for the stated parameter regimes. |
 | All coefficients as an explicit list | At least the list's output length; the query theorem does not promise polynomial time to print exponentially many entries. |
-| Promised decision | Binary Gaussian elimination on $`n+k`$-bit records, polynomial in $`n`$ and $`N`$, without enumerating $`\mathcal A_w`$. |
+| Promised decision | Binary Gaussian elimination on $`n+k`$-bit records, polynomial in $`n`$ and $`T`$, without enumerating $`\mathcal A_w`$. |
 
 The usability probability is an explicit hypergeometric sum depending only on $`n,k`$ and the requested weight. Its exact rational representation has polynomial bit length, so coefficient decoding does not hide a table of exponential size. Finite arithmetic precision may be chosen below the requested statistical error.
 
-For asymptotic frontier statements, $`\varepsilon`$ and $`\delta`$ are fixed nontrivial constants, with $`0<\varepsilon<1/3`$ and $`0<\delta<1/2`$. The learning equivalence also holds for inverse-polynomial accuracy and inverse-polynomial failure probability. A superpolynomial precision demand is an additional resource requirement. For weak channels, [weak noise](weak_noise.md) states the absolute-error and relative-error regimes separately.
+For asymptotic frontier statements, $`\epsilon`$ and $`\delta`$ are fixed nontrivial constants, with $`0<\epsilon<1/3`$ and $`0<\delta<1/2`$. The learning equivalence also holds for inverse-polynomial accuracy and inverse-polynomial failure probability. A superpolynomial precision demand is an additional resource requirement. For weak channels, [weak noise](weak_noise.md) states the absolute-error and relative-error regimes separately.
 
 ## Reading the argument
 

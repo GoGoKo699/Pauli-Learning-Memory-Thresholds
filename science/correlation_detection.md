@@ -13,31 +13,31 @@ identity-mixture strength.
 ## 1. Promise and finite theorem
 
 Let $`n\geq1`$, $`0\leq k\leq n`$, $`1\leq w\leq n`$,
-$`0<\tau\leq1`$, and $`0<\delta<1/2`$. Put $`d=2^n`$,
-$`D=n-k`$, and $`R=wD/n`$. The unknown, memoryless channel is promised to be
+$`0<\tau\leq1`$, and $`0<\delta<1/2`$. Put $`d=2^n`$
+and $`R=w(n-k)/n`$. The unknown, memoryless channel is promised to be
 either
 
 ```math
-\Gamma_0=(1-\tau)\mathrm{Id}+\tau\mathrm{Dep},
-\qquad \mathrm{Dep}(X)=\frac{I\mathrm{Tr}X}{d},
+\Gamma_0=(1-\tau)\mathrm{Id}+\tau\mathcal D,
+\qquad \mathcal D(X)=\frac{I\mathrm{Tr}X}{d},
 ```
 
 or
 
 ```math
-\Gamma_P=(1-\tau)\mathrm{Id}+\tau\Lambda_P,
+\Gamma_e=(1-\tau)\mathrm{Id}+\tau\mathcal E_{e,1},
 \qquad
-\Lambda_P(X)=\frac{I\mathrm{Tr}X+P\mathrm{Tr}(PX)}{d},
-\qquad 1\leq |P|\leq w.
+\mathcal E_{e,1}(X)=\frac{I\mathrm{Tr}X+P_e\mathrm{Tr}(P_eX)}{d},
+\qquad 1\leq |e|\leq w.
 ```
 
 The parameters, including $`\tau`$ and the allowed weight range, are known.
-The nonidentity Pauli $`P`$ is hidden and is never supplied to the tester. The
+The binary label $`e\in\mathcal A_w`$ identifies the nonidentity Pauli $`P_e`$ and remains hidden throughout the run; it is never supplied to the tester. The
 tester must output 0 under $`\Gamma_0`$ and 1 under every allowed
-$`\Gamma_P`$, with error at most $`\delta`$ for each promised channel.
+$`\Gamma_e`$, with error at most $`\delta`$ for each promised channel.
 
 Under the null, every nonidentity Pauli eigenvalue equals $`1-\tau`$. Under an
-alternative, the eigenvalue of $`P`$ equals 1 and every other nonidentity Pauli
+alternative, the eigenvalue of $`P_e`$ equals 1 and every other nonidentity Pauli
 eigenvalue equals $`1-\tau`$. Thus the question is whether the specified
 baseline contains one unknown, exactly preserved correlation. At $`\tau=1`$
 the baseline is complete depolarization.
@@ -46,7 +46,7 @@ the baseline is complete depolarization.
 $`k`$ qubits outside the queried $`n`$-qubit register at each invocation, obeys
 
 ```math
-N\geq\frac{1-2\delta}{\tau}
+T\geq\frac{1-2\delta}{\tau}
   2^{\frac{w(n-k)}{2(3n-w)}}.
 \qquad\text{(D1)}
 ```
@@ -55,7 +55,7 @@ The bound allows arbitrary retained quantum states, intermediate quantum
 operations, measurements, classical feedback, and channel concatenation. It
 counts every channel call and allows unlimited classical computation.
 
-Conversely, a protocol with fresh partial-Bell probes succeeds using $`N=JL`$
+Conversely, a protocol with fresh partial-Bell probes succeeds using $`T=JL`$
 calls. Here $`J`$ is the number of independently drawn settings, $`L`$ is the
 number of calls repeated at each fixed setting, and $`m`$ counts its measured
 syndrome bits:
@@ -70,7 +70,7 @@ L&=\left\lceil\frac{2}{\tau}
 \qquad\text{(D2)}
 ```
 
-Its classical processing is polynomial in $`N`$ and $`n`$. For fixed error
+Its classical processing is polynomial in $`T`$ and $`n`$. For fixed error
 probability in $`(0,1/2)`$, polynomially many calls and polynomial total
 computation are therefore achievable if and only if
 
@@ -86,8 +86,7 @@ The finite bounds (D1)–(D2) state the confidence dependence explicitly.
 ## 2. A succinct physical channel family
 
 Use binary symplectic labels $`e,v\in\mathbb F_2^{2n}`$ for Hermitian Pauli
-operators, and let $`[e,v]`$ be their commutation parity. For the alternative
-$`P=P_e`$, the Pauli-error distributions are
+operators, and let $`[e,v]`$ be their commutation parity. For the alternative with hidden label $`e`$, the Pauli-error distributions are
 
 ```math
 p_0(v)=\frac1{4^n},
@@ -99,11 +98,11 @@ p_e(v)=\frac{1+(-1)^{[e,v]}}{4^n}.
 Since $`e\neq0`$, its symplectic functional is nonzero. Consequently
 $`p_e`$ is the uniform distribution on the linear hyperplane
 $`\mathcal H_e=\{v:[e,v]=0\}`$, which has $`2^{2n-1}`$ elements. This proves
-complete positivity and trace preservation of $`\Lambda_P`$ directly.
-Its Fourier coefficients are 1 at the identity and at $`P`$, and zero at
+complete positivity and trace preservation of $`\mathcal E_{e,1}`$ directly.
+Its Fourier coefficients are 1 at the identity and at $`P_e`$, and zero at
 every other Pauli.
 
-To sample an error from $`\Gamma_P`$, first choose the identity branch with
+To sample an error from $`\Gamma_e`$, first choose the identity branch with
 probability $`1-\tau`$. Otherwise choose $`2n-1`$ independent uniform bits
 and solve for one remaining bit with nonzero coefficient in $`[e,v]`$.
 Apply the resulting tensor product of local Pauli gates. The null uses a
@@ -117,11 +116,11 @@ channel access, not the hidden label, sampled error, or branch flag.
 At $`\tau=1`$, the alternative also has the measure-and-prepare form
 
 ```math
-\Lambda_P(X)=\sum_{b\in\{+1,-1\}}
+\mathcal E_{e,1}(X)=\sum_{b\in\{+1,-1\}}
        \mathrm{Tr}(E_bX)\sigma_b,
 \qquad
-E_b=\frac{I+bP}{2},\quad
-\sigma_b=\frac{I+bP}{d}.
+E_b=\frac{I+bP_e}{2},\quad
+\sigma_b=\frac{I+bP_e}{d}.
 \qquad\text{(D5)}
 ```
 
@@ -132,7 +131,7 @@ not be entanglement breaking. Both hypotheses satisfy
 ```math
 \|\Gamma_i-\mathrm{Id}\|_\diamond\leq2\tau,
 \qquad
-\|\Gamma_P-\Gamma_0\|_\diamond=\tau.
+\|\Gamma_e-\Gamma_0\|_\diamond=\tau.
 \qquad\text{(D6)}
 ```
 
@@ -156,7 +155,7 @@ Use the product Pauli prior and its restriction from
 x=\frac{w}{3(2n-w)},\qquad
 \nu_x(e)=\frac{x^{|e|}}{(1+3x)^n},\qquad
 \mathcal A=\{e:1\leq|e|\leq w\},\qquad
-p_{\mathcal A}=\nu_x(\mathcal A)\geq\frac14.
+p_{\mathcal A}(x)=\nu_x(\mathcal A)\geq\frac14.
 ```
 
 Write $`\pi=\nu_x(\,\cdot\mid\mathcal A)`$ and
@@ -183,21 +182,21 @@ quantum state. Conditioning the prior and using Cauchy–Schwarz gives
 
 ```math
 \mathbb E_{e\sim\pi}b_e(\omega)
-\leq\sqrt{B/p_{\mathcal A}}.
+\leq\sqrt{B/p_{\mathcal A}(x)}.
 \qquad\text{(D8)}
 ```
 
 For any such input, the single-call difference is
 
 ```math
-[(\Gamma_{P_e}-\Gamma_0)\otimes\mathrm{id}_A](\omega)
+[(\Gamma_e-\Gamma_0)\otimes\mathrm{id}_A](\omega)
 =\tau\frac{P_e}{d}\otimes
   \mathrm{Tr}_S[(P_e\otimes I)\omega],
 ```
 
 and has trace norm $`\tau b_e(\omega)`$. Compare the actual protocol by
 hybrids with the first $`j`$ calls equal to $`\Gamma_0`$ and all remaining
-calls equal to $`\Gamma_{P_e}`$. At the differing invocation, the preceding
+calls equal to $`\Gamma_e`$. At the differing invocation, the preceding
 null calls have produced a classical–quantum state independent of $`e`$.
 The following operations, including all feedback, form the same
 $`e`$-dependent trace-preserving quantum map on each side of that replacement.
@@ -205,7 +204,7 @@ Trace-distance contraction, (D8), and the triangle inequality imply
 
 ```math
 \mathbb E_{e\sim\pi}\mathrm{TV}(Q_e,Q_0)
-\leq\frac{N\tau}{2}\sqrt{B/p_{\mathcal A}},
+\leq\frac{T\tau}{2}\sqrt{B/p_{\mathcal A}(x)},
 \qquad\text{(D9)}
 ```
 
@@ -227,8 +226,8 @@ Thus $`\mathrm{TV}(Q_e,Q_0)\geq1-2\delta`$ for every allowed
 $`e`$. Combining with (D9) yields
 
 ```math
-N\geq
-\frac{2(1-2\delta)\sqrt{p_{\mathcal A}}}{\tau\sqrt B}
+T\geq
+\frac{2(1-2\delta)\sqrt{p_{\mathcal A}(x)}}{\tau\sqrt B}
 \geq\frac{1-2\delta}{\tau}
    2^{\frac{w(n-k)}{2(3n-w)}},
 ```
@@ -237,11 +236,11 @@ which proves (D1). No random sign and no revelation of the hidden label
 are needed.
 
 For the full family $`w=n`$, the same proof can instead use the uniform
-Pauli prior $`x=1`$. Then $`B=2^{-D}`$ and
-$`p_{\mathcal A}=1-4^{-n}`$, giving the stronger endpoint bound
+Pauli prior $`x=1`$. Then $`B=2^{-(n-k)}`$ and
+$`p_{\mathcal A}(x)=1-4^{-n}`$, giving the stronger endpoint bound
 
 ```math
-N\geq\frac{2(1-2\delta)\sqrt{1-4^{-n}}}{\tau}
+T\geq\frac{2(1-2\delta)\sqrt{1-4^{-n}}}{\tau}
   2^{(n-k)/2}.
 \qquad\text{(D1a)}
 ```
@@ -296,7 +295,7 @@ Two elementary projection facts determine the test:
 1. Under $`\Gamma_0`$, the syndrome law is
    $`(1-\tau)\delta_0+\tau\mathrm{Uniform}(\mathbb F_2^m)`$.
    Here $`\delta_0`$ is the point mass at the zero syndrome.
-2. Under $`\Gamma_{P_e}`$ in a compatible setting, there is a unique
+2. Under $`\Gamma_e`$ in a compatible setting, there is a unique
    nonzero row $`c`$ with $`cA=\ell_e`$. Every syndrome obeys $`cy=0`$,
    including the identity-branch syndrome. In an incompatible setting the
    syndrome law equals the null law.
@@ -356,12 +355,12 @@ same amount. This proves (D2), with spare error probability.
 
 Binary Gaussian elimination uses XORs to decide whether a new row adds an
 independent direction. Its streaming form processes each syndrome in $`O(m^2)`$ bit
-operations and keeps an $`O(m^2)`$-bit basis. Across all $`N`$ calls, rank processing uses $`O(Nm^2)`$ bit operations; the current setting and counters use an additional $`O(n+\log N)`$ bits. The quantum operations per call
+operations and keeps an $`O(m^2)`$-bit basis. Across all $`T`$ calls, rank processing uses $`O(Tm^2)`$ bit operations; the current setting and counters use an additional $`O(n+\log T)`$ bits. The quantum operations per call
 are local preparations, Bell operations, and local measurements. In particular,
 
 ```math
-N=O\!\left(\tau^{-1}3^R
-       [n+R+\log(1/\delta)]\log(1/\delta)\right).
+T=O\!\left(\tau^{-1}3^R
+       [n+R+\ln(1/\delta)]\ln(1/\delta)\right).
 \qquad\text{(D14)}
 ```
 
